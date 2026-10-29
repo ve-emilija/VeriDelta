@@ -1,0 +1,231 @@
+[
+ {
+  "n": 1,
+  "hash8": "5f6efdee",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "final": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ]
+ },
+ {
+  "n": 2,
+  "hash8": "8ad5f947",
+  "repo": "opentitan",
+  "first_pass": [
+   "Interface Drift"
+  ],
+  "final": []
+ },
+ {
+  "n": 3,
+  "hash8": "e4e5602e",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "final": [
+   "Checker Desync"
+  ]
+ },
+ {
+  "n": 4,
+  "hash8": "bb18a5a5",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "final": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ]
+ },
+ {
+  "n": 5,
+  "hash8": "d4f46b45",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "final": [
+   "Sequence Invalidation",
+   "Checker Desync",
+   "RAL Desync"
+  ]
+ },
+ {
+  "n": 6,
+  "hash8": "a6e0f446",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "final": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ]
+ },
+ {
+  "n": 7,
+  "hash8": "c947013b",
+  "repo": "opentitan",
+  "first_pass": [
+   "Interface Drift"
+  ],
+  "final": [
+   "Interface Drift"
+  ]
+ },
+ {
+  "n": 8,
+  "hash8": "f14fde90",
+  "repo": "caliptra-rtl",
+  "first_pass": [
+   "Checker Desync",
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "final": [
+   "Checker Desync",
+   "Interface Drift",
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ]
+ },
+ {
+  "n": 9,
+  "hash8": "234cd204",
+  "repo": "opentitan",
+  "first_pass": [
+   "Coverage Regression"
+  ],
+  "final": [
+   "Coverage Regression"
+  ]
+ },
+ {
+  "n": 10,
+  "hash8": "a1ef9e2c",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation"
+  ],
+  "final": [
+   "Sequence Invalidation"
+  ]
+ },
+ {
+  "n": 11,
+  "hash8": "f9312f2f",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation"
+  ],
+  "final": [
+   "Sequence Invalidation"
+  ]
+ },
+ {
+  "n": 12,
+  "hash8": "586d24e1",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "final": []
+ },
+ {
+  "n": 13,
+  "hash8": "5d5f32ec",
+  "repo": "caliptra-rtl",
+  "first_pass": [
+   "RAL Desync"
+  ],
+  "final": [
+   "RAL Desync"
+  ]
+ },
+ {
+  "n": 14,
+  "hash8": "fde975d0",
+  "repo": "opentitan",
+  "first_pass": [
+   "Checker Desync"
+  ],
+  "final": [
+   "Checker Desync"
+  ]
+ },
+ {
+  "n": 15,
+  "hash8": "b877560d",
+  "repo": "opentitan",
+  "first_pass": [
+   "Interface Drift"
+  ],
+  "final": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ]
+ },
+ {
+  "n": 16,
+  "hash8": "702a4982",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation"
+  ],
+  "final": [
+   "Sequence Invalidation"
+  ]
+ },
+ {
+  "n": 17,
+  "hash8": "7e68779f",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation"
+  ],
+  "final": []
+ },
+ {
+  "n": 18,
+  "hash8": "01791be5",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation"
+  ],
+  "final": []
+ },
+ {
+  "n": 19,
+  "hash8": "43a07eae",
+  "repo": "opentitan",
+  "first_pass": [
+   "Sequence Invalidation"
+  ],
+  "final": [
+   "Sequence Invalidation"
+  ]
+ },
+ {
+  "n": 20,
+  "hash8": "b1095ff4",
+  "repo": "opentitan",
+  "first_pass": [
+   "Interface Drift"
+  ],
+  "final": [
+   "Sequence Invalidation"
+  ]
+ }
+]

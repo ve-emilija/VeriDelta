@@ -1,0 +1,45 @@
+{
+  "stage": 1,
+  "script_sha256": "2ee286da90683e5736ee01f7bf7ff53cf5d18dcb47fc88d7f4a27167b0df67fa",
+  "extracted_at": "2026-10-24T17:46:52+00:00",
+  "git_version": "git version 2.43.0",
+  "options": {
+    "keep_merges": false,
+    "include_authors": false,
+    "rename_detection": true
+  },
+  "repos": {
+    "opentitan": {
+      "url": "https://github.com/lowRISC/opentitan.git",
+      "ref": "origin/HEAD",
+      "head_sha": "d76cd324f213ad3deea312d7008fef45def15f7a",
+      "pinned": false,
+      "commits": 32604,
+      "first_author_date": "2019-08-31T12:12:56+01:00",
+      "last_author_date": "2026-10-23T15:20:11+02:00",
+      "verification": {
+        "commits_expected": 32604,
+        "commits_written": 32604,
+        "count_ok": true,
+        "sample_checked": 25,
+        "sample_mismatches": []
+      }
+    },
+    "caliptra-rtl": {
+      "url": "https://github.com/chipsalliance/caliptra-rtl.git",
+      "ref": "origin/HEAD",
+      "head_sha": "5e577ee820ff6b05311869ea69c38e78355fd558",
+      "pinned": false,
+      "commits": 802,
+      "first_author_date": "2023-02-14T10:46:09-08:00",
+      "last_author_date": "2026-10-24T01:09:29+02:00",
+      "verification": {
+        "commits_expected": 802,
+        "commits_written": 802,
+        "count_ok": true,
+        "sample_checked": 25,
+        "sample_mismatches": []
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+sources/
+results/cache_labels/
+results/*/llm_cache/
+results/mock/
+data_regen/
+.env
+
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/

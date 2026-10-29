@@ -1,0 +1,193 @@
+model: claude-haiku-4-5-20251001 | temperature: 0.0
+opentitan: 374 eval commits | pool 5364 older+other commits | labelled nodes 318 (filtered) / 420 (unfiltered)
+caliptra-rtl: 26 eval commits | pool 173 older+other commits | labelled nodes 72 (filtered) / 96 (unfiltered)
+  240 units processed in 229s
+{'commits': 400, 'calls_units': 240, 'truncated': 32, 'commits_with_points': 153, 'no_descendants': 1110, 'no_labelled_descendant': 62, 'pool_empty': 0}
+
+======================================================================
+GROUND TRUTH: filtered
+======================================================================
+Table IV (filtered ground truth)
+(IF=Interface Drift, SI=Sequence Invalidation, CD=Checker Desync, RD=RAL Desync,
+ CR=Coverage Regression.  Macro = mean over categories
+ with ground truth; n/a = no ground truth; FP@n/a = false positives in those
+ categories, which Macro cannot see.)
+
+Support (unique evaluation points per category): IF=230  SI=1010  CD=409  RD=33  CR=11
+
+──────────────────────────────────────────────────────────────────────────────
+System                        IF    SI    CD    RD    CR  Macro  Micro  FP@n/a
+──────────────────────────────────────────────────────────────────────────────
+VeriDelta (GraphRAG)        0.94  0.99  0.94  0.26  0.71   0.77   0.95       0
+LLM — no commit history     0.94  0.96  0.84  0.00  0.32   0.61   0.90       0
+Structural prior only       0.97  1.00  1.00  0.00  1.00   0.79   0.99       0
+LLM — no graph context      0.87  0.89  0.41  0.36  0.01   0.51   0.51       0
+──────────────────────────────────────────────────────────────────────────────
+
+
+VeriDelta (GraphRAG) — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.89  R=1.00  F1=0.94  n=230  (230 27 0)
+  Sequence Invalidation    P=0.99  R=1.00  F1=0.99  n=1010 (1010 15 0)
+  Checker Desync           P=0.88  R=1.00  F1=0.94  n=409  (409 54 0)
+  RAL Desync               P=0.20  R=0.39  F1=0.26  n=33   (13 53 20)
+  Coverage Regression      P=0.55  R=1.00  F1=0.71  n=11   (11 9 0)
+  MACRO (5 cats)           P=0.70  R=0.88  F1=0.77
+  MICRO                    P=0.91  R=0.99  F1=0.95
+
+LLM — no commit history — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.88  R=1.00  F1=0.94  n=230  (230 32 0)
+  Sequence Invalidation    P=0.92  R=1.00  F1=0.96  n=1010 (1010 90 0)
+  Checker Desync           P=0.73  R=1.00  F1=0.84  n=409  (409 155 0)
+  RAL Desync               P=0.00  R=0.00  F1=0.00  n=33   (0 16 33)
+  Coverage Regression      P=0.19  R=1.00  F1=0.32  n=11   (11 46 0)
+  MACRO (5 cats)           P=0.54  R=0.80  F1=0.61
+  MICRO                    P=0.83  R=0.98  F1=0.90
+
+Structural prior only — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.95  R=1.00  F1=0.97  n=230  (230 13 0)
+  Sequence Invalidation    P=1.00  R=1.00  F1=1.00  n=1010 (1010 0 0)
+  Checker Desync           P=1.00  R=1.00  F1=1.00  n=409  (409 0 0)
+  RAL Desync               P=0.00  R=0.00  F1=0.00  n=33   (0 0 33)
+  Coverage Regression      P=1.00  R=1.00  F1=1.00  n=11   (11 0 0)
+  MACRO (5 cats)           P=0.79  R=0.80  F1=0.79
+  MICRO                    P=0.99  R=0.98  F1=0.99
+
+LLM — no graph context — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.76  R=1.00  F1=0.87  n=230  (230 71 0)
+  Sequence Invalidation    P=0.81  R=1.00  F1=0.89  n=1010 (1010 244 0)
+  Checker Desync           P=0.26  R=1.00  F1=0.41  n=409  (409 1181 0)
+  RAL Desync               P=0.23  R=0.91  F1=0.36  n=33   (30 103 3)
+  Coverage Regression      P=0.01  R=1.00  F1=0.01  n=11   (11 1623 0)
+  MACRO (5 cats)           P=0.41  R=0.98  F1=0.51
+  MICRO                    P=0.34  R=1.00  F1=0.51
+
+
+Micro-F1 by node type (n = unique evaluation points)
+──────────────────────────────────────────────────────────────────────
+  type        n   graphrag  llm_no_hi  structura  llm_no_gr
+  AGENT      86       0.83       0.74       1.00       0.41
+  CFG       123       0.79       0.59       0.83       0.38
+  COV        11       1.00       1.00       1.00       0.88
+  ENV        34       0.75       0.63       1.00       0.33
+  SCBD      409       0.99       1.00       1.00       0.67
+  SEQ      1010       0.98       0.95       1.00       0.51
+  (types other than CFG/OTHER have labels fixed by τ — the structural prior is
+   right on them by construction; only CFG/OTHER rows discriminate.)
+
+
+Commit-cluster bootstrap (1000 resamples of 147 commits), 95% CI
+──────────────────────────────────────────────────────────────────────
+  VeriDelta (GraphRAG)       macro-F1 [0.6393, 0.8185]   micro-F1 [0.9283, 0.9687]
+  LLM — no commit history    macro-F1 [0.5431, 0.6921]   micro-F1 [0.8635, 0.9336]
+  Structural prior only      macro-F1 [0.7418, 0.7972]   micro-F1 [0.9757, 0.9963]
+  LLM — no graph context     macro-F1 [0.4623, 0.6501]   micro-F1 [0.4896, 0.533]
+  P(VeriDelta > LLM — no commit history):  macro 1.00   micro 1.00
+  P(VeriDelta > Structural prior only):  macro 0.23   micro 0.00
+  P(VeriDelta > LLM — no graph context):  macro 1.00   micro 1.00
+
+
+Predictions that came from the structural prior instead of the LLM
+──────────────────────────────────────────────────────────────────────
+  VeriDelta (GraphRAG)       0/1931  (0.0%)
+  LLM — no commit history    0/1931  (0.0%)
+  Structural prior only      1931/1931  (100.0%)
+  LLM — no graph context     0/1931  (0.0%)
+
+======================================================================
+GROUND TRUTH: unfiltered
+======================================================================
+Table IV (unfiltered ground truth)
+(IF=Interface Drift, SI=Sequence Invalidation, CD=Checker Desync, RD=RAL Desync,
+ CR=Coverage Regression.  Macro = mean over categories
+ with ground truth; n/a = no ground truth; FP@n/a = false positives in those
+ categories, which Macro cannot see.)
+
+Support (unique evaluation points per category): IF=1127  SI=1559  CD=1138  RD=446  CR=345
+
+──────────────────────────────────────────────────────────────────────────────
+System                        IF    SI    CD    RD    CR  Macro  Micro  FP@n/a
+──────────────────────────────────────────────────────────────────────────────
+VeriDelta (GraphRAG)        0.33  0.72  0.54  0.08  0.06   0.35   0.51       0
+LLM — no commit history     0.33  0.76  0.58  0.05  0.06   0.36   0.54       0
+Structural prior only       0.32  0.71  0.52  0.00  0.06   0.32   0.50       0
+LLM — no graph context      0.34  0.81  0.72  0.12  0.29   0.46   0.57       0
+──────────────────────────────────────────────────────────────────────────────
+
+
+VeriDelta (GraphRAG) — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.72  R=0.22  F1=0.33  n=1127 (245 97 882)
+  Sequence Invalidation    P=0.80  R=0.66  F1=0.72  n=1559 (1036 267 523)
+  Checker Desync           P=0.86  R=0.39  F1=0.54  n=1138 (443 74 695)
+  RAL Desync               P=0.24  R=0.04  F1=0.08  n=446  (20 62 426)
+  Coverage Regression      P=0.46  R=0.03  F1=0.06  n=345  (12 14 333)
+  MACRO (5 cats)           P=0.61  R=0.27  F1=0.35
+  MICRO                    P=0.77  R=0.38  F1=0.51
+
+LLM — no commit history — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.71  R=0.21  F1=0.33  n=1127 (241 99 886)
+  Sequence Invalidation    P=0.80  R=0.72  F1=0.76  n=1559 (1117 281 442)
+  Checker Desync           P=0.80  R=0.46  F1=0.58  n=1138 (520 128 618)
+  RAL Desync               P=0.67  R=0.03  F1=0.05  n=446  (12 6 434)
+  Coverage Regression      P=0.18  R=0.04  F1=0.06  n=345  (13 59 332)
+  MACRO (5 cats)           P=0.63  R=0.29  F1=0.36
+  MICRO                    P=0.77  R=0.41  F1=0.54
+
+Structural prior only — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.72  R=0.20  F1=0.32  n=1127 (230 90 897)
+  Sequence Invalidation    P=0.79  R=0.65  F1=0.71  n=1559 (1010 266 549)
+  Checker Desync           P=0.92  R=0.36  F1=0.52  n=1138 (409 34 729)
+  RAL Desync               P=0.00  R=0.00  F1=0.00  n=446  (0 0 446)
+  Coverage Regression      P=0.69  R=0.03  F1=0.06  n=345  (11 5 334)
+  MACRO (5 cats)           P=0.62  R=0.25  F1=0.32
+  MICRO                    P=0.81  R=0.36  F1=0.50
+
+LLM — no graph context — Precision / Recall / F1 / Support (TP FP FN)
+──────────────────────────────────────────────────────────────────────
+  Interface Drift          P=0.67  R=0.23  F1=0.34  n=1127 (254 127 873)
+  Sequence Invalidation    P=0.80  R=0.82  F1=0.81  n=1559 (1279 318 280)
+  Checker Desync           P=0.57  R=0.99  F1=0.72  n=1138 (1121 845 17)
+  RAL Desync               P=0.23  R=0.09  F1=0.12  n=446  (38 129 408)
+  Coverage Regression      P=0.17  R=0.99  F1=0.29  n=345  (342 1636 3)
+  MACRO (5 cats)           P=0.49  R=0.62  F1=0.46
+  MICRO                    P=0.50  R=0.66  F1=0.57
+
+
+Micro-F1 by node type (n = unique evaluation points)
+──────────────────────────────────────────────────────────────────────
+  type        n   graphrag  llm_no_hi  structura  llm_no_gr
+  AGENT     129       0.56       0.62       0.45       0.64
+  CFG       153       0.45       0.66       0.42       0.66
+  COV        16       0.44       0.44       0.44       0.42
+  ENV        38       0.48       0.64       0.50       0.68
+  SCBD      443       0.50       0.50       0.51       0.48
+  SEQ      1276       0.52       0.52       0.51       0.57
+  (types other than CFG/OTHER have labels fixed by τ — the structural prior is
+   right on them by construction; only CFG/OTHER rows discriminate.)
+
+
+Commit-cluster bootstrap (1000 resamples of 153 commits), 95% CI
+──────────────────────────────────────────────────────────────────────
+  VeriDelta (GraphRAG)       macro-F1 [0.306, 0.3783]   micro-F1 [0.4827, 0.5377]
+  LLM — no commit history    macro-F1 [0.3136, 0.3906]   micro-F1 [0.4995, 0.5715]
+  Structural prior only      macro-F1 [0.2819, 0.353]   micro-F1 [0.4685, 0.5267]
+  LLM — no graph context     macro-F1 [0.4179, 0.4916]   micro-F1 [0.5457, 0.5869]
+  P(VeriDelta > LLM — no commit history):  macro 0.07   micro 0.00
+  P(VeriDelta > Structural prior only):  macro 1.00   micro 1.00
+  P(VeriDelta > LLM — no graph context):  macro 0.00   micro 0.00
+
+
+Predictions that came from the structural prior instead of the LLM
+──────────────────────────────────────────────────────────────────────
+  VeriDelta (GraphRAG)       0/2396  (0.0%)
+  LLM — no commit history    0/2396  (0.0%)
+  Structural prior only      2396/2396  (100.0%)
+  LLM — no graph context     0/2396  (0.0%)
+
+LLM stats: {'calls': 428, 'in_tokens[claude-haiku-4-5-20251001]': 353418, 'out_tokens[claude-haiku-4-5-20251001]': 239339, 'cache_hits': 292}

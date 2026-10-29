@@ -1,0 +1,2650 @@
+{
+ "5f6efdee7c6ff78f865024e630b8ec4de6d15b58": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New EnFullKmac mode changes stimulus in vseqs and requires scoreboard model updates."
+ },
+ "8ad5f947eea096539c5d943ed3ff481b923cb435": {
+  "categories": [],
+  "none": true,
+  "reason": "Documentation and argument simplification of a driver helper; behavior unchanged, so a pure refactor."
+ },
+ "e4e5602ebffb9b9808afd4770b6f31344ef480f9": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard err_code expectations change to account for injected faults in the mubi done signal."
+ },
+ "bb18a5a5464caaa1fd54a4dabc18a847cc56f054": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Backdoor API moved to subclasses; sequences and scoreboards using memory access may break or diverge."
+ },
+ "d4f46b45edcb929ca6466499685e51fa4e58cba3": {
+  "categories": [
+   "RAL Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Memory range API in RAL changed to a getter; sequences using ranges for addressing may change."
+ },
+ "a6e0f44698233df6705909cbef4df5b5c2302b30": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Foreach iteration semantics changed in sequences, altering generated stimulus and array sizing/iteration."
+ },
+ "c947013be17b10c66d153155af2b5383ec808175": {
+  "categories": [
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Env/cfg and tb changes rewire virtual interface handles for rom_ctrl in chip environment."
+ },
+ "f14fde905ae7b50d7b062d90806c125413f564ea": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Sequence now avoids the unmapped AES region, changing stimulus and possibly reducing address coverage."
+ },
+ "234cd204eceb9bb465810bb855e1ad88025ee75a": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor of coverage wrapper construction; string concatenation inlined, behavior and coverage points unchanged."
+ },
+ "a1ef9e2c2206ab7b5abeb0692a7f01485bd331f6": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq's expected GPIO wait value changed to walking 0's, altering stimulus/synchronization assumptions."
+ },
+ "f9312f2f62383f5087c34d9b9d6e55e0956a49cf": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Old key derivation vseq replaced by a DPE variant, changing stimulus assumptions for dependents."
+ },
+ "586d24e120fb837e6e2a667151540dad3ee2317c": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure code move into a new package; no behavior, signal, or register changes."
+ },
+ "5d5f32ec51029176775206b34010cf86347d9395": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "ECC register RDL regenerated; register map and address definitions changed, RAL model must be resynced."
+ },
+ "fde975d0873e811eeeba72af0879b7099c159e12": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard's RAL name parsing for SW reset regwen changed, risking reference model divergence."
+ },
+ "b877560d5749c019d8868562124eae4f412a0628": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "num_interrupts=1 triggers new intr_test sequences and scoreboard interrupt checking against the new interface."
+ },
+ "702a4982f2e8b71aa5b41ef9769ac13ff8fab978": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Corrected foreach syntax in a sequence may change loop iteration and generated flash stimulus."
+ },
+ "7e68779f02ac97dec1666a21e73ab75e79e10d0c": {
+  "categories": [],
+  "none": true,
+  "reason": "Type change fixes compile-time array assignment compatibility; stimulus, interfaces, and behavior remain unchanged."
+ },
+ "01791be504a5773e4a0e1c85767f5ee470e0a60b": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor extracting body into a helper task; behavior unchanged, preparation for later reset handling."
+ },
+ "43a07eae3fa7261075355ba77ea5ed196b2b39c2": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Foreach syntax fix in a virtual sequence changes iteration, altering the stimulus it generates."
+ },
+ "b1095ff440c4387d159ca973b43584f291e60eac": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Driver now errors on response items without a request, which could invalidate sequence assumptions."
+ },
+ "d4520115eb510360b6e888d45161752785b864b4": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Configures alert status register field queues in env_cfg, affecting RAL-based alert/CSR checks."
+ },
+ "466b306e8b4b06a7b93752baf9fa0f605a7f63b2": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "The sequence holds a hard-coded expected ROM hash; a wrong value would mismatch the actual ROM."
+ },
+ "900084c0551c251b4054882cec2f4ee4b599f314": {
+  "categories": [
+   "RAL Desync",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Auto-prediction changes RAL mirror updates; scoreboard prediction/checking may diverge or double-update."
+ },
+ "99c37efcbb417a0d04272dcbeac7a8940ee3a4b9": {
+  "categories": [
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "jtag_if signals renamed, so driver and vseq virtual interface references must change."
+ },
+ "0a57562bb268fe154d7e14e22ad6893d4b0b32fc": {
+  "categories": [
+   "Interface Drift",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "New WDR address fields in trace item and monitor change transaction layout; coverage on them may be affected."
+ },
+ "2bd5ee3221e22b644003e272e0d8078ed50620a8": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Shortened counting interval changes stimulus range; large-count scenarios and coverage may no longer be reached."
+ },
+ "94e2d28e266dd5534fd506f47b025c9015830bec": {
+  "categories": [],
+  "none": true,
+  "reason": "Removal of an unused, dead debug interface; no functional behavior or dependent components affected."
+ },
+ "8066bdaffbcb4e6c166a87b5e1723544705b0d0b": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Base vseq now creates the address range for the correct bank/partition, changing stimulus assumptions of dependent sequences."
+ },
+ "92b15bcfddef269e9da47a1be6583a7ebe7cc498": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Reseed vseq reset handling and wait tasks changed; stimulus/check flow altered, no signal layout change."
+ },
+ "f1dc9d00a870e822c85e0b0643fc77f9fcb2d46b": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Base vseq and cfg changes alter stimulus assumptions; new rw test may diverge from scoreboard model."
+ },
+ "46cc36599f56f60b344afb031185a85fc8654e68": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Base vseq modified and new vseq added; derived sequences' stimulus assumptions may break."
+ },
+ "8fe0bbba05055ce469eec2e607da4191049be9e7": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Stress_all vseq now includes strap sequence, altering stimulus generation assumptions."
+ },
+ "8f4135999e7c821ebc16aa110453f280bc746166": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Reduced transaction range in stress_all vseq may leave coverage insufficient."
+ },
+ "cb75bfb3662a3637df13ea08614dc4e01c762c15": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Removes an error-injection case from the sequence, changing stimulus and dropping a covered scenario."
+ },
+ "94be91638f0e2f81781ab72146c5d29f836dde77": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard gains prediction and comparison logic for channel A, which can diverge from DUT behavior."
+ },
+ "8243fd247a1dd91cb4464ad2d6654d010a0b3942": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Fixes CSR address mapping in coverage bins; accesses to RND_PREFETCH were landing in the invalid bin."
+ },
+ "03ea1c9d6603111c067b4f9074071d3725e30cbd": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Scoreboard now models Zeroize marker read/write expectations; sequences change DAI access patterns, avoiding digest."
+ },
+ "d87f8dca16128e729442251d894dffc9496f48b4": {
+  "categories": [],
+  "none": true,
+  "reason": "Guard avoids VCS warning on empty queue sort; no functional behavior change."
+ },
+ "ea2de8fd26a7698c3541ac4dfe866e90d6e273f0": {
+  "categories": [],
+  "none": true,
+  "reason": "Removed an unused task; no behavior, stimulus, or interface changes for dependents."
+ },
+ "4f63da5162fce378c3d3ad422d48352b2f45476e": {
+  "categories": [
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Conditional virtual interface registration in env cfg alters interface handle availability for dependent components."
+ },
+ "350f2577bed32287b8f10fde99f7a21c12b1a18c": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure hierarchical path rename after dropping _aon suffix; no behavioral or structural change."
+ },
+ "5f89d8086d7a02e5fef3da68e7d89d0a35e6c2f2": {
+  "categories": [],
+  "none": true,
+  "reason": "Only lengthens a reset delay in a stress sequence; no structural or behavioral assumptions change."
+ },
+ "98cf87ba7680129b96db27b51674514dc6fa2a42": {
+  "categories": [],
+  "none": true,
+  "reason": "Constructor default name argument lint fix; no behavioral, interface, or structural change."
+ },
+ "8657c5d5efa0c48b9fd8772c959a841bc4cf5156": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Setting expect_fatal_alerts skips check_no_fatal_alerts, changing the fatal-alert checking behavior for this sequence."
+ },
+ "ed5501a00b05ba29865ead188f09e0c954157486": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Base vseq data type changes from byte queue to DWORDs, affecting derived sequences' stimulus assumptions."
+ },
+ "24e31f4ee7a174e557adf98eca1fc926f179de0c": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor moving method bodies out of class declarations using extern; no behavioral change."
+ },
+ "280a423971f96d35d3345a25d2b7ff2b356e6b72": {
+  "categories": [],
+  "none": true,
+  "reason": "Null-check guard on coverage access in scoreboard; no change to interfaces, stimulus, checking, registers, or coverage points."
+ },
+ "c24db7ca3a8ab92a7712ebc24b2599caed1b81f9": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Covergroup coverpoint bin for cp_mask changed to fix a cross hole; affects coverage collection reachability."
+ },
+ "194309d4f9db39b82ace79c87dfd5e46e42f5b3f": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor simplifying function arguments; the commit states no functional change."
+ },
+ "6f4b5d1d3783cd5affb859fefb7973126afd4400": {
+  "categories": [],
+  "none": true,
+  "reason": "Only print/debug string methods changed; no behavior, fields, or stimulus semantics affected."
+ },
+ "dd8d8a0fea2bc340a92cd9db8af643a0372059f2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "SHA AXI access now restricted in passive mode; sequence stimulus and expected-response model may diverge."
+ },
+ "63448b3846649a776a53b5ecc85f0a915496d648": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Constraint change forces security state to PRODUCTION, altering stimulus generated by the poweron sequence."
+ },
+ "98ecdc343f9d714e6d391ecfc8a33091c5182f0d": {
+  "categories": [
+   "Sequence Invalidation",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Error/interrupt vseqs targeting the removed pdata FIFO become invalid; reg package/top changes drift the RAL."
+ },
+ "304fba2608cc3a384619218b911056e705cb9ce2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Driver timing changed (no forced cycle per item), altering stimulus timing and key-update observation by checkers."
+ },
+ "ff1ee95438663fbd71d8af2c3de338f9b36242e7": {
+  "categories": [
+   "Sequence Invalidation",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "SRAM TL agent handle/sequencer access changes for vseqs; SRAM memory RAL model removed from env."
+ },
+ "face947d7885780a8156f94e3c67248117e63888": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Virtual sequence's ePMP configuration corrected from NAPOT to TOR, altering stimulus assumptions."
+ },
+ "c4828b90fd88121698994e7c30c291c566e262f7": {
+  "categories": [],
+  "none": true,
+  "reason": "Additive helper function in base config; no interface, stimulus, checker, RAL or coverage impact."
+ },
+ "a53573f54cae8ae9072fb2cffc0df00ff69f1517": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor of helper function arguments in scoreboards; behavior unchanged."
+ },
+ "475f8686d8d8673d8c17f5bac0d424e24ed5be19": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard's expected alert behavior changed; reference model for alerts after disable could diverge from DUT."
+ },
+ "b15c98910857251af45264f73990c1ae0f7ac024": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of a scoreboard variable to avoid clashing with a register name; behavior unchanged."
+ },
+ "ba4d3e9807adf98e7726923306627702b0160273": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Coverage bins for addresses and per-ASID TL-UL errors restructured; may become unreachable or insufficient."
+ },
+ "cf8f47a38e1626ef1b7e381c686941ffb1c2730e": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequence plusarg handling changed; stimulus for fatal error injection could differ if the removed plusarg is still used."
+ },
+ "2e4331cecad4011cb3f7fcbcd9c40bab31b33d98": {
+  "categories": [
+   "RAL Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Register map changes across many RAL classes; KV write sequence and register test sequence assumptions affected."
+ },
+ "496a28fed08befcd14c9063ecea5aa93763463c0": {
+  "categories": [],
+  "none": true,
+  "reason": "Only changes how agent obtains cfg; no signal, stimulus, model, register or coverage change."
+ },
+ "065b300909f5a4e4d93e66079fc1b2a897d85005": {
+  "categories": [
+   "Sequence Invalidation",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Err/intr vseqs targeted the removed genreq FIFO; register package and top changed, so the RAL drifts."
+ },
+ "fd1cbbdf9f3d69f1394c1b51eb4969c8375ba4a6": {
+  "categories": [
+   "RAL Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Register added and renamed in soc_ifc_reg RAL; covergroups and sample points changed accordingly."
+ },
+ "88f90e5b6b7f40c39caf27164c3e9ed1764430e8": {
+  "categories": [
+   "Interface Drift",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Bench shape, parameters and 64-bit monitor BFM data handling changed, affecting agents and coverage collection."
+ },
+ "16b722862d8bac18c6e7e62ab2c1c363fe288c5f": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Scoreboard tag comparison now conditional on new output_tag_vld field; sequence try_recover handles GCM messages."
+ },
+ "57f9776639e938193dfc15c3bcc6c208f07e321d": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard model realigned with changed RTL Ack SM lockup behavior on fatal events."
+ },
+ "875df8f77bf237e9357ac257653abe0f2930d92f": {
+  "categories": [],
+  "none": true,
+  "reason": "Only an error message text changed on duplicate opcode; behavior and interfaces are unchanged."
+ },
+ "2e534ccec56be58ed76da5a69b04c0c612cf0df0": {
+  "categories": [],
+  "none": true,
+  "reason": "Constructor default name argument changed to satisfy a lint rule; no behavioral or register map change."
+ },
+ "5054ce0526b0162baacef71b68c5417de4cca2db": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequencer gains monitor-fed queue; sequences depending on its contents or timing may generate wrong stimulus."
+ },
+ "74d668ccf671b6c544ba4d165a68c2909c4fb49b": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Removing TL-UL outstanding request cap changes agent protocol parameters and stimulus throttling assumptions."
+ },
+ "483c443a1eb83f04f16fb9779da21bd81858ac59": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New policies virtual interface wired into cfg/tb; scoreboard adds new policy-window checking."
+ },
+ "49f4716fdd0ffc5dd0aac02c0cdf663314fedbd7": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Base vseq body behavior changed; child sequences can now call super.body(), altering stimulus generation flow."
+ },
+ "0d774826e254f1cd3c6015b10ab9454f7e0f6d88": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of a class member variable with no functional change."
+ },
+ "3da7ef726d1635c40d1ab3a34ff871c9c50e4a46": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Replaces mem walk sequence and common vseq; scoreboard must match memory read data."
+ },
+ "c2f8addf9156170b835a81b3cdae12af1743615e": {
+  "categories": [],
+  "none": true,
+  "reason": "Documentation-only change to task comments in dv_base_driver; no behavioral impact."
+ },
+ "9ab52f9d49e59be68a6b4ad8e0355faf9392cc99": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Base vseq stimulus assumptions change; rv_dm ports and interface gain new debug-disable signal."
+ },
+ "e33785c539c65daf7d431284057001123756a407": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes empty run_phase overrides that only call super; behavior unchanged, pure refactor."
+ },
+ "1a32b9e6c3006ca42b0d6a5ab4eb7f3421a7b5ab": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "RAM cfg ports change from structs to flat vectors; ram_cfg vseqs' field assumptions break."
+ },
+ "09d138bcc4dfe3ce8523c60fa1dfa77c834607c9": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor: base driver renamed and made abstract; no signal, stimulus, checking, register, or coverage behavior changes."
+ },
+ "912cedfda83268c1a5677e1be9dd7a1ba5f301c6": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "ROM size now in bytes; scoreboard address/scrambling model and vseq address assumptions change."
+ },
+ "2c5d9213caef952b88baca1d527601469b7bc9f0": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Scoreboard checks disabled for forced KMAC/digest behavior; chip sequences now skip ROM reads."
+ },
+ "62ac8d5d6941bf842194d635242f7105a87ee2d2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Packed to unpacked structs and rand fields change randomization and transaction struct layout used by sequences."
+ },
+ "af2d1709f9155ae63ef36641c808f0ee94302179": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq stimulus flow changes: adds reset-abort check after TL transaction, altering sequence behavior."
+ },
+ "a4a8adda23c86f65ebe903229a9bf7f243c13973": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Stimulus constraints and randomization of invalid phase updates change generated sequences and coverage reachability."
+ },
+ "93aee4a00ddc5372f076153df8e514a4a937cf1e": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Adds covergroup sampling call for GCM phase in the sequence; affects coverage collection only."
+ },
+ "554040f87e179c8f95629442db28107300c3f241": {
+  "categories": [],
+  "none": true,
+  "reason": "Refactor replacing a redundant reset flag with the base class in_reset; behavior unchanged."
+ },
+ "11f41629d66eb2b0b7974bfcee5478307e02eca6": {
+  "categories": [],
+  "none": true,
+  "reason": "Syntax-only fix to a structure literal; behavior and stimulus unchanged."
+ },
+ "8ef99f9cd838a9f6af6fb1bafba55663a22954af": {
+  "categories": [],
+  "none": true,
+  "reason": "Replaces $display with UVM logging macros; no behavioral, interface, or stimulus change."
+ },
+ "3476042b6cc72e04f772b9711009f997d982b97f": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "AXI access to DMA removed: DMA sequences/items become illegal; scoreboard predictions of access behavior diverge."
+ },
+ "cbc47b7e1c3e3e96f072308c8de843c87f86488f": {
+  "categories": [],
+  "none": true,
+  "reason": "Build system/primitive wrapper refactor; UVM class edits are only path updates, no behavior change."
+ },
+ "4dd64e902094ec337fb835de1849bb2ba93fe75a": {
+  "categories": [
+   "RAL Desync",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "OTP region growth changes RRAM layout and reg package sizes, drifting memory map and models."
+ },
+ "cb5cca7d17a9eb4d6a397636a5bec1c47b8f5d02": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes a no-op $assertoff for assertions that no longer exist; stimulus and checking are unchanged."
+ },
+ "01a0f74aa8dc7708e477a0ff7cf91809dcb5b522": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Adds interrupt coverage sampling in scoreboard; affects coverage collection points only."
+ },
+ "35f9a829eabc8f52fa9adedb54e9157a9a2e317b": {
+  "categories": [],
+  "none": true,
+  "reason": "Refactor moving method bodies to extern declarations; no behavioral change."
+ },
+ "29d22a60a272d26f8987bc39fa4ba0794f02a0e8": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "New fault-injection vseq and scoreboard/cfg changes alter expected alert behavior and base sequence stimulus assumptions."
+ },
+ "aea12b708b83e6dfde3f66dda9ef3f0cf379918e": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "RAM config ports and hierarchy change with tiling; the ram_cfg sequence's stimulus assumptions are affected."
+ },
+ "b44632740e7cde6f85abfeec0d4a7ed7e752b01d": {
+  "categories": [],
+  "none": true,
+  "reason": "Typo fixes in comments and docs only; no functional behavior changes."
+ },
+ "163669e37b88fcc0bcd3cf2209f64db205a0d615": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard now captures register config and TLM connections change, altering checking behavior."
+ },
+ "14d4c87471cde3432858c1e892102e5608e2567a": {
+  "categories": [],
+  "none": true,
+  "reason": "Internal signal rename with matching probe path updates; no functional or stimulus change."
+ },
+ "131fb849ab5a5144bc02a40290073bbae96a1e4f": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "DIO-to-pad map and pad types change, altering driven pads and stimulus in dependent vseqs."
+ },
+ "e51d47d0d1efa01cecd24f28d7ee01c26044d1b5": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Monitor reset handling changes emitted alert transactions, which scoreboards consume and compare against expectations."
+ },
+ "5c7a64ad2f2acad7a0595c53d697e236adf5175b": {
+  "categories": [],
+  "none": true,
+  "reason": "Bug fix wiring an existing agent cfg handle into the debugger; no interface, stimulus, checker, RAL or coverage change."
+ },
+ "10e2c22c2d19b400e832ea6a0562bbee503b78f1": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Stress_all vseq now halts sub-sequence launching under reset, changing stimulus generation flow."
+ },
+ "0458cd23998396ba01fbc8612ab7fef8ca13e474": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "PWM pins/xbar/alert connections removed; vseqs relying on PWM become invalid."
+ },
+ "9c5776c1504bfbdca4591b4ef72eed6af87182aa": {
+  "categories": [],
+  "none": true,
+  "reason": "Type-name refactor replacing a templated type with a generic one; behavior unchanged."
+ },
+ "d6eff63d3847f2bba3ba58fad79fe819eccc2406": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Timeout now starts at sequencer grant, changing sequence timing/stimulus behavior for parallel CSR accesses."
+ },
+ "089bacaf62092eecb144c9ab9bd469b2670c9b30": {
+  "categories": [],
+  "none": true,
+  "reason": "Internal reset flag deduplication; no interface, stimulus, checker, RAL or coverage semantics change."
+ },
+ "88dd7529035e27eec43de6767478b73c1b7f5623": {
+  "categories": [],
+  "none": true,
+  "reason": "License header update only; no functional changes to any class."
+ },
+ "e5322fd1ff0f5f136f2765f1bf89879941ad9315": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Alert timing check in vseq adjusted for VIF sampling delay; timing assumptions changed."
+ },
+ "0482d4d8f12deb05d3144c0847f5fee965a981da": {
+  "categories": [],
+  "none": true,
+  "reason": "Moves setup code from pre_body into body; behavior-preserving sequence refactor with no stimulus change."
+ },
+ "d7237495dea39d79ccfabeece84c1ab376804ad7": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Register adapter's reg2bus read wdata logic and reg_map passing changed, affecting RAL accesses."
+ },
+ "030d10386cda6d62ec6d7cb76ac990bf566d28bb": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "select_jtag moved from cfg into sequences; new plusarg check may invalidate stimulus configuration assumptions."
+ },
+ "7fbd85829ec6354ef6497df69536cefe862c1f5a": {
+  "categories": [],
+  "none": true,
+  "reason": "Removal of unused flags; no behavioral change in scoreboard or memory model."
+ },
+ "66439c7133cdf1226b89bdd715a582135dd83d0a": {
+  "categories": [],
+  "none": true,
+  "reason": "Constraint renamed, documented and rewritten equivalently; no behavioral change to stimulus or interfaces."
+ },
+ "780f0a3a05d6cf605c0ef04110cec46ebd4bdb4f": {
+  "categories": [],
+  "none": true,
+  "reason": "Null-pointer guard in scoreboard error path; no behavior, interface, or reference model change."
+ },
+ "06367c42429a80bb4f5789d42643df631083d78a": {
+  "categories": [
+   "RAL Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Mirrored RAL values were out of sync, affecting sequences' register update decisions and stimulus."
+ },
+ "6b950e9404dd27c21624620292ec4f76fbc0769b": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard reference model handling of zero-length AAD changes, affecting expected-output computation."
+ },
+ "f5f32d678605f9668db6befac16f26843475e942": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "soc_ifc_reg model changed for HW_REV_ID value update; register model must match the RTL map."
+ },
+ "5a05924ac22aa0259a46cd334d6210e2d81d07eb": {
+  "categories": [],
+  "none": true,
+  "reason": "Comment plus symmetric argument passing of an existing field; behavior unchanged."
+ },
+ "2334c6ee576e70d2222cde50596adf62dd3bbb88": {
+  "categories": [],
+  "none": true,
+  "reason": "Constructor name/parent argument cleanup only; no behavior, interface, stimulus, checking, register or coverage change."
+ },
+ "ae5d14fa205f5c6cb163c6de24e53705920aafae": {
+  "categories": [
+   "Checker Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Scoreboard scrambling model and secret constants changed; interface/tb parameter plumbing altered."
+ },
+ "da4d5c73fd7a7f065e626ced7656537c434f80dc": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "ICache tweak infection changes ports/signals; cosim scoreboard and instr monitor tracking changed."
+ },
+ "330c84e76c8ea60eddfa2671e5a6d19f90469f80": {
+  "categories": [
+   "Sequence Invalidation",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Err/intr vseqs relied on the removed updreq FIFO; reg_pkg/reg_top changes imply the register map drifted."
+ },
+ "f81a9bd881363c11acad9d6e03a4e0ff1718d733": {
+  "categories": [
+   "RAL Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "JTAG DTM register model moved from agent to env; sequences' RAL handle access changes."
+ },
+ "9880fe1ff4d8e00cba3129975647b31659d64690": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Removes the AES halt request interface from the env, cfg, and vseqs, so the virtual interface and its stimulus assumptions change."
+ },
+ "bc4814e071adec3c59804a355a262f773339b629": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequence used wrong counter width, producing incorrect error-injection stimulus; fixed via shared package parameter."
+ },
+ "15df97d1f1111cbaebdd4e3f9208a7ae240ddb45": {
+  "categories": [],
+  "none": true,
+  "reason": "Build warning cleanup; unused non-LITE SHA functions fixed, no behavioral change to stimulus or checking."
+ },
+ "59902173311d41295789136aa9d85c3022b996b6": {
+  "categories": [],
+  "none": true,
+  "reason": "Typo fixes in comments and docs only; no functional behavior changes."
+ },
+ "9435e8212a710f7c9b3326b6abb6d0e0f24fb473": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Child sequences now get randomised, changing stimulus generated by the stress sequence; previously unrandomised fields were defaults."
+ },
+ "b8fc3dfde4cd0f708e87dc70910497c1888329a0": {
+  "categories": [
+   "Checker Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "RMA-state read behavior changes scoreboard expectations; lc_ctrl_if/otp_ctrl_if signals modified."
+ },
+ "787b397cf5038080d46cb13614931f3e9a8696e6": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Base vseq channel control logic modified; derived sequences' stimulus assumptions may break."
+ },
+ "9840cd95f7ad6cd8c2a3e106911542c15f55772c": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure reordering of class members, expanded comments, out-of-block definitions; no functional change."
+ },
+ "e484a21beb392f89f009996c924883ce2dc4e5c2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Address-handling changes in seq item and vseq alter stimulus; scoreboard model must follow the new addressing."
+ },
+ "3a81c4835a9c785d200721bcba5f7f5fface11ab": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Virtual sequence modified to be reset aware, altering stimulus generation flow."
+ },
+ "73f135643fef04da2a72dd7cc4bca9e4e0767bc7": {
+  "categories": [
+   "RAL Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "sha512_reg RAL changed for restore feature; kv port removed, coverage interface and register map affected."
+ },
+ "5e090ca82d3121f6536c9c9cbadc1c9488476ad6": {
+  "categories": [
+   "Checker Desync",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "New spi_host1 gated clock adds CLK_ENABLES bit 4; scoreboard model and register fields must track it."
+ },
+ "de73f579da7e619cf5174ce1645db4ab83b8106a": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Flash key interface gated by parameter; vseqs and env assumptions about flash key port change."
+ },
+ "5ee0089fbbd57d05b87d790cae4ca7612dbf8361": {
+  "categories": [
+   "Checker Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Scoreboard CSR tracking removed; tb ports and alert list changed."
+ },
+ "49555265b197a488601622cff3a73312c2f9a1bc": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of partitions and hierarchical paths; no behavior, layout, or register changes."
+ },
+ "797681f1dea19b8356763ca0c34de8052639a769": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Shared seq item and vseqs changed; RACL role calculation in cfg/predictor may diverge from model."
+ },
+ "da7fc3571b4a3d8dffd34b230def5472edd7c593": {
+  "categories": [
+   "Interface Drift",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Renamed lc_flash_ signals to lc_nvm_ in interface, breaking signal references and coverage bindings."
+ },
+ "bd31614182fb56e55578f48086a10ded650434fd": {
+  "categories": [
+   "RAL Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "New entropy_combiner registers and soc_ifc_reg changes alter register map; new conf registers affect coverage."
+ },
+ "3b2baf9f1b613ddac690aa147b0ce2cbcbfe1d5f": {
+  "categories": [
+   "RAL Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Renamed TL-UL interface to prim changes RAL block naming and TL agent/interface connections."
+ },
+ "494c7978bca2adbae44d38e9203bde18d0515752": {
+  "categories": [
+   "Interface Drift",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "New xbar/alert connections and chip_if changes; added SRAM ctrl and bkdr_loader registers affect RAL."
+ },
+ "b2ce147c77f2a617a9767d0b2275739487896c8c": {
+  "categories": [
+   "RAL Desync",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New period counter registers and address map changes; scoreboard model must track new behavior."
+ },
+ "856c3e7e157147719ff6021883cca129be5d3f84": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "config_jitter stimulus changed: removes stale ROM symbol write, now only programs OTP word."
+ },
+ "70fa53536886a69ffd3e3b598ecbda28a17e43f2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scanmode toggling mid-test alters stimulus assumptions of concurrent sequences and may confuse scoreboard expectations."
+ },
+ "7a2941f9e984b3cd9f89b8d963d06a8571136920": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Base vseq's sequencer access mechanism changed, which may break derived sequences' stimulus generation."
+ },
+ "f7243fbdb5565e475542c83aeb5177667e7db43d": {
+  "categories": [],
+  "none": true,
+  "reason": "Adds randomize return-value check only; no behavioral, interface, register, or coverage change."
+ },
+ "c4952048e63dd2411b2c0a9775af17eb5ae29d5c": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Virtual sequence changes abort/panic handling and waits for SRAM writes, altering stimulus flow."
+ },
+ "fcb9d15f9085c4c8968aaab0cc273b0519998345": {
+  "categories": [],
+  "none": true,
+  "reason": "Warning-only fix; replacing a width-mismatched randomization call leaves stimulus behavior and interfaces unchanged."
+ },
+ "f3ee88db1f6c979a899d8b35ac6ea706a46db43b": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Driver ping completion timing changed; sequences and scoreboard timing assumptions may break."
+ },
+ "09fd621cde14099ce3401121619afcd9244ac699": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Ramp stimulus rewritten per-channel with start/end values; may produce different stimulus and coverage."
+ },
+ "a18de4282866f675ae903af8425d5cf7b69fa195": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Vseqs changed to model delayed error escalation timing; stimulus timing and scoreboard expectations affected."
+ },
+ "e32fab4090215c6396a7c5dac68c438deed66077": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Common vseqs' sec_cm fault injection targets change for singleton FIFO counters/pointers, invalidating injection stimulus."
+ },
+ "af6c9f3f2d281eaaf3c15b5ce57ddd6371fd415e": {
+  "categories": [],
+  "none": true,
+  "reason": "Moves definitions out of class body and adds documentation; behavior unchanged, pure refactor."
+ },
+ "fd566bf7efda6cb5a4935176f4ae8a090b861f4a": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New do_compare changes item comparison semantics, altering scoreboard match/mismatch behavior with partial field comparison."
+ },
+ "e6b5ab37e5e2ad9579d2b1e6e3ba175b9dca8528": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Previously ignored range constraints now apply, changing generated stimulus and possibly leaving coverage bins unreachable."
+ },
+ "f032ebbcfc110db6f5ac1a1dbddfbcb3a14662f7": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Gating extclk logic in sequences may skip stimulus and leave extclk coverage points unreachable."
+ },
+ "eb2f79a2c474ff748778e70357be35b5c01ac63d": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Agent split, new protocol and restructured sequence items break driver/monitor handles and sequences using the old agent."
+ },
+ "59d9299959f676f1b4d8e6cfa0ea8f26f6c9bfa2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New FI vseq injects mubi bit-flips; stimulus assumptions and scoreboard alert/data expectations may break."
+ },
+ "3cbcc43755f6d3fd6af6099bcedcd76770eb0c62": {
+  "categories": [],
+  "none": true,
+  "reason": "Commit described as testbench tidying; likely refactor without behavioral or structural changes."
+ },
+ "2fd79ed9834f95f50daa84ffabcb1ff6fe1c874b": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Mode signals moved into a new interface and agent; vseqs now drive them via sequences."
+ },
+ "560a37c3bcb0fd7785e9b403183864e38d6f6959": {
+  "categories": [
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Adds new bound interface and virtual interface handle in env/cfg; handle mismatches could break."
+ },
+ "639e41969f42666879d191bc781276796c6d559e": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Sequences gain endian-toggle stimulus; scoreboard expected digest may differ with endianness."
+ },
+ "85adc2ef5864aa274f877a388050b7eb65e87ab9": {
+  "categories": [],
+  "none": true,
+  "reason": "Only changes method visibility to protected to silence a simulator warning; behavior is unchanged."
+ },
+ "d3039ffa77fd79767668731782835575a7a82e20": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes unused dead function; behavior unchanged, logic already in update_size_for_channel."
+ },
+ "bfddf19f36248b1115c10857fd5d9c0ecfd16a45": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "dv_base_reg lock_lockable_flds logic changed for mubi regwen fields, altering RAL lock modeling versus hardware."
+ },
+ "71b9f977d4faab8a35db1c169566efae0ee6b787": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes an already-empty overridden post_start task; no behavioral change."
+ },
+ "5423fad4e1129459347de6a45a213b618c72b1e2": {
+  "categories": [],
+  "none": true,
+  "reason": "Type rename and cleanup in virtual sequences; no behavioral, interface, or register changes."
+ },
+ "9395525110655840f46c4c62d7f0e046295754bd": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Virtual sequence fork/process handling changed for reset, altering stimulus generation and termination behavior."
+ },
+ "6a6d28d88719afa8057fcddc73f25618dfd0e915": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor: moving task bodies to extern definitions does not change behavior or interfaces."
+ },
+ "c357a7cd94367819af7b1f74bdc7a596bcdf4ad4": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Removed duplicate TL agent changes sequencer handles, base vseq stimulus, and tb/vif agent wiring."
+ },
+ "45928491bb4b00870b934e2b75742d3e9688675d": {
+  "categories": [],
+  "none": true,
+  "reason": "Removing an unused orphan typedef is a pure cleanup with no behavioral change."
+ },
+ "d8e2a4f692e92dffa46a40fc3a85a0c6aad28f42": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard check_alert_triggered timing changed to account for ping handshakes; reference expectation timing shifts."
+ },
+ "5d2537f33fe7d9a4f1bb0cbfeb89c01be757d45c": {
+  "categories": [],
+  "none": true,
+  "reason": "Only adjusts assertion enable/disable timing in a vseq; no interface, stimulus, checker, RAL, or coverage impact."
+ },
+ "fc516047de3bf4eb5142341ebac681a6850abe01": {
+  "categories": [],
+  "none": true,
+  "reason": "Purely additive new chip-level vseq and include; no existing component assumptions change."
+ },
+ "bbf86e00d6dbd7919a9bbab33ec77ec5a0cd2705": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes invalid '{} initializer whose value was overwritten by an output argument; no behavioral change."
+ },
+ "432079141ea7002ef893eac831cc0726d62e0881": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Register names renamed RANGE_PERM to RANGE_ATTR, so RAL-referencing scoreboard and sequences must follow."
+ },
+ "5e62e49ea365839987c3ac2340b1e92612d093ca": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "New vseq task changes error-injection flow and model notification of SW errors alongside escalations."
+ },
+ "5c66a011305aeb8d15b9272bc5fb740f8b4116dc": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard now relies on RAL mirror for expected digest; the checking could diverge if the mirror is stale."
+ },
+ "4a3fbeee39526cbdf72e29161358b2875030c0c6": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard reference model logic moved into a new predictor, risking divergence from expected behavior."
+ },
+ "a60dedfc008c08a01e0b81451e3747a58af2ffa0": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes redundant config field; uses existing uart agent en_logger value, behavior unchanged."
+ },
+ "93692fe1e61e98c51bf0040f98ef3e968c260c94": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequence stimulus generation reworked: new randomisation and extra TL reads after error injection."
+ },
+ "1d71cc60a22f4c9b8ae77e9204162acb4febae4d": {
+  "categories": [
+   "Interface Drift",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Configurable source clocks change clkmgr_if/csrs_if signals and clock-related coverage points, e.g. USB clock absent."
+ },
+ "ed8aefb0a728dce5ae0f164366dd764fcee9ffad": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard prediction logic changed after spec clarification, altering expected behavior versus the reference model."
+ },
+ "f5caf4b0399f22f6c1dc83ab8d3cbaf228404356": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq ported from flash to RRAM; stimulus assumptions for RMA unlock sequence changed."
+ },
+ "d88565dcb7b17335da299b84d52fff98ca91656f": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard alert-timeout wait timing and the sec_cm fault-injection check order and SVAs change expected checking behavior."
+ },
+ "16068369d796065761c25601d9bd8a7588606b9b": {
+  "categories": [],
+  "none": true,
+  "reason": "Macro swap for non-parameterised class; factory registration only, no behavioral or structural change."
+ },
+ "18dd4b27403fe46d3f85495ac150fa21906fea7e": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Changes how register block computes CSR addresses; address computation errors could desync RAL from register map."
+ },
+ "fe940ce7ce55edaee29808a4babbf2f077ee5712": {
+  "categories": [],
+  "none": true,
+  "reason": "Constructor default name argument lint fix; no register map or behavior change."
+ },
+ "82593c7bbf5f2ca28abfb1d556cebdbd4ed8220d": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "AES integration changes sequences' stimulus and the kv scoreboard's expected key vault behavior."
+ },
+ "593ff49081b3d732398899fca2fda485c134ff15": {
+  "categories": [],
+  "none": true,
+  "reason": "Scoreboard helper refactor with narrower argument type and docs; no behavioral change intended."
+ },
+ "6008fb38037efc6304ecfe08f24b5f049ad1cb8a": {
+  "categories": [],
+  "none": true,
+  "reason": "Only corrects assertion names disabled in a vseq; no stimulus, interface, checker, RAL or coverage change."
+ },
+ "e365cf208d06a90ddeca86830de8c9938675b9ce": {
+  "categories": [],
+  "none": true,
+  "reason": "Macro argument syntax refactor with call sites updated; behavior unchanged."
+ },
+ "12e99787a59807260ceb0f5a391a5c9ec2b09d23": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard now predicts ERROR_LOG registers and checks reads, changing reference model behavior."
+ },
+ "5d2768d5f40bf56d27fc7d9f33ee240decd2d655": {
+  "categories": [],
+  "none": true,
+  "reason": "Purely additive new test sequence; no existing classes, interfaces, registers or models are altered."
+ },
+ "6d024b6e388e4f7dd3f3c5ad91723513187bc0e2": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequences no longer toggle assertions on removed arbiter instances, changing the stimulus and assertion-control flow."
+ },
+ "980170d4eae9b1b01fdb31d15a175414d57a186d": {
+  "categories": [],
+  "none": true,
+  "reason": "Tidy-up of dut_init argument; only called with default, no behavioral change."
+ },
+ "796fb6c98e7a15881b5e70597d35e98f20eaab0a": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard now checks predicted register values, changing checker comparison behavior against the reference model."
+ },
+ "837138a9298674dd8953535cbbd32e235399bea2": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard memory lookup via root map changes read/access/integrity checking behavior."
+ },
+ "071e0be342fa7417c004afb8718d1b72c79299de": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scrambling behavior change for non-power-of-2 memories requires scoreboard reference model updates."
+ },
+ "6aea90d9ef21ecf59b43b8330b0d3daa3c0669f7": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Base vseq now skips msg_length check during reset, altering sequence flow and checking for derived sequences."
+ },
+ "1cb1c3d135b0cc8f29f96230375a11345597c953": {
+  "categories": [],
+  "none": true,
+  "reason": "Only logging/string formatting functions were split; no functional stimulus, checking, interface, RAL, or coverage change."
+ },
+ "3f2fa735e878494f0209f40ad387a729ab633d8f": {
+  "categories": [],
+  "none": true,
+  "reason": "Only increases a wait timeout in a sequence; no stimulus, interface, checker, RAL or coverage impact."
+ },
+ "18a1b7aadae1764ea918020a7a9e6d4d4c19c4cd": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor of coverage call-sites; no functional change stated."
+ },
+ "af0713038172f89351b0ff125a4a7649502f79b1": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "New AHB interface and transaction items define bus fields; new sequences and vseq define stimulus assumptions."
+ },
+ "f5ee01689b6be15701421040a7dd2718ca3810ff": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Retention SRAM size and address-map parameters changed; memory models and xbar params must follow."
+ },
+ "ffebabad239bc24eeb563ff1a2d5bd327639f6ae": {
+  "categories": [],
+  "none": true,
+  "reason": "Only an error message string was changed; behavior and interfaces are unaffected."
+ },
+ "aae637a85b22f0cc8495026d7ecb6a01053d97d6": {
+  "categories": [],
+  "none": true,
+  "reason": "Checking a return value to silence a simulator warning; no behavioral or structural change."
+ },
+ "571a8188a2bf393fba964f33e1505220821b7309": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequence delay configuration changes in vseqs and seq_cfg may alter stimulus timing assumptions of dependent sequences."
+ },
+ "4c8cbe2367e83d1530b638835559e936f601eba8": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard DMEM read check changed to permit reads while paused by WFI, altering expected behavior."
+ },
+ "f7c23dd5b523cb1bdaf6f7dc94766ebc1c9723ca": {
+  "categories": [],
+  "none": true,
+  "reason": "Adds return-value check on uvm_hdl_read to silence a tool warning; no behavioral change."
+ },
+ "57355a61e49a38f2bdd2b0a5b305d7db4139af82": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor of RAL type parameterization; no behavior, register map, or interface change."
+ },
+ "c6eeda4bf1153b8524790629717002012f09f2f2": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard ECC error expectation logic changed for Zeroize marker reads, altering reference-model behavior."
+ },
+ "7dc8f2045d833b003b0d43b8307ef2d6e80dc834": {
+  "categories": [],
+  "none": true,
+  "reason": "Typo fixes in comments and docs only; no functional change to any component."
+ },
+ "5280330de1763cfa2bb20ccf1938634fc219a809": {
+  "categories": [
+   "RAL Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Register map changed (new HMAC key CSR, SWWE bits); BFM interface and driver signals updated."
+ },
+ "a62413272d4f9a1763a0d33e4937ce9af9f00dd7": {
+  "categories": [],
+  "none": true,
+  "reason": "Calling super.run_phase on uvm_driver is effectively a no-op; no interface, stimulus, checking, RAL or coverage change."
+ },
+ "c5877edc8e2ad2a5df485e40f15ee8e6524404e5": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Smoke vseq modified to align with Darjeeling config; stimulus assumptions may produce illegal or incomplete stimulus."
+ },
+ "49339232c26569c19f78ad19359eda27c3f8d463": {
+  "categories": [
+   "RAL Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Register models regenerated; keyvault width 512 and fewer entries change interface widths."
+ },
+ "bdfd04d68a94dcede4527143e48578f3741c9a82": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequence body now exits early on reset, producing incomplete stimulus for dependent tests."
+ },
+ "d840df2c659fab3f52325a4faca6afb97bcb066d": {
+  "categories": [
+   "Checker Desync",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Monitor now needs explicit DMI address and a dummy register for layouts; a missed set_dmi_address or layout mismatch breaks scoreboard inputs."
+ },
+ "e360fed1da5c73b804f6d87fa899f3da8b186bf9": {
+  "categories": [],
+  "none": true,
+  "reason": "Behavior-preserving refactor of a vseq: avoids an internal task and improves error messages."
+ },
+ "4c88042d5bea2597e4a8f27fa887d4cc713a5e0b": {
+  "categories": [],
+  "none": true,
+  "reason": "Only a doc comment was expanded; no functional change to sequence behavior."
+ },
+ "68de05e1d5bf583367780d478a6aafef0f4d45f3": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard's intr_state read-tracking flag changed to a counter, altering checker behavior for back-to-back reads."
+ },
+ "1c2a115f3682759e96cd32060958b947d24b68f3": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard bucket test prediction changed for Darjeeling variant to match RTL behavior."
+ },
+ "ac139ac21bcda3de48f752a0048d354f569e0097": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Changed length distribution constraints alter generated stimulus and may reduce reach of partial-block coverage bins."
+ },
+ "0b1da4b25d096ec6a2d78df8b867ce6582e2d310": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard fifo_full_detected logic changed, altering predicted fifo_empty interrupt behavior in the checker."
+ },
+ "0cd8865c353295ad467d8db1089d84fec1b1652e": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Base vseq and existing vseqs modified, new stimulus sequences added; covergroup fixes in env_cov alter coverage points."
+ },
+ "ad5899bc990a64f3f3c7f7d9d7619b0883d51e4a": {
+  "categories": [
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Virtual interface handle delivery via config_db restructured, affecting agent/env vif handle assumptions."
+ },
+ "16b5876ef60c77f53a8d41119597d653bed0f294": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Throughput vseq timing prediction changes; stimulus timing assumptions and expected-cycle checking may diverge from behavior."
+ },
+ "a463b938110d7db7f43f4c361caafa3ae9fefab7": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes unused function parameters; pure refactor with no behavioral change."
+ },
+ "739712db2bdd00cd0dbb99ac3abf0a708c9239b2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Backdoor memory load flows changed for RRAM in sequences and chip_if, altering stimulus and interface assumptions."
+ },
+ "fa82c8f1bdb2f677dd1ef0578a3779d68979497e": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Smoke vseq now injects TL integrity errors, altering stimulus and possibly scoreboard expectations."
+ },
+ "a7142d72234eca36628aa5e2b0650479634e1b22": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq reset-timing state comparison corrected; stimulus may now trigger at different or correct states."
+ },
+ "eb15f07aacb520efe741abffdedf276deb654aea": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of agent instances to agt; no behavioral, protocol, or structural change."
+ },
+ "1ed24ec68f334565febf0a8371da3d69a763d7b3": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of the IP and its DV classes; no behavior, interface, or register changes."
+ },
+ "a8d15a533c067cd5ec4c9e1a3d8b0a222e2740f6": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of kmac_app_intf to kmac_app_if; no functional change to signals, stimulus, or checking."
+ },
+ "3e2c87c4f49f7627b3cc9c9332a40e134dd1c7fc": {
+  "categories": [],
+  "none": true,
+  "reason": "Tool-compatibility refactor of how the vseq accesses interface internals; behavior unchanged."
+ },
+ "4ae54c336a60ac2abc3a4b0ca4de98aa421eef17": {
+  "categories": [
+   "RAL Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Register map changes (mbox_csr, soc_ifc_reg) and AXI ID-to-USER signal/width change affect RAL and interface."
+ },
+ "1c7f3316fc834d7ee53c7a75dc0f7fb322eef2ff": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Driver rewrite changes item handling, reset and ping-response flow, affecting stimulus sequences relying on it."
+ },
+ "68380c2ab0b0be223f06215a0d3f5486c61be559": {
+  "categories": [],
+  "none": true,
+  "reason": "Type-compatibility fix for simulator in a sequence; stimulus values unchanged, no behavioral or structural impact."
+ },
+ "51c9c8d2fb8971b0d9e6de1cc7470772998ee98a": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard's mapped-address lookup changes, altering expected TileLink error responses in the checker."
+ },
+ "baa55f84eab506919e2af23b024121369c2a767b": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Added post-reset delay in base vseq changes stimulus timing for all derived sequences."
+ },
+ "482f30c7087523fbe8b8491319617a8d3aa0cb23": {
+  "categories": [],
+  "none": true,
+  "reason": "Only log message text changed in the smoke vseq; no stimulus, checking, or structural behavior affected."
+ },
+ "0189a3bb1591fc92e09efa288a706eb3187ce45b": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq stimulus timing changed with added delay between GPIO writes and readback."
+ },
+ "49342f87f38c49f66552a63066f3895a82d9c913": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Reset structure and ports changed; shadow attack vseq assumptions about reset list invalid."
+ },
+ "9dd75b1485be8c28291bf601608d1962bcbd1dd1": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Common vseq's FIFO write stimulus changed; it assumed an empty FIFO, producing illegal stimulus."
+ },
+ "fe9793cb9d2159210eeefe37695249b718d19f57": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard adds STATUS register checks that could diverge from actual behavior."
+ },
+ "a586f966ee390a5101f00dd825034dd78f5e161c": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "App interface signals change, breaking agent/driver/monitor assumptions and requiring sequence rework for dynamic config and XOF."
+ },
+ "06926ce0975484e175fe2031a2ebf8ed1604a5c9": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Changes ndmreset vseq stimulus (reset_req_en deasserted state), affecting stimulus legality and coverage reachability."
+ },
+ "2eb7256b116b00dc73d77f8c7af84a0419a4b980": {
+  "categories": [],
+  "none": true,
+  "reason": "Optional env config flexibility; existing behavior preserved, no interface, stimulus, checker, RAL, or coverage impact."
+ },
+ "6c5a1545e848d422a6fc14d418a0e400884e8c68": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Coverage sampling source changed from read port A to B, fixing unreachable coverpoint and cross in enc_bnan_cg."
+ },
+ "a3f91eec28ee4d5ad5e655d6adbf4b3043cff169": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Base vseq timing change alters config-locking stimulus; failing vseqs reduce functional coverage."
+ },
+ "d74991d3ee876c1a5ebc977b7e8a56176e040503": {
+  "categories": [],
+  "none": true,
+  "reason": "Mechanical move of method definitions out of the class body; no behavior change."
+ },
+ "73f2f7ac531199f11f4bcc37332f1492c37e4e3c": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "rxenable_out write semantics changed (preserve bits); scoreboard model and register-writing sequences must adapt."
+ },
+ "638816580a2d0ace00cfbb606d8532775ac2097f": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes an unused, ignored argument; behavior unchanged, so no failure category is affected."
+ },
+ "3adae7dcf46a297166aa0fd4f09c4da38c9af424": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Ops enum change (GenId\u2192Erase) affects scoreboard model and derivation sequence stimulus."
+ },
+ "a720a71759e25a25f3aa697b46b79595d4c4376f": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq stimulus offsets and sizes now derived from design constants; may generate illegal or incomplete accesses."
+ },
+ "0579befeb205049ef6de301d8b84f24ad0367468": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor: moving method and constraint bodies to extern declarations, no behavioral change."
+ },
+ "6ba8da33afa7465d96fdfd7917758979b7ea996b": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Operation now randomly takes invalid values, changing stimulus legality and expected scoreboard behavior for invalid operations."
+ },
+ "7fb597279a9ce1816df527a054c19b174483ab2a": {
+  "categories": [],
+  "none": true,
+  "reason": "Doc comments and protected qualifiers only; no behavior, interface, or stimulus change."
+ },
+ "91d1222a8449c5091e9fb999208314340c3bc719": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes redundant tl_access overrides; the base class defaults already supply the same timeout, so behavior is unchanged."
+ },
+ "1c56d2fe06cf26480e3cda6d7a2037c0da285462": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure restructuring of package and cfg class hierarchy; RAL type unchanged, no behavior change."
+ },
+ "dca82e8fe90e34098a99ff6f7c337a7546793ed3": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure relocation of DV files to ip_templates; no behavioral or structural content change."
+ },
+ "8b581c258c327fa933dcdf7c4880ed799d181601": {
+  "categories": [],
+  "none": true,
+  "reason": "Doc comments and deduplication refactor in a vseq; no behavioral change intended."
+ },
+ "88b2a0d6051298df7504010c2fed5175aee7e156": {
+  "categories": [],
+  "none": true,
+  "reason": "Formatting-only change via verible-verilog-format; no functional behavior altered."
+ },
+ "6b285e2595283224c743ee61034c52ceebee08ee": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Coverage bins/illegal_bins removed in covergroups; scoreboard check is only a config sanity check."
+ },
+ "6ee0cf0193bfc2b5bb1b955461404495b1f39b95": {
+  "categories": [
+   "RAL Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Configopts multireg removed, changing register map; sequences must configure single configopts before transfers."
+ },
+ "83fd4ebc0400939c6a219bc0198e7e0cf0e84f83": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Changed vseqs alter jitter stimulus; dependent tests may get illegal stimulus or miss coverage."
+ },
+ "758cdd0f35a18af945b67bf0191fb2e285e8efe7": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq now returns early on reset, so stimulus may be incomplete; shared base method refactor."
+ },
+ "20f8ec1676fcf796a50f3016beaf5dbe486a6aaf": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "FIFO depth changes alter drop/fill behavior; scoreboard model must match new depths."
+ },
+ "c7125af8b0660d8a7f911e3e4f160aac2b2c00e0": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure style refactor: macro renames to capitals and reordered undefs; no behavioral change."
+ },
+ "d14ce983e2822b1e11f4d0333bb5057708c5cbd2": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseqs' OTP backdoor call APIs changed to use a handle; stimulus setup could break."
+ },
+ "c4445d758d9eb6565ec43cd2b1bcba731cd13d2a": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Regenerated xbar, TL package and alert connection files change port and parameter layouts, so scoreboards may diverge."
+ },
+ "bacff9b06c48b9f7eee0965c48dd553c01f4e947": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Removes the ext clk bypass interface from env/cfg/tb; sequences using it lose their stimulus control."
+ },
+ "094c7c940c9e415fcb069c14f812d0d08355d24c": {
+  "categories": [
+   "RAL Desync",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Nine watermark CSRs replaced by one plus HT_WATERMARK_NUM; recording now stops when disabled, affecting scoreboard."
+ },
+ "d0f3500230e47835aef701219ac7ebee1ac24a50": {
+  "categories": [],
+  "none": true,
+  "reason": "Fixes a missing sformatf argument for a build error; no behavioral or structural change."
+ },
+ "f0037b30211959109fd60acfb491fc5ceda697ba": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard item changes from struct to class; handle semantics could alter checking behavior."
+ },
+ "bc2f72d7747bd300e3e663116cd1bac0f4d0c173": {
+  "categories": [],
+  "none": true,
+  "reason": "Scoreboard check decoding only improves error messages; behavior unchanged, so no failure category applies."
+ },
+ "214bda77b26fc445c8258a0bcdf2f2f768ceb5cc": {
+  "categories": [],
+  "none": true,
+  "reason": "Scoreboard end-of-phase objection fix; no model, interface, stimulus, RAL, or coverage change."
+ },
+ "8c671498da4c75041ccf252e4daef26782987350": {
+  "categories": [],
+  "none": true,
+  "reason": "Lint-driven switch to clocking block sampling; no interface, stimulus, register, or behavior change."
+ },
+ "3a7a4aa782243b319f02c6feb55588b521cffb6c": {
+  "categories": [],
+  "none": true,
+  "reason": "Typo fixes in comments and docs only; no functional change to any class."
+ },
+ "dc141e1e75c5bd6361bde01d76d7320bf6d627bb": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Driver base class changed and vseq now gates esc_receiver sequence start on reset state."
+ },
+ "26f59d7c5476222c14b3c9ffe99668da867fa19e": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sideload key request task now exits on reset, altering stimulus flow and coordination with class variables."
+ },
+ "a05c0f00f9c9ec9043e8da777fa10f4b9f657129": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Changes RAL block's mapped address range computation behavior, risking register map/address range mismatches."
+ },
+ "37066ff2f1054b82e9fef676d7cd828934e9b75c": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor: moving task bodies out-of-class via extern, no behavioral change."
+ },
+ "560dc9a17f51930daa085a6e81f48f52eb269855": {
+  "categories": [],
+  "none": true,
+  "reason": "Comment and doc typo fixes only; no functional changes to any class."
+ },
+ "3470eb09c57bc2b08994e50bc6a10979dc034f21": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes unused config knob always 50%; random distribution unchanged, behavior-preserving refactor."
+ },
+ "7ad74d73f07cb6a24028d5ac1b767d5d290a392c": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseqs edited to drop removed SVA interface usage; stimulus/control assumptions may change."
+ },
+ "f92c6e10ec77122721a7c8a2a2701f4d534864df": {
+  "categories": [],
+  "none": true,
+  "reason": "Only a documentation comment was added to check_kmac_data; no behavior changes."
+ },
+ "26b3e5986a8262aaf5f8018a03bc0892770ff02d": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Randomisation moved from driver into receiver sequences and seq item; stimulus generation assumptions change."
+ },
+ "007e252fa1280486e96f0d5bc1f9f2fccf05a556": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "LC signal latching during NDM reset changes DM behavior; interfaces and the base vseq were updated."
+ },
+ "b4c9102e5f29cc6191eea9e8559b8816c39da013": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "New key sideload interface/agent added to env and tb; base vseq stimulus config altered."
+ },
+ "e17a28295ad8116b3c1553af30aecede5f06cf77": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Changes stimulus generation: randomized config reuse and zero a_valid delays in sequences."
+ },
+ "e9986ef486ed9a58064d7927ae574bb20a150af5": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Fixes coverage bin stringification, changing which bins are defined and hit in otbn_env_cov."
+ },
+ "2c21d5d4e1bd70d8cbe4b5e7ee04fbae79ddac4f": {
+  "categories": [],
+  "none": true,
+  "reason": "Only a documentation comment added; no behavioral change to the scoreboard."
+ },
+ "6c3c7e9a6f02ce8763432f45379c312e9ccf9661": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New fault-injection vseq changes stimulus; the induced lockup and fatal alert may diverge from scoreboard expectations."
+ },
+ "693bec781bd1e50ec794289378fc21790311c320": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes an unused, never-passed function argument; behavior unchanged, pure refactor."
+ },
+ "1328744f26ed304e145036288fda3b1899ad03ec": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Restored constraints change which registers the sequence selects, altering stimulus and reachable coverage of itrng registers."
+ },
+ "055821e650341deb3df8860e4c789f456d3edafb": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Stress sequence's fatal-alert expectation handling changed, affecting stimulus/sequence flow validity."
+ },
+ "b797c9bbacd1e310895e0d34291f66334324380f": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Monitor now drops transactions seen during reset, changing what scoreboards receive and compare."
+ },
+ "f7b31ff77021a65621f2f500e5d07e5beae527dd": {
+  "categories": [
+   "Sequence Invalidation",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Error/interrupt vseqs targeted the removed bencack FIFO; reg package/top changes likely drop its error bit."
+ },
+ "2a158a4b671cab3ecf2509938fb9fe713daac798": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "keymgr/otp_ctrl port split changes interface signals; scoreboard secret/seed checking rewritten."
+ },
+ "3efb1b5965cd5e41e0142dd1a1276738ba80ae95": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Foreach fix in vseq may change iteration and generated stimulus."
+ },
+ "df9624df23074694201911446cb59dde7b64582c": {
+  "categories": [
+   "RAL Desync",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "HMAC register map gains error interrupt bits; zero-key error behavior changes expected scoreboard outcomes."
+ },
+ "671369d854841f8c46e7efd07e98487902d17a39": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "RACL range support changes the RTL ports and parameters, so the edited sequences' assumptions may break."
+ },
+ "39ca65febb20defdb3bbac39e456684a730165a4": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "IDLE pin check moved into scoreboard, altering checker behavior and expectations."
+ },
+ "ba06633f79f96500667c253cf3e5887d5474194a": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Renamed/new virtual sequence changes stimulus flow for keymgr_dpe sideload AES test."
+ },
+ "f8cc555ff333ac084fdaee807d43a5551730d772": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Reactive sequencer/monitor port wiring moved to new classes; sequences and monitor port/type parameters may break."
+ },
+ "7e2c6765b09961b2fce2fc1fe9e0d33ca47ee5c2": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Fixing queue clearing in the SPI device driver changes which stimulus data is retained or driven, potentially altering stimulus."
+ },
+ "45b6406ba127a04544ba07c5e4cc920de8ef3422": {
+  "categories": [],
+  "none": true,
+  "reason": "Doc comment, error message wording, and removal of stray virtual; no behavioral change."
+ },
+ "95ee4a7da8838ed7992cbe4fc960bb0962f066e5": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard alert check now uses ping count to skip errors, changing checker behavior."
+ },
+ "4daba664a64f13dbe7d243e6561b9805c939ac6b": {
+  "categories": [],
+  "none": true,
+  "reason": "Refactor of constructor argument passing in coverage; behavior unchanged, no coverage points altered."
+ },
+ "e5ceec3cebecbbc517c503eae4867cf689b92c40": {
+  "categories": [],
+  "none": true,
+  "reason": "Only corrects factory registration macro parameterization; no signal, stimulus, checker, register, or coverage behavior changes."
+ },
+ "fb7147814413d71839c336becc8b5b9a86ae418a": {
+  "categories": [],
+  "none": true,
+  "reason": "Adds super.run_phase call in agent; no interface, stimulus, checker, RAL, or coverage impact."
+ },
+ "977964ec69581b4b0043d8af8b605423b4484f89": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor moving checks into tasks; commit states no functional change."
+ },
+ "119996869641a12b2d322dedb68a5f08b0f0a1a1": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "CPTRA_FW_REV_ID reset domain changed in soc_ifc_reg, so the RAL model's reset behavior may mismatch the RTL."
+ },
+ "514309669484588ddb9ebfaccc869efbd8dcd8db": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Error-injection sequence timing and assertion disabling changed, altering stimulus generated by lc_ctrl_errors_vseq for dependent tests."
+ },
+ "a4cfcb840193344debb054f4d173b692331a7065": {
+  "categories": [
+   "Sequence Invalidation",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "New force driver, item and override sequence alter stimulus; new fsm_if and bound interface change virtual interface handles."
+ },
+ "c2499d7a5cb55d7bc4b4ed3c79b8c4d000d08ea8": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Backdoor write behavior and API in base sequences changed; dependent sequences may produce wrong SW image loading."
+ },
+ "fb3c0c0a5dbb2ca189bb1e176bcdb3faaaba2dce": {
+  "categories": [
+   "Checker Desync",
+   "Interface Drift"
+  ],
+  "none": false,
+  "reason": "Scoreboard UDS model changes via backdoor load; control interface and tb modified."
+ },
+ "ee1b0f69521036a2461a922dedb3ef1c0fc7ad5f": {
+  "categories": [],
+  "none": true,
+  "reason": "Adding 'protected' keyword for consistency with base classes; no behavioral change."
+ },
+ "801fe16c0bd055fa4a3d2e833c443e7fed2aa886": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard expected d_data logic changed to differ for CSR versus SRAM accesses on TL errors."
+ },
+ "00acef3e12bcc5af4f25669aa1245cd2879d3f0c": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Monitor no longer publishes partial transactions after reset, changing what the scoreboard compares."
+ },
+ "fd3b58bcbe0d30c3c8f71deb9e76a5e5d6e98c67": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure refactor moving will_reset field between config classes; behavior unchanged for CIP users."
+ },
+ "81ebe5f770d5902404a23d47858bf6927f70e163": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Virtual sequence changes forcing behavior and timing (force_early), altering stimulus/injection assumptions for dependent tests."
+ },
+ "9ca53b1839616c2f091a4605285b88b053c07cdf": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard interrupt checking behavior changed via new cfg option, altering expected-behavior model."
+ },
+ "f19369841d3f5fdfaf7da5cfac931a8098b24897": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Vseq alert timeout timing assumption changed from 2 to 4 cycles, altering stimulus/check timing."
+ },
+ "bfa151a3d8cd0b9a02ba5ac3cd7d64673eb1aeb3": {
+  "categories": [],
+  "none": true,
+  "reason": "Only fixes a log message format argument type; no behavioral or structural change."
+ },
+ "dde1346570144ee839a3204c5b1ebaa0fe044b95": {
+  "categories": [],
+  "none": true,
+  "reason": "Only improves an error message in the scoreboard; no behavior change."
+ },
+ "54120d8395874a42220acccf6265a95e46a17f32": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of a digest queue; behavior and interfaces unchanged, references updated consistently."
+ },
+ "436ae78a6e4e61c9b68950e8b1c3660a76025fcc": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequence early-exit reset condition changed, altering when stimulus generation stops or continues."
+ },
+ "84bf6f6c8ef1f447b19e217111530ae3e53143e0": {
+  "categories": [],
+  "none": true,
+  "reason": "Defensive null check and better error message in scoreboard; no behavioral model change."
+ },
+ "02ae15a8624e6f0341ac14c030fb1a3a61cb321f": {
+  "categories": [],
+  "none": true,
+  "reason": "Only copyright header text changed; no functional or behavioral changes to any class."
+ },
+ "6181a2dabb86d0a3f93de15df0df124264f62be2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Removing max derivation stage limit changes legal stimulus assumptions and scoreboard model expectations of stage behavior."
+ },
+ "7a57e4cd3d82fa13960a32dbe898303a916754bd": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Reverts stringification change in coverage class, altering coverpoint naming and collection behavior."
+ },
+ "30be1a4eb652028fa74b41bf0a5c62549549e1fd": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Timing change in base vseq aes_init() alters stimulus ordering assumptions for derived sequences."
+ },
+ "59237261d43d1f7a10095789dc64057441f40149": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard check logic changed to skip lead/idle/trail checks when the FSM counter is forced."
+ },
+ "e90a2699be3725bebc0876ab46849d64a42b0900": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "USB clock signals removed from interfaces; sequences referencing USB clock/CONTROL bits become invalid."
+ },
+ "510ce35460d0fd4db4c057e6f7faf431eecdd25b": {
+  "categories": [
+   "Checker Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "The diff isn't shown; a change to alert_monitor likely alters the observed transactions that scoreboards and coverage consume."
+ },
+ "ae7b9a412c7b09c724c4606f65d3f90f3ae0be0f": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes a redundant disable of an already-deleted assertion; no stimulus or checking behavior changes."
+ },
+ "f965e49880466748752f02906a957f11ebda6b76": {
+  "categories": [],
+  "none": true,
+  "reason": "Only adds a return-value check on std::randomize to silence a simulator warning; behavior unchanged."
+ },
+ "426a58e05fdf813e8b08a79b3e2ff5eae98cec74": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Monitor and receiver driver ping/alert timing changed, so scoreboard expectations and driver stimulus may diverge."
+ },
+ "37a4c972022254e073d90428fb64fc363f5a5540": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard fifo_empty interrupt condition order and FIFO depth tolerance change alter expected-behavior checking."
+ },
+ "10f786c8605a6ec70288b056fa8aa80d382ac57a": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard register modeling restructured; reference model behavior may diverge, with interrupt checking still disabled."
+ },
+ "b8bef0bb12777967496cff949b2043cb82e30dfe": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Coverage class mbx_env_cov changed; new covergroups may be unreachable or insufficient."
+ },
+ "096c4b77db2d7200f2ca73b5c55d5e097ea0a0c2": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of flash to nvm; no functional, layout, or behavioral changes."
+ },
+ "47029e81009a9016025ca4d1c48bd0c260dcbc1a": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Driver no longer gives up on handshakes, changing driver/monitor timing seen by scoreboard."
+ },
+ "01aed01e65860fcd1f34c94cc9d9e70b38c8f59c": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New env adds second TL agent and DUT hookup; the scoreboard is a skeleton model."
+ },
+ "aa29a39b676fd891e2a270fc340d95f641b801c6": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Flash-specific stimulus removed from sequences; related test coverage points become unreachable."
+ },
+ "f3f75c1f702565aed933009dfda95691f25b84a2": {
+  "categories": [],
+  "none": true,
+  "reason": "Pure rename of agent instances, updated consistently across env, cfg, tb and sequences; no behavioral change."
+ },
+ "0b0ff25cdad167aa5c14ea555540cbc837d61454": {
+  "categories": [
+   "Interface Drift",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "New otp_key interface and cfg handles affect virtual interface users; new coverage collector may miss points."
+ },
+ "1c0103931dae8152a5c754c3ac6c6137b121da66": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "SW_APP index now derived; sequences and scoreboard app indexing could break if misderived."
+ },
+ "bbf872a11fba064376758002ce84c7f24a29c9b5": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard alert-check timing changed to count slower alert clock cycles, altering checker behavior."
+ },
+ "ff023656fdfb0b1da8703d3ebbd69bfb34671ae4": {
+  "categories": [],
+  "none": true,
+  "reason": "Refactor and documentation only; no functional change; visibility narrowing affects only scoreboard subclasses."
+ },
+ "e52e6c36c2431068ed33d15c56c6b99dde08341c": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "CHERIoT adds capability bits/ports to memory interface; response agent's memory stimulus assumptions may break."
+ },
+ "fdf17efde8d970f9524eb6dcabdb857626179b98": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Vseq changed with empty RRAM alert triggers/checks, so stimulus is incomplete and alert coverage may be missed."
+ },
+ "0dd6a4f2e06091b1026107ed3fa4122d2d587686": {
+  "categories": [],
+  "none": true,
+  "reason": "Bazel tooling move; chip_env_cfg change likely just path/label update, no behavioral change."
+ },
+ "9152bef2ba4ebbc26374b853ed411e11b687f8e7": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New vseq with random resets mid-message may yield incomplete stimulus and desync scoreboard expectations."
+ },
+ "0f3144b0d85999b5bfe0bdb0b5a11faaa0370ee2": {
+  "categories": [
+   "Sequence Invalidation",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Base vseq gains random variables and CSR config tasks; scoreboard now tracks CSR updates, with no checks yet."
+ },
+ "2d5a646273400cc960adefc3cad328cf64219661": {
+  "categories": [],
+  "none": true,
+  "reason": "Adds new library files copied from OpenTitan; no existing components depend on them yet."
+ },
+ "2a6b3ccf381308be72059606c9778f0a5fa18bf7": {
+  "categories": [],
+  "none": true,
+  "reason": "Renders existing GPIO DV sources into ip_autogen via ipgen; relocation/tooling with no behavioral change."
+ },
+ "9f6dd427b6d2cb1ffc512a993c923c2ea089f9b1": {
+  "categories": [],
+  "none": true,
+  "reason": "Typo fixes in comments and docs only; no functional change to sequences or RTL."
+ },
+ "5bc0349dfe79165f6ce323e47f381657795224d0": {
+  "categories": [],
+  "none": true,
+  "reason": "Trivial helper removed; callers use get_dv_base_reg_by_name directly, behavior unchanged."
+ },
+ "eecbdaea4718675b8172ae2cc9d8bcf46a6ddcc5": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequences changed to RRAM single data bank and 128-bit vmem loading; stimulus assumptions about flash banks change."
+ },
+ "6694827607ca564550d58949172525b0d7b28158": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Path resolution moved to path_if virtual interface in cfg; scoreboard probe paths may mismatch."
+ },
+ "24076a5d47d6783764a927f3db9685b4fd16dbfb": {
+  "categories": [],
+  "none": true,
+  "reason": "Dependency refactor moving bus_params_pkg usage from dv_lib to cip_lib; behavior unchanged."
+ },
+ "9d19f92e2a05d77b011b452a6e00e0ad1988ccc9": {
+  "categories": [
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Sequences now exit early on reset, skipping CSR accesses, so stimulus may be incomplete."
+ },
+ "9238065d5b5446b7e549cf1003c6064d16e86473": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "New CPU-alive signal in misc IO interface; debug policy behavior changed, so the model may diverge."
+ },
+ "f71bb5bbe451eb6c5e099399baf55506da2abe7e": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Coverage bins for count/thold registers redefined to min/max/middle, altering coverage points and reachability."
+ },
+ "1c87fc0173b2c6525fcc07d1be76440efd580441": {
+  "categories": [
+   "RAL Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "New sha3_reg register block added to RAL; register map changes and new coverage points needed."
+ },
+ "aeb22abc1dfec90f83bbefd418f0603515ba421a": {
+  "categories": [],
+  "none": true,
+  "reason": "Compile fixes: package imports, class parameters, DV_CHECK syntax; no behavioral or structural change."
+ },
+ "8d594419fdb2df81c7a2693301320ed0befd6f64": {
+  "categories": [
+   "Interface Drift",
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Sideload key width changes 384 to 512 bits, altering interface signals and scoreboard expectations."
+ },
+ "17b762c3f6d8ce29060d3f0c2820b4f6d5204241": {
+  "categories": [
+   "RAL Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "New EXTERNAL_STAGING_AREA register added and moved in map; covergroups updated for new SOC_IFC registers."
+ },
+ "6efc747f695cb2c3eb231765acfceaaa21777ffe": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Register block renamed to 'regs'; RAL block names and references in env, scoreboard and sequences change."
+ },
+ "16813cfe25db91de2fa35b79af722b4d15b52783": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard gains a new error-log arbiter predictor; reference model behavior changes and could diverge from the DUT."
+ },
+ "3b2214e33abcecdcc20a16a6633cde727dceb664": {
+  "categories": [],
+  "none": true,
+  "reason": "Adds a helper method to a base sequence; no existing behavior or structure changes."
+ },
+ "2590b916eaedcb7e547e781e1b87670523d829e3": {
+  "categories": [],
+  "none": true,
+  "reason": "Re-adding sequence and test files for licensing under Apache-2.0; no functional change implied."
+ },
+ "4a1f346bb318da3c5ce3cce5ca408be6e2b32de8": {
+  "categories": [
+   "Sequence Invalidation",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Lock sequence stimulus modified; covergroup changes may affect coverage reachability."
+ },
+ "fd84bdaf5acf01e933fa93772d0de8b030a098b1": {
+  "categories": [],
+  "none": true,
+  "reason": "Only improves an error message in the scoreboard; no behavioral or structural change."
+ },
+ "5c8485391bb7b6d6e05f91bfb6ba201dc11312f7": {
+  "categories": [],
+  "none": true,
+  "reason": "Behavior-preserving refactor merging two channel setup tasks into one parameterized task."
+ },
+ "f7f0ea686734102ac0202416205f19ba8487c0d8": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Generated OTP backdoor util API changed per top; dependent sequences' backdoor stimulus assumptions had to be updated."
+ },
+ "52e64527d5cc302dffc1a7bc9ac933435d588456": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "RTL now sets FIFO ERR_CODE fields on distr FIFO errors; scoreboard expectations diverge."
+ },
+ "e5090a295224fde2eddb6793761a38874339ec47": {
+  "categories": [
+   "Sequence Invalidation",
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "Sequence used the wrong RAL's base address for RDATA reads, producing wrong-address stimulus."
+ },
+ "f66d4b83a7108f90d4e672fadc9ae59f21fa06f2": {
+  "categories": [
+   "Checker Desync",
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Predictor and scoreboard updated, coverage sampling changed; new tests alter reference model and coverage points."
+ },
+ "2c766ab8ac91fbb146dec4fe0b5a417ff202aa3e": {
+  "categories": [
+   "Checker Desync",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "Scoreboard now expects new instr_error condition; vseq generates new error stimulus."
+ },
+ "e6e39ea89fc21bea95699efd3062eeb4b3f79a6a": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard read-check logic restructured into overridable function; derived scoreboards' checking behavior may diverge."
+ },
+ "a90572ffbf1970d3789acf829def09291a48adbf": {
+  "categories": [
+   "Coverage Regression"
+  ],
+  "none": false,
+  "reason": "Refactors interrupt coverage collection and scoreboard calls; sampling could change or become unreachable."
+ },
+ "7daa08fc8382a14f4a525e6862b4bd99e3b01376": {
+  "categories": [],
+  "none": true,
+  "reason": "Only an error message string now includes the mismatching index; no behavior or structure changes."
+ },
+ "7b06f6dfb5b2d34bf453d375640efcdb3205dbcf": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Calling super.run_phase starts base monitor processes, which can change the transactions the scoreboard receives."
+ },
+ "d1138815f4b9afa678942a68f60ce6bd7c711343": {
+  "categories": [],
+  "none": true,
+  "reason": "Moving task bodies to extern definitions is a pure refactor with no behavioral change."
+ },
+ "3cab2eba307399fb0a5f2d016c26c285c826e0af": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard logic now guards item_type use to AES-GCM items, altering checker behavior for non-GCM items."
+ },
+ "63ff97c8b98b4060aeefc9323f4b10843eaaf832": {
+  "categories": [],
+  "none": true,
+  "reason": "Removes an unused argument that was always '1 (randomise base address); behavior is unchanged, so this is a pure simplification."
+ },
+ "46e67402212276194d8eba6f13f8563489d1c653": {
+  "categories": [
+   "Checker Desync"
+  ],
+  "none": false,
+  "reason": "Scoreboard intr_state prediction logic on intr_test write changed, altering reference model behavior."
+ },
+ "33bb6ba3d2285136aae587b3f17fde2ef2d4f166": {
+  "categories": [
+   "Interface Drift",
+   "Sequence Invalidation"
+  ],
+  "none": false,
+  "reason": "rom_ctrl_if gains override logic and the vseq changes how it forces kmac done, altering stimulus."
+ },
+ "22c8918547b645bde6a49ac9c6d946925234143d": {
+  "categories": [
+   "RAL Desync"
+  ],
+  "none": false,
+  "reason": "HW_REV_ID register value changed in regenerated RAL model; register map expectations may drift."
+ }
+}

@@ -1,0 +1,3131 @@
+{
+"uvm_reg": {
+"type": "RAL"
+},
+"aes_clp_reg__AES_NAME": {
+"type": "OTHER"
+},
+"aes_clp_reg__AES_VERSION": {
+"type": "OTHER"
+},
+"aes_clp_reg__ENTROPY_IF_SEED": {
+"type": "OTHER"
+},
+"aes_clp_reg__CTRL0": {
+"type": "OTHER"
+},
+"kv_read_ctrl_reg": {
+"type": "RAL"
+},
+"kv_status_reg": {
+"type": "RAL"
+},
+"kv_write_ctrl_reg": {
+"type": "RAL"
+},
+"aes_clp_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"aes_clp_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"aes_clp_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"aes_clp_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"aes_clp_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"aes_clp_reg__error_intr_t_error0_sts_28545624_error1_sts_40e0d3e1_error2_sts_b1cf2205_error3_sts_74a35378": {
+"type": "OTHER"
+},
+"aes_clp_reg__notif_intr_t_notif_cmd_done_sts_1c68637e": {
+"type": "OTHER"
+},
+"aes_clp_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"aes_clp_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_t_cnt_35ace267": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_t_cnt_73c42c28": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_t_cnt_d8af96ff": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_t_cnt_9bd7f809": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_incr_t_pulse_37026c97": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_incr_t_pulse_d860d977": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"aes_clp_reg__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"uvm_reg_block": {
+"type": "RAL"
+},
+"aes_clp_reg__intr_block_t": {
+"type": "OTHER"
+},
+"aes_clp_reg": {
+"type": "RAL"
+},
+"axi_dma_reg__id": {
+"type": "OTHER"
+},
+"axi_dma_reg__cap": {
+"type": "OTHER"
+},
+"axi_dma_reg__ctrl": {
+"type": "OTHER"
+},
+"axi_dma_reg__status0": {
+"type": "OTHER"
+},
+"axi_dma_reg__status1": {
+"type": "OTHER"
+},
+"axi_dma_reg__src_addr_l": {
+"type": "OTHER"
+},
+"axi_dma_reg__src_addr_h": {
+"type": "OTHER"
+},
+"axi_dma_reg__dst_addr_l": {
+"type": "OTHER"
+},
+"axi_dma_reg__dst_addr_h": {
+"type": "OTHER"
+},
+"axi_dma_reg__byte_count": {
+"type": "OTHER"
+},
+"axi_dma_reg__block_size": {
+"type": "OTHER"
+},
+"axi_dma_reg__write_data": {
+"type": "OTHER"
+},
+"axi_dma_reg__read_data": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__global_intr_en_t": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__error_intr_en_t": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__notif_intr_en_t": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__error_intr_t_error_aes_cif_sts_63385a16_error_axi_rd_sts_927e49cd_error_axi_wr_sts_f84e5c07_error_cmd_dec_sts_46039d92_error_fifo_oflow_sts_71b29a77_error_fifo_uflow_sts_119d122a_error_kv_rd_large_sts_aa293a66_error_kv_rd_sts_df1ad5dd_error_mbox_lock_sts_9e18c395_error_sha_lock_sts_4c7993a0": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__notif_intr_t_notif_fifo_empty_sts_d87d1786_notif_fifo_full_sts_64c66862_notif_fifo_not_empty_sts_1a0e2460_notif_fifo_not_full_sts_0266fe07_notif_txn_done_sts_0ee2f120": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__error_intr_trig_t": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_fc5260b0": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_f6d7de6b": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_aba31562": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_f73463f1": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_5381f2ed": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_b056182d": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_91ebc86d": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_30af74c6": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_57bf69a0": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_8fbc7b72": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_61104c6c": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_9b030582": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_3709cb5b": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_e250b023": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_t_cnt_fed3ae2d": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_08678f4e": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_e1020031": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_cfe70385": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_9a8b3fa0": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_f530dcc5": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_60d6f4e7": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_6907af43": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_e2da7281": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_3b30ac93": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_1ab3c91c": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_f1bdde05": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_236c6006": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_e5e89525": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_bfb3930b": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t__intr_count_incr_t_pulse_2aa328ea": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t": {
+"type": "OTHER"
+},
+"axi_dma_reg": {
+"type": "RAL"
+},
+"dv_reg__StickyDataVaultCtrl": {
+"type": "OTHER"
+},
+"dv_reg__StickyDataVaultReg": {
+"type": "OTHER"
+},
+"dv_reg__DataVaultCtrl": {
+"type": "OTHER"
+},
+"dv_reg__DataVaultReg": {
+"type": "OTHER"
+},
+"dv_reg__LockableScratchRegCtrl": {
+"type": "OTHER"
+},
+"dv_reg__LockableScratchReg": {
+"type": "OTHER"
+},
+"dv_reg__NonStickyGenericScratchReg": {
+"type": "OTHER"
+},
+"dv_reg__StickyLockableScratchRegCtrl": {
+"type": "OTHER"
+},
+"dv_reg__StickyLockableScratchReg": {
+"type": "OTHER"
+},
+"dv_reg": {
+"type": "RAL"
+},
+"doe_reg__DOE_IV": {
+"type": "OTHER"
+},
+"doe_reg__DOE_CTRL": {
+"type": "OTHER"
+},
+"doe_reg__DOE_STATUS": {
+"type": "OTHER"
+},
+"doe_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"doe_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"doe_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"doe_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"doe_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"doe_reg__error_intr_t_error0_sts_5ee134bf_error1_sts_aad9583f_error2_sts_6cad4575_error3_sts_735bbeba": {
+"type": "OTHER"
+},
+"doe_reg__notif_intr_t_notif_cmd_done_sts_1c68637e": {
+"type": "OTHER"
+},
+"doe_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"doe_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_t_cnt_130ab269": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_t_cnt_324dfc53": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_t_cnt_791a4799": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_t_cnt_e9de7334": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_incr_t_pulse_37026c97": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_incr_t_pulse_d860d977": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"doe_reg__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"doe_reg__intr_block_t": {
+"type": "OTHER"
+},
+"doe_reg": {
+"type": "RAL"
+},
+"ecc_reg__ECC_NAME": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_VERSION": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_CTRL": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_STATUS": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_SEED": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_MSG": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_PRIVKEY_OUT": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_PUBKEY_X": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_PUBKEY_Y": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_SIGN_R": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_SIGN_S": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_VERIFY_R": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_IV": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_NONCE": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_PRIVKEY_IN": {
+"type": "OTHER"
+},
+"ecc_reg__ECC_DH_SHARED_KEY": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__global_intr_en_t": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__error_intr_en_t": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__notif_intr_en_t": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__error_intr_t_error_internal_sts_83adab02": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__notif_intr_t_notif_cmd_done_sts_1c68637e": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__error_intr_trig_t": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__intr_count_t_cnt_60ddff93": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__intr_count_incr_t_pulse_15e6ed7e": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"ecc_reg__intr_block_t": {
+"type": "OTHER"
+},
+"ecc_reg": {
+"type": "RAL"
+},
+"uvmf_sequence_base": {
+"type": "OTHER"
+},
+"ECC_bench_sequence_base": {
+"type": "OTHER"
+},
+"ECC_normal_sequence": {
+"type": "SEQ"
+},
+"ECC_otf_reset_sequence": {
+"type": "SEQ"
+},
+"example_derived_test_sequence": {
+"type": "SEQ"
+},
+"register_test_sequence": {
+"type": "SEQ"
+},
+"test_top": {
+"type": "OTHER"
+},
+"register_test": {
+"type": "OTHER"
+},
+"uvmf_environment_configuration_base": {
+"type": "OTHER"
+},
+"ECC_env_configuration": {
+"type": "OTHER"
+},
+"uvmf_virtual_sequence_base": {
+"type": "OTHER"
+},
+"ECC_env_sequence_base": {
+"type": "OTHER"
+},
+"uvmf_environment_base": {
+"type": "OTHER"
+},
+"ECC_environment": {
+"type": "OTHER"
+},
+"uvm_reg_adapter": {
+"type": "OTHER"
+},
+"ECC_in2reg_adapter": {
+"type": "OTHER"
+},
+"uvmf_parameterized_agent": {
+"type": "AGENT"
+},
+"ECC_in_agent": {
+"type": "AGENT"
+},
+"uvmf_driver_base": {
+"type": "OTHER"
+},
+"ECC_in_driver": {
+"type": "AGENT"
+},
+"uvmf_monitor_base": {
+"type": "OTHER"
+},
+"ECC_in_monitor": {
+"type": "AGENT"
+},
+"ECC_in_sequence_base": {
+"type": "OTHER"
+},
+"ECC_in_normal_sequence": {
+"type": "SEQ"
+},
+"ECC_in_otf_reset_sequence": {
+"type": "SEQ"
+},
+"ECC_in_random_sequence": {
+"type": "SEQ"
+},
+"ECC_in_reset_sequence": {
+"type": "SEQ"
+},
+"ECC_in_responder_sequence": {
+"type": "SEQ"
+},
+"uvm_subscriber": {
+"type": "OTHER"
+},
+"ECC_in_transaction_coverage": {
+"type": "COV"
+},
+"ECC_out2reg_adapter": {
+"type": "OTHER"
+},
+"ECC_out_agent": {
+"type": "AGENT"
+},
+"ECC_out_driver": {
+"type": "AGENT"
+},
+"ECC_out_monitor": {
+"type": "AGENT"
+},
+"ECC_out_sequence_base": {
+"type": "OTHER"
+},
+"ECC_out_random_sequence": {
+"type": "SEQ"
+},
+"ECC_out_responder_sequence": {
+"type": "SEQ"
+},
+"ECC_out_transaction_coverage": {
+"type": "COV"
+},
+"entropy_combiner_reg__COMBINER_NAME": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__COMBINER_VERSION": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__KAT_CTRL": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__KAT_MSG_LEN": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__KAT_STATUS": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__KAT_MSG": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__KAT_DIGEST": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__COMBINER_CTRL": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__AHB_LOCK": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__COMBINER_STATUS": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__error_intr_t_combiner_fsm_error_sts_8d010179_count_error_sts_3599d16f_sha3_error_sts_a3cfdcf2_sparse_fsm_error_sts_eed28f3e_storage_rst_error_sts_a4339a40": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__notif_intr_t_notif_kat_done_sts_50d04acb": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_t_cnt_9198fa18": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_t_cnt_d64d6c2f": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_t_cnt_855566f4": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_t_cnt_2f455042": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_t_cnt_77a9f3e0": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_t_cnt_dd5595d5": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_incr_t_pulse_d65b5e88": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_incr_t_pulse_a1bb0d16": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_incr_t_pulse_d619a058": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_incr_t_pulse_e5766d33": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_incr_t_pulse_484eaecd": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_count_incr_t_pulse_4d47d41f": {
+"type": "OTHER"
+},
+"entropy_combiner_reg__intr_block_t": {
+"type": "OTHER"
+},
+"entropy_combiner_reg": {
+"type": "RAL"
+},
+"hmac_reg__HMAC512_NAME": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_VERSION": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_CTRL": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_STATUS": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_KEY": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_BLOCK": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_TAG": {
+"type": "OTHER"
+},
+"hmac_reg__HMAC512_LFSR_SEED": {
+"type": "OTHER"
+},
+"hmac_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"hmac_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"hmac_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"hmac_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"hmac_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"hmac_reg__error_intr_t_error2_sts_b1cf2205_error3_sts_74a35378_key_mode_error_sts_f2304c86_key_zero_error_sts_64a18183": {
+"type": "OTHER"
+},
+"hmac_reg__notif_intr_t_notif_cmd_done_sts_1c68637e": {
+"type": "OTHER"
+},
+"hmac_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"hmac_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_t_cnt_b8d41777": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_t_cnt_55fc66d7": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_t_cnt_d8af96ff": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_t_cnt_9bd7f809": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_incr_t_pulse_14f62453": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_incr_t_pulse_080329b7": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"hmac_reg__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"hmac_reg__intr_block_t": {
+"type": "OTHER"
+},
+"hmac_reg": {
+"type": "RAL"
+},
+"HMAC_bench_sequence_base": {
+"type": "OTHER"
+},
+"HMAC_last_alone_error_sequence": {
+"type": "SEQ"
+},
+"HMAC_otf_reset_sequence": {
+"type": "SEQ"
+},
+"HMAC_random_sequence": {
+"type": "SEQ"
+},
+"HMAC_env_configuration": {
+"type": "OTHER"
+},
+"HMAC_env_sequence_base": {
+"type": "OTHER"
+},
+"HMAC_environment": {
+"type": "OTHER"
+},
+"HMAC_in2reg_adapter": {
+"type": "OTHER"
+},
+"HMAC_in_agent": {
+"type": "AGENT"
+},
+"HMAC_in_driver": {
+"type": "AGENT"
+},
+"HMAC_in_sequence_base": {
+"type": "OTHER"
+},
+"HMAC_in_last_alone_error_sequence": {
+"type": "SEQ"
+},
+"HMAC_in_monitor": {
+"type": "AGENT"
+},
+"HMAC_in_otf_reset_sequence": {
+"type": "SEQ"
+},
+"HMAC_in_random_sequence": {
+"type": "SEQ"
+},
+"HMAC_in_reset_sequence": {
+"type": "SEQ"
+},
+"HMAC_in_responder_sequence": {
+"type": "SEQ"
+},
+"HMAC_in_transaction_coverage": {
+"type": "COV"
+},
+"HMAC_out2reg_adapter": {
+"type": "OTHER"
+},
+"HMAC_out_agent": {
+"type": "AGENT"
+},
+"HMAC_out_driver": {
+"type": "AGENT"
+},
+"HMAC_out_monitor": {
+"type": "AGENT"
+},
+"HMAC_out_sequence_base": {
+"type": "OTHER"
+},
+"HMAC_out_random_sequence": {
+"type": "SEQ"
+},
+"HMAC_out_responder_sequence": {
+"type": "SEQ"
+},
+"HMAC_out_transaction_coverage": {
+"type": "COV"
+},
+"caliptra_top_bench_sequence_base": {
+"type": "OTHER"
+},
+"caliptra_top_cmdline_sequence": {
+"type": "SEQ"
+},
+"caliptra_top_rand_sequence": {
+"type": "SEQ"
+},
+"caliptra_top_rom_sequence": {
+"type": "SEQ"
+},
+"caliptra_top_wdt_independent_sequence": {
+"type": "SEQ"
+},
+"caliptra_top_wdt_sequence": {
+"type": "SEQ"
+},
+"caliptra_top_env_configuration": {
+"type": "OTHER"
+},
+"caliptra_top_env_sequence_base": {
+"type": "OTHER"
+},
+"caliptra_top_environment": {
+"type": "OTHER"
+},
+"kv_reg__kvCtrl": {
+"type": "OTHER"
+},
+"kv_reg__keyReg": {
+"type": "OTHER"
+},
+"kv_reg__CLEAR_SECRETS": {
+"type": "OTHER"
+},
+"kv_reg": {
+"type": "RAL"
+},
+"kv_rst_sequence_base": {
+"type": "OTHER"
+},
+"kv_bench_sequence_base": {
+"type": "OTHER"
+},
+"kv_rand_debug_test_sequence": {
+"type": "SEQ"
+},
+"kv_rand_lock_test_sequence": {
+"type": "SEQ"
+},
+"kv_rand_test_sequence": {
+"type": "SEQ"
+},
+"kv_rand_wr_rd_test_sequence": {
+"type": "SEQ"
+},
+"kv_reg_ext": {
+"type": "OTHER"
+},
+"kv_example_reg0": {
+"type": "OTHER"
+},
+"kv_example_reg1": {
+"type": "OTHER"
+},
+"kv_val_reg": {
+"type": "RAL"
+},
+"kv_val_ctrl": {
+"type": "OTHER"
+},
+"kv_val_ctrl_derived": {
+"type": "OTHER"
+},
+"kv_reg_model_top": {
+"type": "OTHER"
+},
+"kv_env_sequence_base": {
+"type": "OTHER"
+},
+"kv_ahb_sequence": {
+"type": "SEQ"
+},
+"kv_debug_flush_mixed_locks_sequence": {
+"type": "SEQ"
+},
+"kv_env_configuration": {
+"type": "OTHER"
+},
+"kv_env_debug_off_sequence": {
+"type": "SEQ"
+},
+"kv_env_debug_on_sequence": {
+"type": "SEQ"
+},
+"kv_env_scan_off_sequence": {
+"type": "SEQ"
+},
+"kv_env_scan_on_sequence": {
+"type": "SEQ"
+},
+"kv_environment": {
+"type": "OTHER"
+},
+"kv_key_wr_rd_basic_sequence": {
+"type": "SEQ"
+},
+"kv_multi_write_collision_sequence": {
+"type": "SEQ"
+},
+"uvm_reg_predictor": {
+"type": "OTHER"
+},
+"kv_reg_predictor": {
+"type": "OTHER"
+},
+"BASE_T": {
+"type": "OTHER"
+},
+"kv_scoreboard": {
+"type": "SCBD"
+},
+"kv_wr_rd_cold_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_debug_cold_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_debug_core_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_debug_lock_clear_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_debug_lock_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_debug_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_debug_warm_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_lock_cold_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_lock_core_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_lock_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_lock_warm_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_rst_sequence": {
+"type": "SEQ"
+},
+"kv_wr_rd_sequence": {
+"type": "SEQ"
+},
+"kv_read2reg_adapter": {
+"type": "OTHER"
+},
+"kv_read_agent": {
+"type": "AGENT"
+},
+"kv_read_driver": {
+"type": "AGENT"
+},
+"kv_read_sequence_base": {
+"type": "OTHER"
+},
+"kv_read_key_entry_sequence": {
+"type": "SEQ"
+},
+"kv_read_monitor": {
+"type": "AGENT"
+},
+"kv_read_random_sequence": {
+"type": "SEQ"
+},
+"kv_read_responder_sequence": {
+"type": "SEQ"
+},
+"kv_read_transaction_coverage": {
+"type": "COV"
+},
+"kv_rst2reg_adapter": {
+"type": "OTHER"
+},
+"kv_rst_agent": {
+"type": "AGENT"
+},
+"kv_rst_cold_rst_sequence": {
+"type": "SEQ"
+},
+"kv_rst_core_rst_sequence": {
+"type": "SEQ"
+},
+"kv_rst_debug_off_sequence": {
+"type": "SEQ"
+},
+"kv_rst_debug_on_sequence": {
+"type": "SEQ"
+},
+"kv_rst_debug_sequence": {
+"type": "SEQ"
+},
+"kv_rst_driver": {
+"type": "AGENT"
+},
+"kv_rst_fw_upd_rst_sequence": {
+"type": "SEQ"
+},
+"kv_rst_monitor": {
+"type": "AGENT"
+},
+"kv_rst_poweron_sequence": {
+"type": "SEQ"
+},
+"kv_rst_random_sequence": {
+"type": "SEQ"
+},
+"kv_rst_responder_sequence": {
+"type": "SEQ"
+},
+"kv_rst_scan_off_sequence": {
+"type": "SEQ"
+},
+"kv_rst_scan_on_sequence": {
+"type": "SEQ"
+},
+"kv_rst_transaction_coverage": {
+"type": "COV"
+},
+"kv_rst_warm_rst_sequence": {
+"type": "SEQ"
+},
+"kv_write2reg_adapter": {
+"type": "OTHER"
+},
+"kv_write_sequence_base": {
+"type": "OTHER"
+},
+"kv_write_AHB_lock_set_sequence": {
+"type": "SEQ"
+},
+"kv_write_agent": {
+"type": "AGENT"
+},
+"kv_write_driver": {
+"type": "AGENT"
+},
+"kv_write_key_ctrl_sequence": {
+"type": "SEQ"
+},
+"kv_write_key_entry_sequence": {
+"type": "SEQ"
+},
+"kv_write_monitor": {
+"type": "AGENT"
+},
+"kv_write_random_sequence": {
+"type": "SEQ"
+},
+"kv_write_responder_sequence": {
+"type": "SEQ"
+},
+"kv_write_transaction_coverage": {
+"type": "COV"
+},
+"aaxi_uvm_mem_adapter": {
+"type": "OTHER"
+},
+"caliptra_reg2axi_adapter": {
+"type": "OTHER"
+},
+"interrupt_regs__global_intr_en_t": {
+"type": "OTHER"
+},
+"interrupt_regs__error_intr_en_t": {
+"type": "OTHER"
+},
+"interrupt_regs__notif_intr_en_t": {
+"type": "OTHER"
+},
+"interrupt_regs__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"interrupt_regs__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"interrupt_regs__error_intr_t_error0_sts_28545624_error1_sts_40e0d3e1_error2_sts_b1cf2205_error3_sts_74a35378": {
+"type": "OTHER"
+},
+"interrupt_regs__notif_intr_t_notif0_sts_fad49e5a_notif1_sts_75ea8080_notif2_sts_520a3f21_notif3_sts_7e9de775": {
+"type": "OTHER"
+},
+"interrupt_regs__error_intr_trig_t": {
+"type": "OTHER"
+},
+"interrupt_regs__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_35ace267": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_73c42c28": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_d8af96ff": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_9bd7f809": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_a95429c0": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_7f9d4e58": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_1dd74e35": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_t_cnt_9d7a8377": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_37026c97": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_d860d977": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_98226cc9": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_05578eb6": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_eafe14a1": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_count_incr_t_pulse_be7ba8fe": {
+"type": "OTHER"
+},
+"interrupt_regs__intr_block_t": {
+"type": "OTHER"
+},
+"interrupt_regs": {
+"type": "OTHER"
+},
+"qvip_ahb_lite_slave_env_configuration": {
+"type": "OTHER"
+},
+"qvip_ahb_lite_slave_environment": {
+"type": "OTHER"
+},
+"reg2apb_adapter": {
+"type": "OTHER"
+},
+"caliptra_reg2apb_adapter": {
+"type": "OTHER"
+},
+"qvip_apb5_slave_env_configuration": {
+"type": "OTHER"
+},
+"qvip_apb5_slave_environment": {
+"type": "OTHER"
+},
+"pv_reg__pvCtrl": {
+"type": "OTHER"
+},
+"pv_reg__pcrReg": {
+"type": "OTHER"
+},
+"pv_reg": {
+"type": "RAL"
+},
+"pv_bench_sequence_base": {
+"type": "OTHER"
+},
+"pv_rand_lock_test_sequence": {
+"type": "SEQ"
+},
+"pv_rand_test_sequence": {
+"type": "SEQ"
+},
+"pv_rand_wr_rd_test_sequence": {
+"type": "SEQ"
+},
+"pv_reg_ext": {
+"type": "OTHER"
+},
+"pv_example_reg0": {
+"type": "OTHER"
+},
+"pv_example_reg1": {
+"type": "OTHER"
+},
+"pv_val_reg": {
+"type": "RAL"
+},
+"uvm_object": {
+"type": "OTHER"
+},
+"pv_ahb_map_coverage": {
+"type": "COV"
+},
+"pv_reg_model_top": {
+"type": "OTHER"
+},
+"ahb_reg_predictor": {
+"type": "OTHER"
+},
+"pv_ahb_reg_predictor": {
+"type": "OTHER"
+},
+"pv_env_configuration": {
+"type": "OTHER"
+},
+"pv_env_sequence_base": {
+"type": "OTHER"
+},
+"pv_environment": {
+"type": "OTHER"
+},
+"pv_pcr_wr_rd_basic_sequence": {
+"type": "SEQ"
+},
+"pv_reg_predictor": {
+"type": "OTHER"
+},
+"pv_scoreboard": {
+"type": "SCBD"
+},
+"pv_wr_rd_ahb_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_cold_rst_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_lock_cold_rst_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_lock_core_rst_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_lock_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_lock_warm_rst_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_rst_sequence": {
+"type": "SEQ"
+},
+"pv_wr_rd_sequence": {
+"type": "SEQ"
+},
+"pv_read2reg_adapter": {
+"type": "OTHER"
+},
+"pv_read_agent": {
+"type": "AGENT"
+},
+"pv_read_driver": {
+"type": "AGENT"
+},
+"pv_read_monitor": {
+"type": "AGENT"
+},
+"pv_read_sequence_base": {
+"type": "OTHER"
+},
+"pv_read_pcr_entry_sequence": {
+"type": "SEQ"
+},
+"pv_read_random_sequence": {
+"type": "SEQ"
+},
+"pv_read_responder_sequence": {
+"type": "SEQ"
+},
+"pv_read_transaction_coverage": {
+"type": "COV"
+},
+"pv_rst2reg_adapter": {
+"type": "OTHER"
+},
+"pv_rst_agent": {
+"type": "AGENT"
+},
+"pv_rst_sequence_base": {
+"type": "OTHER"
+},
+"pv_rst_cold_rst_sequence": {
+"type": "SEQ"
+},
+"pv_rst_core_rst_sequence": {
+"type": "SEQ"
+},
+"pv_rst_driver": {
+"type": "AGENT"
+},
+"pv_rst_monitor": {
+"type": "AGENT"
+},
+"pv_rst_poweron_sequence": {
+"type": "SEQ"
+},
+"pv_rst_random_sequence": {
+"type": "SEQ"
+},
+"pv_rst_responder_sequence": {
+"type": "SEQ"
+},
+"pv_rst_transaction_coverage": {
+"type": "COV"
+},
+"pv_rst_warm_rst_sequence": {
+"type": "SEQ"
+},
+"pv_write2reg_adapter": {
+"type": "OTHER"
+},
+"pv_write_agent": {
+"type": "AGENT"
+},
+"pv_write_driver": {
+"type": "AGENT"
+},
+"pv_write_monitor": {
+"type": "AGENT"
+},
+"pv_write_sequence_base": {
+"type": "OTHER"
+},
+"pv_write_pcr_entry_sequence": {
+"type": "SEQ"
+},
+"pv_write_random_sequence": {
+"type": "SEQ"
+},
+"pv_write_responder_sequence": {
+"type": "SEQ"
+},
+"pv_write_transaction_coverage": {
+"type": "COV"
+},
+"sha256_reg__SHA256_NAME": {
+"type": "OTHER"
+},
+"sha256_reg__SHA256_VERSION": {
+"type": "OTHER"
+},
+"sha256_reg__SHA256_CTRL": {
+"type": "OTHER"
+},
+"sha256_reg__SHA256_STATUS": {
+"type": "OTHER"
+},
+"sha256_reg__SHA256_BLOCK": {
+"type": "OTHER"
+},
+"sha256_reg__SHA256_DIGEST": {
+"type": "OTHER"
+},
+"sha256_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"sha256_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"sha256_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"sha256_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"sha256_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"sha256_reg__error_intr_t_error0_sts_28545624_error1_sts_40e0d3e1_error2_sts_b1cf2205_error3_sts_74a35378": {
+"type": "OTHER"
+},
+"sha256_reg__notif_intr_t_notif_cmd_done_sts_1c68637e": {
+"type": "OTHER"
+},
+"sha256_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"sha256_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_t_cnt_35ace267": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_t_cnt_73c42c28": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_t_cnt_d8af96ff": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_t_cnt_9bd7f809": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_incr_t_pulse_37026c97": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_incr_t_pulse_d860d977": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"sha256_reg__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"sha256_reg__intr_block_t": {
+"type": "OTHER"
+},
+"sha256_reg": {
+"type": "RAL"
+},
+"sha3_reg__SHA3_NAME": {
+"type": "OTHER"
+},
+"sha3_reg__SHA3_VERSION": {
+"type": "OTHER"
+},
+"sha3_reg__SHA3_CTRL": {
+"type": "OTHER"
+},
+"sha3_reg__ALERT_TEST": {
+"type": "OTHER"
+},
+"sha3_reg__CFG_REGWEN": {
+"type": "OTHER"
+},
+"sha3_reg__CFG_SHADOWED": {
+"type": "OTHER"
+},
+"sha3_reg__CMD": {
+"type": "OTHER"
+},
+"sha3_reg__STATUS": {
+"type": "OTHER"
+},
+"sha3_reg__ERR_CODE": {
+"type": "OTHER"
+},
+"sha3_reg__STATE": {
+"type": "OTHER"
+},
+"sha3_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"sha3_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"sha3_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"sha3_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"sha3_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"sha3_reg__error_intr_t_error1_sts_40e0d3e1_error2_sts_b1cf2205_error3_sts_74a35378_sha3_error_sts_a3cfdcf2": {
+"type": "OTHER"
+},
+"sha3_reg__notif_intr_t_notif_cmd_done_sts_1c68637e_notif_msg_fifo_empty_sts_df694e73": {
+"type": "OTHER"
+},
+"sha3_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"sha3_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_t_cnt_9198fa18": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_t_cnt_73c42c28": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_t_cnt_d8af96ff": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_t_cnt_9bd7f809": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_incr_t_pulse_d65b5e88": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_incr_t_pulse_d860d977": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"sha3_reg__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"sha3_reg__intr_block_t": {
+"type": "OTHER"
+},
+"sha3_reg__MSG_FIFO": {
+"type": "OTHER"
+},
+"sha3_reg": {
+"type": "RAL"
+},
+"sha512_reg__SHA512_NAME": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_VERSION": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_CTRL": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_STATUS": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_BLOCK": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_DIGEST": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_GEN_PCR_HASH_NONCE": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_GEN_PCR_HASH_CTRL": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_GEN_PCR_HASH_STATUS": {
+"type": "OTHER"
+},
+"sha512_reg__SHA512_GEN_PCR_HASH_DIGEST": {
+"type": "OTHER"
+},
+"sha512_reg__global_intr_en_t": {
+"type": "OTHER"
+},
+"sha512_reg__error_intr_en_t": {
+"type": "OTHER"
+},
+"sha512_reg__notif_intr_en_t": {
+"type": "OTHER"
+},
+"sha512_reg__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"sha512_reg__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"sha512_reg__error_intr_t_error0_sts_28545624_error1_sts_40e0d3e1_error2_sts_b1cf2205_error3_sts_74a35378": {
+"type": "OTHER"
+},
+"sha512_reg__notif_intr_t_notif_cmd_done_sts_1c68637e": {
+"type": "OTHER"
+},
+"sha512_reg__error_intr_trig_t": {
+"type": "OTHER"
+},
+"sha512_reg__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_t_cnt_35ace267": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_t_cnt_73c42c28": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_t_cnt_d8af96ff": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_t_cnt_9bd7f809": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_t_cnt_be67d6d5": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_incr_t_pulse_37026c97": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_incr_t_pulse_d860d977": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_incr_t_pulse_87b45fe7": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_incr_t_pulse_c1689ee6": {
+"type": "OTHER"
+},
+"sha512_reg__intr_count_incr_t_pulse_6173128e": {
+"type": "OTHER"
+},
+"sha512_reg__intr_block_t": {
+"type": "OTHER"
+},
+"sha512_reg": {
+"type": "RAL"
+},
+"SHA512_bench_sequence_base": {
+"type": "OTHER"
+},
+"SHA512_random_sequence": {
+"type": "SEQ"
+},
+"SHA512_env_configuration": {
+"type": "OTHER"
+},
+"SHA512_env_sequence_base": {
+"type": "OTHER"
+},
+"SHA512_environment": {
+"type": "OTHER"
+},
+"SHA512_in2reg_adapter": {
+"type": "OTHER"
+},
+"SHA512_in_agent": {
+"type": "AGENT"
+},
+"SHA512_in_driver": {
+"type": "AGENT"
+},
+"SHA512_in_monitor": {
+"type": "AGENT"
+},
+"SHA512_in_sequence_base": {
+"type": "OTHER"
+},
+"SHA512_in_random_sequence": {
+"type": "SEQ"
+},
+"SHA512_in_reset_sequence": {
+"type": "SEQ"
+},
+"SHA512_in_responder_sequence": {
+"type": "SEQ"
+},
+"SHA512_in_transaction_coverage": {
+"type": "COV"
+},
+"SHA512_out2reg_adapter": {
+"type": "OTHER"
+},
+"SHA512_out_agent": {
+"type": "AGENT"
+},
+"SHA512_out_driver": {
+"type": "AGENT"
+},
+"SHA512_out_monitor": {
+"type": "AGENT"
+},
+"SHA512_out_sequence_base": {
+"type": "OTHER"
+},
+"SHA512_out_random_sequence": {
+"type": "SEQ"
+},
+"SHA512_out_responder_sequence": {
+"type": "SEQ"
+},
+"SHA512_out_transaction_coverage": {
+"type": "COV"
+},
+"soc_ifc_reg__CPTRA_HW_ERROR_FATAL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_HW_ERROR_NON_FATAL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FW_ERROR_FATAL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FW_ERROR_NON_FATAL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_HW_ERROR_ENC": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FW_ERROR_ENC": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FW_EXTENDED_ERROR_INFO": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_BOOT_STATUS": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FLOW_STATUS": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_RESET_REASON": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_SECURITY_STATE": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_MBOX_VALID_AXI_USER": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_MBOX_AXI_USER_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_TRNG_VALID_AXI_USER": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_TRNG_AXI_USER_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_TRNG_DATA": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_TRNG_CTRL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_TRNG_STATUS": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FUSE_WR_DONE": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_TIMER_CONFIG": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_BOOTFSM_GO": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_DBG_MANUF_SERVICE_REG": {
+"type": "RAL"
+},
+"soc_ifc_reg__CPTRA_CLK_GATING_EN": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_GENERIC_INPUT_WIRES": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_GENERIC_OUTPUT_WIRES": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_HW_REV_ID": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FW_REV_ID": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_HW_CONFIG": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_TIMER1_EN": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_TIMER1_CTRL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_TIMER1_TIMEOUT_PERIOD": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_TIMER2_EN": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_TIMER2_CTRL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_TIMER2_TIMEOUT_PERIOD": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_STATUS": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FUSE_VALID_AXI_USER": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FUSE_AXI_USER_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_WDT_CFG": {
+"type": "CFG"
+},
+"soc_ifc_reg__CPTRA_RSVD_REG": {
+"type": "RAL"
+},
+"soc_ifc_reg__CPTRA_HW_CAPABILITIES": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_FW_CAPABILITIES": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_CAP_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_OWNER_PK_HASH": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_OWNER_PK_HASH_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_iTRNG_ENTROPY_CONFIG_0": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_iTRNG_ENTROPY_CONFIG_1": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_iTRNG_ENTROPY_CONFIG_2": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_iTRNG1_ENTROPY_CONFIG_0": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_iTRNG1_ENTROPY_CONFIG_1": {
+"type": "OTHER"
+},
+"soc_ifc_reg__CPTRA_iTRNG1_ENTROPY_CONFIG_2": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_uds_seed": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_field_entropy": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_vendor_pk_hash": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_ecc_revocation": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_fmc_key_manifest_svn": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_runtime_svn": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_anti_rollback_disable": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_idevid_cert_attr": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_idevid_manuf_hsm_id": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_lms_revocation": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_mldsa_revocation": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_soc_stepping_id": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_manuf_dbg_unlock_token": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_pqc_key_type": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_soc_manifest_svn": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_soc_manifest_max_svn": {
+"type": "OTHER"
+},
+"soc_ifc_reg__fuse_hek_seed": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_CALIPTRA_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_CALIPTRA_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_MCI_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_MCI_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_RECOVERY_IFC_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_RECOVERY_IFC_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_OTP_FC_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_OTP_FC_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_UDS_SEED_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_UDS_SEED_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_PROD_DEBUG_UNLOCK_AUTH_PK_HASH_REG_BANK_OFFSET": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_NUM_OF_PROD_DEBUG_UNLOCK_AUTH_PK_HASHES": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_DEBUG_INTENT": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_CALIPTRA_DMA_AXI_USER": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_EXTERNAL_STAGING_AREA_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_EXTERNAL_STAGING_AREA_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_KEY_RELEASE_BASE_ADDR_L": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_KEY_RELEASE_BASE_ADDR_H": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_KEY_RELEASE_SIZE": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_OCP_LOCK_CTRL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_STRAP_GENERIC": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_DBG_SERVICE_REG_REQ": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_DBG_SERVICE_REG_RSP": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_SOC_DBG_UNLOCK_LEVEL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__SS_GENERIC_FW_EXEC_CTRL": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_obf_key": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_iccm_lock": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_fw_update_reset": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_fw_update_reset_wait_cycles": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_nmi_vector": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_hw_error_fatal_mask": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_hw_error_non_fatal_mask": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_fw_error_fatal_mask": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_fw_error_non_fatal_mask": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_rv_mtime_l": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_rv_mtime_h": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_rv_mtimecmp_l": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_rv_mtimecmp_h": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_iccm_fmc_start_addr": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_iccm_fmc_end_addr": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_iccm_rt_start_addr": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_iccm_rt_end_addr": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_iccm_region_lock": {
+"type": "OTHER"
+},
+"soc_ifc_reg__internal_trace_ctrl": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__global_intr_en_t": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__error_intr_en_t": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__notif_intr_en_t": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__global_intr_t_agg_sts_dd3dcf0a": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__global_intr_t_agg_sts_e6399b4a": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__error_intr_t_error_bad_fuse_sts_23f67582_error_cmd_fail_sts_b85845f8_error_iccm_blocked_sts_e81e6ad2_error_internal_sts_caad62e2_error_inv_dev_sts_6693e7db_error_mbox_ecc_unc_sts_30bff330_error_wdt_timer1_timeout_sts_6aaa9655_error_wdt_timer2_timeout_sts_cda8789f": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__notif_intr_t_notif_cmd_avail_sts_1871606b_notif_debug_locked_sts_5f024102_notif_gen_in_toggle_sts_59f84b64_notif_mbox_ecc_cor_sts_5c3d26bb_notif_scan_mode_sts_122f6367_notif_soc_req_lock_sts_deddde70": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__error_intr_trig_t": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__notif_intr_trig_t": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_608f1141": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_916ab5df": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_b2a56031": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_fb7d2433": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_25e76b6f": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_26b97e39": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_a2f61f82": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_d46457cd": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_a06f0954": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_00e49272": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_ee53ded8": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_fbf3c714": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_b9bddabe": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_t_cnt_57528cc1": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_15e6ed7e": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_f762ea9c": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_aa8718c6": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_26fa5955": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_3e43d258": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_9f1632fd": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_aa999fdc": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_404e12db": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_90d52137": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_a6db6fff": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_51891fb1": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_f5d8afe0": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_246489bd": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t__intr_count_incr_t_pulse_d6ed4d1e": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t": {
+"type": "OTHER"
+},
+"soc_ifc_reg__STASH_BANK_SLOT_DATA": {
+"type": "OTHER"
+},
+"soc_ifc_reg__STASH_BANK_SOC_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__STASH_END_STASH": {
+"type": "OTHER"
+},
+"soc_ifc_reg__STASH_BANK_CPTRA_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg__STASH_BANK_STATUS": {
+"type": "OTHER"
+},
+"soc_ifc_reg": {
+"type": "RAL"
+},
+"soc_ifc_bench_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_cmdline_test_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_rand_test_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_trng_test_sequence": {
+"type": "SEQ"
+},
+"uvm_reg_cbs": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_error_internal_intr_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_error_intr_en_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_error_intr_trig_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_global_intr_en_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_internal": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_notif_internal_intr_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_notif_intr_en_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_intr_block_rf_ext_notif_intr_trig_r_base": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_cmd_command": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_cmd_command": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_datain_datain": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_dataout_dataout": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_dlen_length": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_dlen_length": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_execute_execute": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_execute_execute": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_lock_lock": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_lock_lock": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_status_mbox_fsm_ps": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_status_mbox_fsm_ps": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_status_status": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_status_status": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_unlock_unlock": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_mbox_unlock_unlock": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_mbox_csr_tap_mode_enabled": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_sample": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_sha512_acc_csr_EXECUTE_EXECUTE": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_sha512_acc_csr_EXECUTE_EXECUTE": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_sha512_acc_csr_LOCK_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_sha512_acc_csr_LOCK_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_CAP_LOCK_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_FW_CAPABILITIES_CAP": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_HW_CAPABILITIES_CAP": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_HW_ERROR_FATAL": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_HW_ERROR_NON_FATAL": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_OWNER_PK_HASH_HASH": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_OWNER_PK_HASH_LOCK_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_TRNG_AXI_USER_LOCK_LOCK": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_soc_ifc_reg_CPTRA_TRNG_CTRL_CLEAR": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_TRNG_CTRL_CLEAR": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_TRNG_DATA_DATA": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_TRNG_STATUS_DATA_REQ": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_TRNG_STATUS_DATA_WR_DONE": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_TRNG_VALID_AXI_USER_AXI_USER": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_WDT_TIMER1_CTRL_TIMER1_RESTART": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_CPTRA_WDT_TIMER2_CTRL_TIMER2_RESTART": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_SS_OCP_LOCK_CTRL_LOCK_IN_PROGRESS": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_SS_SOC_DBG_UNLOCK_LEVEL_LEVEL": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_fuse": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_internal": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_soc_ifc_reg_internal_fw_update_reset_core_rst": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_internal_fw_update_reset": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_key": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cbs_soc_ifc_reg_secret": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_intr_block_rf_ext": {
+"type": "OTHER"
+},
+"soc_ifc_reg_delay_job_mbox_csr_mbox_prot_error": {
+"type": "OTHER"
+},
+"soc_ifc_reg__intr_block_t_ext": {
+"type": "OTHER"
+},
+"soc_ifc_reg_ext": {
+"type": "OTHER"
+},
+"mbox_csr": {
+"type": "OTHER"
+},
+"mbox_csr_ext": {
+"type": "OTHER"
+},
+"sha512_acc_csr__intr_block_t": {
+"type": "OTHER"
+},
+"sha512_acc_csr__intr_block_t_ext": {
+"type": "OTHER"
+},
+"sha512_acc_csr": {
+"type": "OTHER"
+},
+"sha512_acc_csr_ext": {
+"type": "OTHER"
+},
+"axi_dma_reg__intr_block_t_ext": {
+"type": "OTHER"
+},
+"axi_dma_reg_ext": {
+"type": "OTHER"
+},
+"soc_ifc_AHB_map_coverage": {
+"type": "COV"
+},
+"soc_ifc_AXI_map_coverage": {
+"type": "COV"
+},
+"soc_ifc_reg_model_top": {
+"type": "OTHER"
+},
+"soc_ifc_env_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_cptra_init_interrupts_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_rst_wait_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_axi_user_init_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_reset_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_bringup_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_reset_cold_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_reset_warm_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_rom_bringup_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_reset_cold_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_reset_warm_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_dma_xfer_item": {
+"type": "SEQ"
+},
+"soc_ifc_env_dma_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_dma_long_transfer_long_b_resp_short_r_resp_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_dma_long_transfer_long_r_resp_short_b_resp_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_dma_reg_soc_access_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_dma_soc_access_stress_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_dma_transfer_stress_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_dma_wr_fifo_directed_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_mbox_handler_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_mbox_dlen_overread_handler_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_mbox_dlen_underread_handler_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_mbox_interference_handler_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_mbox_req_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_cptra_mbox_req_rand_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_mbox_dir_read_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_invalid_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_overflow_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_overflow_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_overflow_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_overflow_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_underflow_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_underflow_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_underflow_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_dlen_underflow_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_real_fw_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_fw_upd_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_max_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_min_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_axi_user_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_axi_user_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_axi_user_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_axi_user_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_delay_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_delay_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_delay_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_delay_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_fw_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_medium_interference_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_multi_agent_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rand_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_reg_axs_invalid_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_reg_axs_invalid_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_reg_axs_invalid_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_reg_axs_invalid_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rom_fw_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rst_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rst_cold_rand_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_rst_warm_rand_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_sha_accel_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_sram_double_bit_flip_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_sram_double_bit_flip_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_sram_double_bit_flip_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_sram_double_bit_flip_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_mbox_uc_reg_access_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_soc_mbox_handler_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_soc_mbox_reg_axs_invalid_handler_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_cptra_mbox_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_top_cptra_mbox_rand_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_cptra_mbox_reg_axs_invalid_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_top_mbox_contention_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_dlen_violation_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_max_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_min_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_multi_agent_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_large_unlock_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_medium_unlock_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_axi_user_small_unlock_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_delay_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_delay_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_delay_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_large_unlock_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_medium_unlock_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rand_small_unlock_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_reg_axs_invalid_large_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_reg_axs_invalid_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_reg_axs_invalid_small_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rst_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rst_cold_rand_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_mbox_rst_warm_rand_medium_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_sha_accel_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_stash_bank_reg_access_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_trng_data_req_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_trng_write_data_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_trng_reset_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_top_trng_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_wdt_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_env_cptra_wdt_cascade_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_env_cptra_wdt_independent_sequence": {
+"type": "SEQ"
+},
+"uvm_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_axi_sram_access_sequence": {
+"type": "SEQ"
+},
+"uvm_agent": {
+"type": "AGENT"
+},
+"soc_ifc_axi_sram_agent": {
+"type": "AGENT"
+},
+"uvm_driver": {
+"type": "AGENT"
+},
+"soc_ifc_axi_sram_driver": {
+"type": "AGENT"
+},
+"uvm_sequence_item": {
+"type": "SEQ"
+},
+"soc_ifc_axi_sram_item": {
+"type": "SEQ"
+},
+"soc_ifc_env_configuration": {
+"type": "OTHER"
+},
+"soc_ifc_env_cov_subscriber": {
+"type": "OTHER"
+},
+"soc_ifc_environment": {
+"type": "OTHER"
+},
+"soc_ifc_recovery_fifo_agent": {
+"type": "AGENT"
+},
+"aaxi_callbacks": {
+"type": "OTHER"
+},
+"soc_ifc_recovery_fifo_callback": {
+"type": "OTHER"
+},
+"soc_ifc_recovery_fifo_command_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_recovery_fifo_config": {
+"type": "OTHER"
+},
+"soc_ifc_recovery_fifo_driver": {
+"type": "AGENT"
+},
+"soc_ifc_recovery_fifo_item": {
+"type": "SEQ"
+},
+"soc_ifc_recovery_fifo_model": {
+"type": "OTHER"
+},
+"soc_ifc_reg_cov_subscriber": {
+"type": "OTHER"
+},
+"reset_flag": {
+"type": "OTHER"
+},
+"soc_ifc_scoreboard": {
+"type": "SCBD"
+},
+"uvmf_virtual_sequencer_base": {
+"type": "OTHER"
+},
+"soc_ifc_virtual_sequencer": {
+"type": "SEQ"
+},
+"cptra_ctrl2reg_adapter": {
+"type": "OTHER"
+},
+"cptra_ctrl_agent": {
+"type": "AGENT"
+},
+"cptra_ctrl_driver": {
+"type": "AGENT"
+},
+"cptra_ctrl_monitor": {
+"type": "AGENT"
+},
+"cptra_ctrl_sequence_base": {
+"type": "OTHER"
+},
+"cptra_ctrl_random_sequence": {
+"type": "SEQ"
+},
+"cptra_ctrl_responder_sequence": {
+"type": "SEQ"
+},
+"cptra_ctrl_transaction_coverage": {
+"type": "COV"
+},
+"cptra_status2reg_adapter": {
+"type": "OTHER"
+},
+"cptra_status_agent": {
+"type": "AGENT"
+},
+"cptra_status_driver": {
+"type": "AGENT"
+},
+"cptra_status_monitor": {
+"type": "AGENT"
+},
+"cptra_status_sequence_base": {
+"type": "OTHER"
+},
+"cptra_status_random_sequence": {
+"type": "SEQ"
+},
+"cptra_status_responder_sequence": {
+"type": "SEQ"
+},
+"cptra_status_transaction_coverage": {
+"type": "COV"
+},
+"mbox_sram2reg_adapter": {
+"type": "OTHER"
+},
+"mbox_sram_agent": {
+"type": "AGENT"
+},
+"mbox_sram_driver": {
+"type": "AGENT"
+},
+"mbox_sram_monitor": {
+"type": "AGENT"
+},
+"mbox_sram_sequence_base": {
+"type": "OTHER"
+},
+"mbox_sram_random_sequence": {
+"type": "SEQ"
+},
+"mbox_sram_responder_sequence": {
+"type": "SEQ"
+},
+"mbox_sram_transaction_coverage": {
+"type": "COV"
+},
+"soc_ifc_ctrl2reg_adapter": {
+"type": "OTHER"
+},
+"soc_ifc_ctrl_agent": {
+"type": "AGENT"
+},
+"soc_ifc_ctrl_driver": {
+"type": "AGENT"
+},
+"soc_ifc_ctrl_monitor": {
+"type": "AGENT"
+},
+"soc_ifc_ctrl_reset_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_ctrl_poweron_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_ctrl_random_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_reset_cold_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_reset_warm_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_responder_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_rom_poweron_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_transaction_coverage": {
+"type": "COV"
+},
+"soc_ifc_ctrl_wdt_cascade_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_ctrl_wdt_independent_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_status2reg_adapter": {
+"type": "OTHER"
+},
+"soc_ifc_status_agent": {
+"type": "AGENT"
+},
+"soc_ifc_status_driver": {
+"type": "AGENT"
+},
+"soc_ifc_status_monitor": {
+"type": "AGENT"
+},
+"soc_ifc_status_sequence_base": {
+"type": "OTHER"
+},
+"soc_ifc_status_random_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_status_responder_sequence": {
+"type": "SEQ"
+},
+"soc_ifc_status_transaction_coverage": {
+"type": "COV"
+},
+"ss_mode_ctrl2reg_adapter": {
+"type": "OTHER"
+},
+"ss_mode_ctrl_agent": {
+"type": "AGENT"
+},
+"ss_mode_ctrl_driver": {
+"type": "AGENT"
+},
+"ss_mode_ctrl_monitor": {
+"type": "AGENT"
+},
+"ss_mode_ctrl_sequence_base": {
+"type": "OTHER"
+},
+"ss_mode_ctrl_random_sequence": {
+"type": "SEQ"
+},
+"ss_mode_ctrl_responder_sequence": {
+"type": "SEQ"
+},
+"ss_mode_ctrl_transaction_coverage": {
+"type": "COV"
+},
+"ss_mode_status2reg_adapter": {
+"type": "OTHER"
+},
+"ss_mode_status_agent": {
+"type": "AGENT"
+},
+"ss_mode_status_driver": {
+"type": "AGENT"
+},
+"ss_mode_status_monitor": {
+"type": "AGENT"
+},
+"ss_mode_status_sequence_base": {
+"type": "OTHER"
+},
+"ss_mode_status_random_sequence": {
+"type": "SEQ"
+},
+"ss_mode_status_responder_sequence": {
+"type": "SEQ"
+},
+"ss_mode_status_transaction_coverage": {
+"type": "COV"
+},
+"ahb_mgr_agent": {
+"type": "AGENT"
+},
+"ahb_mgr_driver": {
+"type": "AGENT"
+},
+"ahb_mgr_reg_adapter": {
+"type": "OTHER"
+},
+"uvm_monitor": {
+"type": "AGENT"
+},
+"ahb_monitor": {
+"type": "AGENT"
+},
+"ahb_reg_op_item": {
+"type": "SEQ"
+},
+"ahb_status_item": {
+"type": "SEQ"
+},
+"ahb_txn_item": {
+"type": "SEQ"
+},
+"ahb_txn_request_item": {
+"type": "SEQ"
+},
+"ahb_txn_response_item": {
+"type": "SEQ"
+},
+"ahb_mgr_register_layer_vseq": {
+"type": "SEQ"
+},
+"dv_base_agent": {
+"type": "AGENT"
+},
+"dv_base_agent_cfg": {
+"type": "CFG"
+},
+"uvm_component": {
+"type": "OTHER"
+},
+"dv_base_agent_cov": {
+"type": "COV"
+},
+"dv_base_driver": {
+"type": "AGENT"
+},
+"dv_base_monitor": {
+"type": "AGENT"
+},
+"uvm_sequencer": {
+"type": "SEQ"
+},
+"dv_base_sequencer": {
+"type": "SEQ"
+},
+"dv_reactive_agent": {
+"type": "AGENT"
+},
+"dv_reactive_agent_cfg": {
+"type": "CFG"
+},
+"dv_reactive_monitor": {
+"type": "AGENT"
+},
+"dv_reactive_sequencer": {
+"type": "SEQ"
+},
+"csr_excl_item": {
+"type": "SEQ"
+},
+"dv_base_lockable_field_cov": {
+"type": "COV"
+},
+"mubi_cov": {
+"type": "COV"
+},
+"mubi32_cov": {
+"type": "COV"
+},
+"dv_base_mubi_cov": {
+"type": "COV"
+},
+"dv_base_reg": {
+"type": "RAL"
+},
+"dv_base_reg_block": {
+"type": "RAL"
+},
+"uvm_reg_field": {
+"type": "OTHER"
+},
+"dv_base_reg_field": {
+"type": "OTHER"
+},
+"uvm_reg_map": {
+"type": "OTHER"
+},
+"dv_base_reg_map": {
+"type": "OTHER"
+},
+"dv_base_shadowed_field_cov": {
+"type": "COV"
+},
+"uvm_env": {
+"type": "ENV"
+},
+"dv_base_env": {
+"type": "ENV"
+},
+"dv_base_env_cfg": {
+"type": "CFG"
+},
+"dv_base_env_cov": {
+"type": "COV"
+},
+"dv_base_scoreboard": {
+"type": "SCBD"
+},
+"dv_base_virtual_sequencer": {
+"type": "SEQ"
+},
+"dv_base_vseq": {
+"type": "SEQ"
+}
+}

@@ -1,0 +1,8 @@
+VeriDelta
+Copyright 2026 Emilija Velinova and Katerina Velinova
+
+This product includes software developed by the authors named above.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The evaluation data under data/ is derived from the public git histories of
+OpenTitan (lowRISC, Apache-2.0) and Caliptra RTL (CHIPS Alliance, Apache-2.0).

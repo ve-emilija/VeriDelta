@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use VeriDelta, please cite the paper below."
+title: "VeriDelta: GraphRAG-Grounded Change Impact Analysis for UVM Verification Environments"
+type: software
+version: 0.1.0
+date-released: 2026-10-29
+license: Apache-2.0
+authors:
+  - family-names: Velinova
+    given-names: Emilija
+  - family-names: Velinova
+    given-names: Katerina
+keywords:
+  - UVM
+  - hardware verification
+  - change impact analysis
+  - GraphRAG
