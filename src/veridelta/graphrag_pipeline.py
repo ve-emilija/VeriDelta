@@ -284,11 +284,23 @@ def build_prompt(
     ip_block:        str,
     node_types:      dict,
     change_message:  str | None = None,
+    change_summary:  str | None = None,
 ) -> str:
     """
     Stage 3 prompt (Table III): changed class, typed blast radius, historical
     examples (changed classes and commit message, NO failure categories), and
     the output specification.
+
+    change_message  the commit subject/body (free text, as before).
+    change_summary  NEW: a compact structural summary of what changed inside
+                     the changed class itself — members/methods/constraints
+                     added, removed or changed, and curated API-call deltas
+                     (change_summary.render_change_summary()). Before this,
+                     the model never saw what changed, only which class
+                     changed and its blast radius; see
+                     docs/change_summary_validation.md for what this does and
+                     does not capture, and the measured effect once it has
+                     been run through the evaluation harness.
     """
     changed_node = stage1["changed_node"]
     changed_type = stage1["changed_type"]
@@ -302,7 +314,9 @@ def build_prompt(
         "",
         f"CHANGED CLASS: {changed_node}",
         f"  type={changed_type}  prior={changed_prim}  ip={ip_block}",
-    ] + ([f"  change description: {change_message}"] if change_message else []) + [
+    ] + ([f"  change description: {change_message}"] if change_message else []) + (
+        ["", "WHAT CHANGED IN THE CLASS ITSELF:", change_summary] if change_summary else []
+    ) + [
         "",
         f"BLAST RADIUS ({len(blast_radius)} downstream classes):",
     ]
@@ -529,6 +543,8 @@ def predict(
     rtl_module:      str | None = None,
     verbose:         bool = False,
     exclude_commits: tuple[str, ...] | list[str] = (),
+    change_message:  str | None = None,
+    change_summary:  str | None = None,
 ) -> dict:
     """
     Run the full three-stage VeriDelta pipeline for a single changed node.
@@ -543,6 +559,10 @@ def predict(
         verbose:         Print stage progress
         exclude_commits: hash prefixes removed from the retrieval pool (use this
                          when predicting a commit that is itself in commit_index)
+        change_message:  commit subject/body, passed to build_prompt() verbatim
+        change_summary:  structural change summary text (see build_prompt's
+                         docstring and change_summary.py); typically built by
+                         git_diff.render_for_commit() from a real git checkout
     """
     adjacency    = data["adjacency"]
     node_types   = data["node_types"]
@@ -601,7 +621,8 @@ def predict(
     if verbose:
         print(f"\n[Stage 3] Calling {MODEL}...")
 
-    prompt = build_prompt(stage1, similar_commits, ip_block, node_types)
+    prompt = build_prompt(stage1, similar_commits, ip_block, node_types,
+                           change_message=change_message, change_summary=change_summary)
     llm_output = call_llm(prompt, client)
 
     if verbose:
