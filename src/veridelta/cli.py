@@ -26,7 +26,7 @@ class CliError(Exception):
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
-def load_graph(graph_dir: str) -> tuple[dict, dict]:
+def load_graph(graph_dir: str) -> tuple[dict, dict, dict]:
     paths = {name: os.path.join(graph_dir, f"{name}.json") for name in ("node_types", "adjacency")}
     for p in paths.values():
         if not os.path.isfile(p):
@@ -35,7 +35,14 @@ def load_graph(graph_dir: str) -> tuple[dict, dict]:
         node_types = json.load(f)
     with open(paths["adjacency"], encoding="utf-8") as f:
         adjacency = json.load(f)
-    return node_types, adjacency
+    # bind_index.json is optional: graphs built before this file existed (or by an
+    # older veridelta) simply get no bind-at-risk info, not an error.
+    bind_path = os.path.join(graph_dir, "bind_index.json")
+    bind_index: dict = {}
+    if os.path.isfile(bind_path):
+        with open(bind_path, encoding="utf-8") as f:
+            bind_index = json.load(f)
+    return node_types, adjacency, bind_index
 
 
 def load_history(path: str | None, graph_dir: str) -> dict:
@@ -82,27 +89,48 @@ def cmd_build_graph(a) -> int:
         json.dump(node_types, f, indent=0)
     with open(os.path.join(a.out, "adjacency.json"), "w", encoding="utf-8") as f:
         json.dump(adjacency, f, indent=0)
+
+    # bind_index is collected over ALL .sv/.svh files, independent of --scan-all:
+    # `*_bind.sv` files and files under an `sva/` directory essentially never
+    # match the UVM-keyword filename filter that `collect_files` otherwise
+    # applies (see type_annotator.is_bind_candidate vs. UVM_KEYWORDS), so
+    # reusing `files` here would silently leave bind_index near-empty on a
+    # real repo run without --scan-all.
+    bind_files = files if a.scan_all else ta.collect_files(a.src, scan_all=True)
+    bind_index = ta.build_bind_index(bind_files)
+    with open(os.path.join(a.out, "bind_index.json"), "w", encoding="utf-8") as f:
+        json.dump(bind_index, f, indent=0)
+
     counts = Counter(v["type"] for v in node_types.values())
     print(f"{len(files)} files -> {G.number_of_nodes()} classes, {G.number_of_edges()} inheritance edges")
     print("types: " + ", ".join(f"{t} {n}" for t, n in sorted(counts.items(), key=lambda x: -x[1])))
-    print(f"written to {a.out}/node_types.json and {a.out}/adjacency.json")
+    total_bind_refs = sum(len(v) for v in bind_index.values())
+    print(f"bind index: {len(bind_index)} RTL modules, {total_bind_refs} bind-file references")
+    print(f"written to {a.out}/node_types.json, {a.out}/adjacency.json and {a.out}/bind_index.json")
     return 0
 
 
 # ── blast-radius ──────────────────────────────────────────────────────────────
 
 def cmd_blast_radius(a) -> int:
-    node_types, adjacency = load_graph(a.graph)
+    node_types, adjacency, bind_index = load_graph(a.graph)
     require_class(a.cls, adjacency)
     radius, meta = gp.get_blast_radius(a.cls, adjacency, max_nodes=a.max_nodes, return_meta=True)
-    stage1 = gp.build_stage1_context(a.cls, radius, node_types, [])
+    bind_at_risk = gp.get_bind_at_risk(a.rtl_module, bind_index) if a.rtl_module else []
+    stage1 = gp.build_stage1_context(a.cls, radius, node_types, bind_at_risk)
     if a.json:
         print(json.dumps({"changed_class": a.cls, "changed_type": stage1["changed_type"],
                           "full_size": meta["full_size"], "truncated": meta["truncated"],
-                          "blast_radius": stage1["blast_radius"]}, indent=2))
+                          "blast_radius": stage1["blast_radius"],
+                          "bind_at_risk": stage1["bind_at_risk"]}, indent=2))
         return 0
     cap = f" (showing the nearest {a.max_nodes} of {meta['full_size']})" if meta["truncated"] else ""
     print(f"{a.cls}  type={stage1['changed_type']}  ->  {len(radius)} downstream classes{cap}")
+    if bind_at_risk:
+        tagged = [f"{b} [{gp.bind_category(b)[1]}]" for b in bind_at_risk]
+        print(f"bind files at risk for RTL module '{a.rtl_module}' ({len(bind_at_risk)}): " + ", ".join(tagged))
+    elif a.rtl_module:
+        print(f"no bind files reference RTL module '{a.rtl_module}'")
     if radius:
         rows = [(it["depth"], it["node"], it["type"], it["primary"] or "-") for it in stage1["blast_radius"]]
         print(table(rows, ("depth", "class", "type", "structural prior")))
@@ -112,7 +140,7 @@ def cmd_blast_radius(a) -> int:
 # ── analyze ───────────────────────────────────────────────────────────────────
 
 def cmd_analyze(a) -> int:
-    node_types, adjacency = load_graph(a.graph)
+    node_types, adjacency, bind_index = load_graph(a.graph)
     require_class(a.cls, adjacency)
     history = load_history(a.history, a.graph)
     if a.mock:
@@ -127,14 +155,19 @@ def cmd_analyze(a) -> int:
             gp.MODEL = a.model
         gp.configure_llm(a.cache_dir, a.temperature)
         client = gp.make_client()
-    data = {"adjacency": adjacency, "node_types": node_types, "bind_index": {}, "commit_index": history}
-    result = gp.predict(a.cls, a.ip, data, client, verbose=a.verbose, exclude_commits=tuple(a.exclude or ()))
+    data = {"adjacency": adjacency, "node_types": node_types, "bind_index": bind_index, "commit_index": history}
+    result = gp.predict(a.cls, a.ip, data, client, rtl_module=a.rtl_module, verbose=a.verbose,
+                         exclude_commits=tuple(a.exclude or ()))
     if a.json:
         print(json.dumps(result, indent=2))
         return 0
     n = len(result["blast_radius"])
     note = "" if history else "  (no history file: Stage 2 skipped)"
     print(f"{a.cls}: {n} downstream classes, {result['few_shot_commits_used']} similar commits used{note}")
+    if result.get("bind_at_risk"):
+        tagged = [f"{b} [{gp.bind_category(b)[1]}]" for b in result["bind_at_risk"]]
+        print(f"bind files at risk for RTL module '{a.rtl_module}' ({len(tagged)}): " + ", ".join(tagged)
+              + "  (NOTE: not yet scored — 'Assertion Orphaning' is not in VALID_CATEGORIES; see limitations doc)")
     by_cat = defaultdict(list)
     for node, pred in result["predictions"].items():
         for cat in pred["categories"]:
@@ -168,6 +201,8 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("cls", metavar="CLASS", help="name of the changed UVM class")
     r.add_argument("--graph", required=True, help="graph directory")
     r.add_argument("--max-nodes", type=int, default=gp.MAX_BLAST_NODES, help="cap on listed classes (default %(default)s)")
+    r.add_argument("--rtl-module", help="RTL module stem (e.g. 'aes_ctrl') to check against the bind index "
+                                         "for stale `bind` statements (assertion/coverage orphaning)")
     r.add_argument("--json", action="store_true")
     r.set_defaults(func=cmd_blast_radius)
 
@@ -175,6 +210,8 @@ def build_parser() -> argparse.ArgumentParser:
     n.add_argument("cls", metavar="CLASS", help="name of the changed UVM class")
     n.add_argument("--graph", required=True, help="graph directory")
     n.add_argument("--ip", default="unknown", help="IP block of the change; used to rank similar commits")
+    n.add_argument("--rtl-module", help="RTL module stem (e.g. 'aes_ctrl') to check against the bind index "
+                                         "for stale `bind` statements (assertion/coverage orphaning)")
     n.add_argument("--history", help="commit history JSON (default: GRAPH/commits.json if present)")
     n.add_argument("--exclude", nargs="*", metavar="HASH", help="commit hash prefixes to hide from retrieval")
     n.add_argument("--model", help=f"model id (default {gp.MODEL})")
