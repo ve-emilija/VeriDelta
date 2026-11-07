@@ -5,6 +5,10 @@ while the version is 0.x, minor releases may change the command line and the fil
 
 ## [Unreleased]
 
+### Added
+- `build-graph --uvm-types`: classes whose name follows no convention take the type of the UVM/UVMF base class
+  they extend (`UVM_BASE_TYPES`). A name-based type always wins, so default output is unchanged.
+
 ## [0.1.0] - 2026-10-29
 
 First public release. Accompanies the paper *VeriDelta: GraphRAG-Grounded Change Impact Analysis for

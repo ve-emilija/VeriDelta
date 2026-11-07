@@ -424,17 +424,74 @@ def _nearest_typed_ancestor(G, node: str) -> str | None:
     return None
 
 
-def annotate_graph(G, inherit: bool = False):
+# Known library base classes -> type. A class that extends one of these (directly or through
+# any number of project classes) gets its type even when its own name follows no convention.
+# `uvm_reg*` and `uvm_mem*` (registers, blocks, fields, maps, adapters, ...) are handled in
+# uvm_base_type(). Add entries here for other frameworks.
+UVM_BASE_TYPES = {
+    "uvm_sequence": "SEQ", "uvm_sequence_item": "SEQ", "uvm_sequence_base": "SEQ",
+    "uvm_sequencer": "SEQ", "uvm_sequencer_base": "SEQ",
+    "uvm_scoreboard": "SCBD",
+    "uvm_env": "ENV",
+    "uvm_agent": "AGENT", "uvm_driver": "AGENT", "uvm_monitor": "AGENT",
+    # UVM Framework (UVMF), used by Caliptra
+    "uvmf_sequence_base": "SEQ", "uvmf_virtual_sequence_base": "SEQ",
+    "uvmf_virtual_sequencer_base": "SEQ",
+    "uvmf_environment_base": "ENV", "uvmf_environment_configuration_base": "CFG",
+    "uvmf_driver_base": "AGENT", "uvmf_monitor_base": "AGENT",
+    "uvmf_parameterized_agent": "AGENT",
+}
+
+
+def uvm_base_type(name: str) -> str | None:
+    """Type of a known library base class, or None if `name` is not one."""
+    if name in UVM_BASE_TYPES:
+        return UVM_BASE_TYPES[name]
+    if name.startswith("uvm_reg") or name.startswith("uvm_mem"):
+        return "RAL"
+    return None
+
+
+def _nearest_uvm_ancestor(G, node: str) -> str | None:
+    """Nearest library base class that `node` is, or extends (ties -> alphabetical)."""
+    if uvm_base_type(node):
+        return node
+    seen = {node}
+    frontier = [node]
+    while frontier:
+        nxt = []
+        for n in frontier:
+            for p in G.predecessors(n):
+                if p not in seen:
+                    seen.add(p)
+                    nxt.append(p)
+        hits = sorted(p for p in nxt if uvm_base_type(p))
+        if hits:
+            return hits[0]
+        frontier = nxt
+    return None
+
+
+def annotate_graph(G, inherit: bool = False, uvm: bool = False):
     """
     Add 'type' and 'category' node attributes to every node in G.
 
-    inherit=False (default) → pure name-based τ, as in the submitted paper.
-    inherit=True            → a node that is OTHER by name takes the type of its
-                              nearest name-typed ancestor and records
-                              G.nodes[n]['inherited_from'].
+    Default (both False) -> pure name-based type, as in the submitted paper.
+    A name-based type always wins; the options only fill classes that are OTHER by name.
+
+    uvm=True      -> take the type of the nearest known library base class (UVM_BASE_TYPES),
+                     recorded as G.nodes[n]['inherited_from']. Does not depend on naming
+                     conventions, so it works across projects.
+    inherit=True  -> take the type of the nearest ancestor whose NAME has a type. Applied
+                     after `uvm` when both are set.
     """
     for node in G.nodes():
         t = classify_type(node)
+        if uvm and t == "OTHER":
+            base = _nearest_uvm_ancestor(G, node)
+            if base:
+                t = uvm_base_type(base)
+                G.nodes[node]["inherited_from"] = base
         if inherit and t == "OTHER":
             anc = _nearest_typed_ancestor(G, node)
             if anc:
@@ -740,6 +797,8 @@ def main(argv=None) -> int:
                     help="parse every .sv/.svh instead of the filename keyword filter")
     ap.add_argument("--inherit-types", action="store_true",
                     help="type OTHER nodes by nearest typed ancestor (sensitivity analysis)")
+    ap.add_argument("--uvm-types", action="store_true",
+                    help="type OTHER nodes by the UVM/UVMF base class they extend")
     ap.add_argument("--audit", action="store_true",
                     help="diff the old regex against the scanner and exit without writing")
     ap.add_argument("--self-test", action="store_true", help="run unit tests and exit")
@@ -790,9 +849,9 @@ def main(argv=None) -> int:
 
     print("\nStep 3: Annotating types")
     print("─" * 40)
-    annotate_graph(G, inherit=args.inherit_types)
+    annotate_graph(G, inherit=args.inherit_types, uvm=args.uvm_types)
     print_distribution(G)
-    if args.inherit_types:
+    if args.inherit_types or args.uvm_types:
         n_inh = sum(1 for n in G if "inherited_from" in G.nodes[n])
         print(f"\n  Nodes typed by inheritance: {n_inh}")
 

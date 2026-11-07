@@ -74,7 +74,7 @@ def cmd_build_graph(a) -> int:
         G = ta.build_graph(files)
     except RuntimeError as e:                       # networkx missing
         raise CliError(str(e))
-    ta.annotate_graph(G, inherit=a.inherit_types)
+    ta.annotate_graph(G, inherit=a.inherit_types, uvm=a.uvm_types)
     os.makedirs(a.out, exist_ok=True)
     node_types = {n: {"type": G.nodes[n]["type"]} for n in G}
     adjacency = {n: sorted(G.successors(n)) for n in G}
@@ -162,6 +162,8 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--out", required=True, help="graph directory to write")
     b.add_argument("--scan-all", action="store_true", help="parse every .sv/.svh file, not only UVM-named ones")
     b.add_argument("--inherit-types", action="store_true", help="give untyped classes the type of their nearest typed ancestor")
+    b.add_argument("--uvm-types", action="store_true",
+                   help="give untyped classes the type of the UVM/UVMF base class they extend (works without naming conventions)")
     b.set_defaults(func=cmd_build_graph)
 
     r = sub.add_parser("blast-radius", help="downstream classes of a changed class (no model, no API key)")

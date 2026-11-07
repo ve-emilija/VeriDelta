@@ -19,6 +19,10 @@ The type function maps a class name to a type; the first matching rule wins, so 
 | OTHER | everything else | none |
 | SVA | `_sva`, `_bind` | none (reserved for assertion bind files; no class in the OpenTitan or Caliptra graphs has this type) |
 
+With `--uvm-types`, a class that is `OTHER` by name takes the type of the nearest UVM or UVMF library base class
+it extends (for example `uvm_reg*` gives RAL, `uvmf_sequence_base` gives SEQ), which does not depend on naming
+conventions. The table is `UVM_BASE_TYPES` in `type_annotator.py`.
+
 ## Stage 1: blast radius
 
 Breadth-first search from the changed class; depth is the number of inheritance hops. At most 60 classes are kept

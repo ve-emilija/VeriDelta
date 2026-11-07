@@ -63,3 +63,47 @@ def test_shipped_graphs_match_the_paper(paper_data):
     cal = paper_data("data", "caliptra-rtl", "adjacency.json")
     assert (len(ot), sum(map(len, ot.values()))) == (1312, 1287)
     assert (len(cal), sum(map(len, cal.values()))) == (1043, 1021)
+
+
+# ── UVM base-class typing (--uvm-types) ──────────────────────────────────────
+
+@pytest.mark.parametrize("name,expected", [
+    ("uvm_sequence", "SEQ"),
+    ("uvm_scoreboard", "SCBD"),
+    ("uvm_reg_block", "RAL"),
+    ("uvm_mem", "RAL"),
+    ("uvmf_environment_base", "ENV"),
+    ("uvmf_environment_configuration_base", "CFG"),
+    ("uvm_object", None),            # too generic to say anything
+    ("uvm_component", None),
+    ("my_env", None),                # only library classes count
+])
+def test_uvm_base_type(name, expected):
+    assert ta.uvm_base_type(name) == expected
+
+
+def _chain_graph():
+    nx = pytest.importorskip("networkx")
+    G = nx.DiGraph()
+    G.add_edges_from([("uvm_sequence", "block_gen"), ("block_gen", "block_gen2"),
+                      ("uvm_env", "top_scoreboard")])
+    return G
+
+
+def test_default_annotation_is_name_only():
+    G = ta.annotate_graph(_chain_graph())
+    assert G.nodes["block_gen"]["type"] == "OTHER"
+    assert G.nodes["block_gen2"]["type"] == "OTHER"
+
+
+def test_uvm_typing_fills_untyped_classes_through_the_chain():
+    G = ta.annotate_graph(_chain_graph(), uvm=True)
+    assert G.nodes["block_gen"]["type"] == "SEQ"
+    assert G.nodes["block_gen2"]["type"] == "SEQ"
+    assert G.nodes["block_gen2"]["inherited_from"] == "uvm_sequence"
+
+
+def test_name_based_type_wins_over_uvm_ancestor():
+    G = ta.annotate_graph(_chain_graph(), uvm=True)
+    assert G.nodes["top_scoreboard"]["type"] == "SCBD"      # name says SCBD, ancestor says ENV
+    assert "inherited_from" not in G.nodes["top_scoreboard"]
