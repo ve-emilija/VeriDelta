@@ -1,0 +1,8 @@
+graph size = classes / inheritance edges
+
+repo       files (paper / all)  A regex, paper filter  B regex, all files  C slang      B-only edges  C-only edges  of which macro-generated
+---------  -------------------  ---------------------  ------------------  -----------  ------------  ------------  ------------------------
+opentitan  2208 / 4043          1312 / 1287            1632 / 1606         2128 / 2102  0             496           496                     
+caliptra   736 / 1492           1051 / 1029            1183 / 1157         1183 / 1157  0             0             0                       
+
+written: results/summary.json, slang_only_*.tsv, regex_only_*.tsv

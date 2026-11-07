@@ -1,0 +1,46 @@
+{
+  "opentitan": {
+    "files_paper_filter": 2208,
+    "files_all": 4043,
+    "A_regex_paper_filter": {
+      "nodes": 1312,
+      "edges": 1287
+    },
+    "B_regex_scan_all": {
+      "nodes": 1632,
+      "edges": 1606
+    },
+    "C_slang": {
+      "nodes": 2128,
+      "edges": 2102
+    },
+    "regex_only_edges_B_minus_C": 0,
+    "slang_only_edges_C_minus_B": 496,
+    "slang_only_macro_generated": 496,
+    "slang_only_literal_in_text": 0,
+    "edges_invisible_to_paper_filter_pct_of_B": 19.9,
+    "nodes_invisible_to_paper_filter_pct_of_B": 19.6
+  },
+  "caliptra": {
+    "files_paper_filter": 736,
+    "files_all": 1492,
+    "A_regex_paper_filter": {
+      "nodes": 1051,
+      "edges": 1029
+    },
+    "B_regex_scan_all": {
+      "nodes": 1183,
+      "edges": 1157
+    },
+    "C_slang": {
+      "nodes": 1183,
+      "edges": 1157
+    },
+    "regex_only_edges_B_minus_C": 0,
+    "slang_only_edges_C_minus_B": 0,
+    "slang_only_macro_generated": 0,
+    "slang_only_literal_in_text": 0,
+    "edges_invisible_to_paper_filter_pct_of_B": 11.1,
+    "nodes_invisible_to_paper_filter_pct_of_B": 11.2
+  }
+}
