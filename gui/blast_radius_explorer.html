@@ -217,7 +217,7 @@ function renderCommit(){
     <div class="label" style="margin-bottom:4px">Changed classes the tool starts from</div>
     <div class="chips">${d.all_changed.map(c=>`<span class="chip ${c===d.changed?"on":""}">${esc(c)}</span>`).join("")}</div>
     ${d.body?`<details class="body"><summary>Commit message</summary><pre>${esc(d.body)}</pre></details>`:""}
-    <div class="diff"><b>What changed (diff)</b>: not used yet. The tool knows which classes the commit touched and its message, not the code.</div>
+    <div class="diff"><b>What changed (diff)</b>: not shown on this page. The pipeline itself can now build this from a real <code>git diff</code> (structural members/methods/constraints/calls, plus method-BODY changes correlated to real diff hunks) via <code>change_summary.py</code>/<code>git_diff.py</code> — see <code>docs/change_summary_validation.md</code> §1 — but this static page's data was not regenerated with it, so these 9 example commits still show only the class list and commit message, not the structural diff.</div>
     <div class="stats">
       <span class="stat">Shown below<br><strong>${esc(d.changed)}</strong> <span class="pill" style="background:${tcol(d.changed_type)}">${esc(d.changed_type)}</span></span>
       <span class="stat">Downstream classes<br><strong>${d.nodes.length}</strong>${d.truncated?` of ${d.full_size}`:""}</span>

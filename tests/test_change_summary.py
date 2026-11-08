@@ -209,7 +209,37 @@ def test_no_signal_message_when_nothing_changed():
     new = "class x;\n  task t();\n    bar();\n  endtask\nendclass"
     d = summarize(old, new)
     assert not cs.has_any_signal(d)
-    assert "not visible to this summary" in cs.render_change_summary(d)
+    assert "no diff-detected method body changes" in cs.render_change_summary(d)
+
+
+# ── method_line_spans: absolute line numbers, for correlating a real diff ──
+
+def test_method_line_spans_basic():
+    src = "class x;\n  task a();\n    foo();\n  endtask\n  function void b();\n    bar();\n  endfunction\nendclass\n"
+    spans = cs.method_line_spans(src, "x")
+    assert spans["a"] == (2, 4)
+    assert spans["b"] == (5, 7)
+
+
+def test_method_line_spans_accounts_for_lines_before_the_class():
+    src = "// header comment\n\nclass y;\nendclass\n\nclass x;\n  task a();\n    foo();\n  endtask\nendclass\n"
+    spans = cs.method_line_spans(src, "x")
+    assert spans["a"] == (7, 9)
+
+
+def test_method_line_spans_missing_file_or_class_is_empty():
+    assert cs.method_line_spans(None, "x") == {}
+    assert cs.method_line_spans("class x; endclass", "nope") == {}
+
+
+def test_methods_body_changed_defaults_to_empty_without_git():
+    # summarize_class_change() has no git access -- method-BODY-only changes
+    # (signature and name unchanged) are a real diff's job (git_diff.py).
+    old = "class x; task run(); foo(); endtask endclass"
+    new = "class x; task run(); bar(); endtask endclass"
+    d = summarize(old, new)
+    assert d["methods_body_changed"] == []
+    assert d["methods_added"] == [] and d["methods_sig_changed"] == []
 
 
 # ── performance regression: must stay fast on a large blanked body ─────────

@@ -39,12 +39,47 @@ checkouts compared against itself (3395 classes), 0 slow cases, ~4.46 ms/class a
 self-diff sanity check (no real change to detect), not a correctness check on real diffs — the 9-commit
 set above is the correctness evidence; this is the performance/crash evidence.
 
-**Documented, not fixed — the honest gap:** a method **body** edited without changing its name or
-argument list (an added `if` guard, a reordered statement, a changed constant) is invisible unless it
-happens to touch one of the five curated API-call groups. In the 7-commit validation set this was the
-*majority* case: 5 of 7 commits had zero member/signature/constraint changes and were visible only through
-call-count deltas or "methods touched." A future version that diffs method bodies line-by-line would close
-this; not attempted here.
+**Update, 2026-11-08 — the method-body gap above is now closed for real, because paper reviewers flagged
+it as a major point.** `change_summary.py` gained `method_line_spans()` (a method's absolute, file-relative
+line range — a pure function, no git access, consistent with the rest of the module); `git_diff.py` gained
+`parse_unified_diff_ranges()` (turns a `git diff --unified=0` hunk header into the set of line numbers it
+covers) and `method_body_diff()` (intersects a method's line span, on BOTH revisions, against the real
+diff's touched lines). `class_change_summary()` now calls this automatically and fills in
+`methods_body_changed`, excluding any method already explained by `methods_added`/`methods_removed`
+(a rename looks like exactly this kind of line churn and must not be double-reported). `render_change_summary()`
+surfaces it as a new line, *"method bodies touched (diff, signature unchanged)"*.
+
+**Re-validated against the same 9 real cases** (see `scripts/validate_git_diff_opentitan.py` — same repo,
+same commits, same classes as the original 9-case table above): zero-signal cases dropped from **3/9 to
+1/9**. Two cases that previously had *no* member/method/constraint/call-delta signal at all now correctly
+report real method-body changes:
+
+| Commit | Class | `methods_body_changed` |
+|---|---|---|
+| `a62413272` | `dv_base_driver` | `get_and_drive`, `reset_signals`, `run_phase` |
+| `5f6efdee7` | `kmac_scoreboard` | `get_digest_len_and_xof`, `incr_and_predict_hash_cnt`, `process_kmac_app_fsm`, `process_tl_access` |
+
+The remaining zero-signal case, `0cd8865c3` / `aon_timer_base_vseq`, is a **new, separate, honestly-documented
+gap**: that class declares its methods with SystemVerilog's `extern task foo(...);` / `extern function ...;`
+syntax and defines the actual bodies *outside* the class, as `task aon_timer_base_vseq::foo(...); ... endtask`.
+`extract_class_body()` (and so `method_line_spans()`, which is built on it) only sees text between the
+class's own `class ... endclass`, so an out-of-line body's edits are invisible to `method_body_diff()` just
+as they already were to every other signal in this module — this is not a regression, it is the same
+class-body-only scope this module has always had, now visible in one more concrete case. Not attempted here:
+matching `ClassName::method_name(...)` out-of-line definitions at the file level (outside any `class`
+block) would need its own extraction pass, since these have no enclosing class body to extract at all.
+
+**Tests:** `tests/test_git_diff.py` (new — 10 cases, each against a real, synthetic git repo created with
+real `git` subprocess calls in a temp directory, so it is deterministic and needs no network access) plus
+3 new cases in `tests/test_change_summary.py` for `method_line_spans()` itself. All pass under both the
+sandbox's stand-in runner (for the fixture-free `change_summary.py` cases) and a dedicated fixture-free
+manual harness, `scripts/manual_git_diff_check.py`, written because this sandbox has no real pytest
+install and `test_git_diff.py`'s `pytest` fixtures (`tmp_path`) do not run under the stand-in shim — see
+`scripts/README.md`.
+
+*(Original note, now superseded by the above):* ~~a method **body** edited without changing its name or
+argument list ... is invisible unless it happens to touch one of the five curated API-call groups ...
+A future version that diffs method bodies line-by-line would close this; not attempted here.~~
 
 **Not wired into the 400-commit evaluation.** `experiments/paper/run_eval.py`'s sample data
 (`sample400.json`) stores only changed class *names*, not file paths, so building a `change_summary` per

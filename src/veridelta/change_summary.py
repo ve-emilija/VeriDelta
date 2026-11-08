@@ -172,6 +172,52 @@ def _methods(body: str) -> dict:
     return out
 
 
+def method_line_spans(file_text: str | None, class_name: str) -> dict[str, tuple[int, int]]:
+    """
+    name -> (start_line, end_line), 1-indexed and inclusive, of every
+    task/function in `class_name` within `file_text`. Comments are stripped
+    only to locate the class/method boundaries; line numbers are into
+    `file_text` AS GIVEN, because `strip_comments()` preserves every newline
+    (blanks a `/* */` block to the same number of lines, drops `//` to
+    nothing on its own line).
+
+    THIS IS WHAT LETS A REAL GIT DIFF BE CORRELATED TO A METHOD (see
+    git_diff.method_body_diff): a unified diff's hunk headers are line
+    numbers, not class-relative offsets, so closing the module's own
+    documented gap — "a method body edited without changing its name or
+    argument list ... is invisible here" — needs a method's ABSOLUTE line
+    range in the file, not just its name and signature.
+    """
+    if file_text is None:
+        return {}
+    t = strip_comments(file_text)
+    body = extract_class_body(file_text, class_name)
+    if body is None:
+        return {}
+    start_offset = None
+    for m in _CLASS_HEAD.finditer(t):
+        if m.group(1) != class_name:
+            continue
+        i = _skip_params(t, m.end())
+        if i < 0:
+            continue
+        start_offset = m.start()
+        break
+    if start_offset is None:
+        return {}
+    spans: dict[str, tuple[int, int]] = {}
+    for m in _METHOD_BODY_BLOCK.finditer(body):
+        decl = _METHOD_DECL.search(body, m.start(), m.end())
+        if not decl:
+            continue
+        abs_start = start_offset + m.start()
+        abs_end = start_offset + m.end()
+        start_line = t.count("\n", 0, abs_start) + 1
+        end_line = t.count("\n", 0, abs_end) + 1
+        spans[decl.group("name")] = (start_line, end_line)
+    return spans
+
+
 _CONSTRAINT_DECL = re.compile(r"\bconstraint\s+([A-Za-z_]\w*)\s*\{", re.MULTILINE)
 
 
@@ -275,6 +321,7 @@ def diff_structure(old: dict, new: dict) -> dict:
 _SIGNAL_LIST_FIELDS = (
     "members_added", "members_removed", "members_retyped",
     "methods_added", "methods_removed", "methods_sig_changed",
+    "methods_body_changed",
     "constraints_added", "constraints_removed", "constraints_changed",
     "macros_added", "macros_removed",
 )
@@ -294,9 +341,20 @@ def summarize_class_change(old_body: str | None, new_body: str | None, class_nam
     old_body is None  -> class did not exist before (class added by this commit)
     new_body is None  -> class does not exist after (class removed by this commit)
     both None         -> caller error (nothing to summarize)
+
+    `methods_body_changed` is always present but always `[]` here: this
+    function has no git access (that is the whole point of keeping it pure
+    and dependency-free — see the module docstring), and detecting a
+    method-BODY change needs a real diff against the file's line numbers,
+    not just the two bodies' text. `git_diff.class_change_summary()` is the
+    one caller that can fill it in for real, from `method_body_diff()`; the
+    key is initialized here so the dict shape — and `render_change_summary`/
+    `has_any_signal`, which both read it — is identical whether or not a
+    git-aware caller supplied it.
     """
     old, new = extract_structure(old_body), extract_structure(new_body)
     d = diff_structure(old, new)
+    d["methods_body_changed"] = []
     d["class_added"] = old_body is None and new_body is not None
     d["class_removed"] = new_body is None and old_body is not None
     d["class_name"] = class_name
@@ -331,6 +389,7 @@ def render_change_summary(d: dict, max_names: int = 6) -> str:
                         ("members retyped", "members_retyped"),
                         ("methods added", "methods_added"), ("methods removed", "methods_removed"),
                         ("method signatures changed", "methods_sig_changed"),
+                        ("method bodies touched (diff, signature unchanged)", "methods_body_changed"),
                         ("constraints added", "constraints_added"),
                         ("constraints removed", "constraints_removed"),
                         ("constraint bodies changed", "constraints_changed"),
@@ -344,6 +403,9 @@ def render_change_summary(d: dict, max_names: int = 6) -> str:
             lines.append(f"  {_CALL_LABEL[g]}: {sign}{delta} (net)")
     if not lines:
         return (f"  No added/removed members, methods, constraints or curated API calls detected "
-                 f"in {d['class_name']}. The change is likely inside an existing method body "
-                 f"(a condition, a constant, a reordered statement) — not visible to this summary.")
+                 f"in {d['class_name']}, and no diff-detected method body changes either "
+                 f"(or this summary was built without git history, so method bodies were not checked). "
+                 f"If there is still a real change, it is something this summary's regexes do not model "
+                 f"(e.g. a change outside any method/member/constraint, such as a `typedef` or a class-level "
+                 f"`parameter`).")
     return "\n".join(lines)

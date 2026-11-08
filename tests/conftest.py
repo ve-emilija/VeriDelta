@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 
 import pytest
 
@@ -52,3 +53,17 @@ def paper_data():
         with open(path, encoding="utf-8") as f:
             return json.load(f)
     return load
+
+
+@pytest.fixture
+def repo(tmp_path):
+    """A fresh, real, empty git repo for test_git_diff.py -- made with real
+    `git` subprocess calls so method_body_diff() is verified against git's
+    own actual diff output, not a hand-rolled fake."""
+    d = tmp_path / "repo"
+    d.mkdir()
+    repo_dir = str(d)
+    subprocess.run(["git", "init", "-q"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "config", "user.email", "t@example.com"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "config", "user.name", "t"], cwd=repo_dir, check=True)
+    return repo_dir
