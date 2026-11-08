@@ -244,12 +244,14 @@ predictions. Two honest, non-exclusive explanations, neither tested further here
   *which* class changed and *how far downstream* than with the literal text of what changed inside it — i.e.
   the existing graph structure may already be carrying most of the useful signal.
 
-This is reported as a negative result, not hidden or re-run until it looked better: the run (`results/run_change_aware/`,
-committed with its raw per-prompt cache for reproducibility) is a single real pass, not cherry-picked from
-several. A larger sample, a stronger model tier, or category-specific analysis (RAL Desync and Coverage
-Regression have the smallest support and the most erratic numbers across every system here, not just this
-one) would be needed before concluding the structural diff *never* helps — only that it didn't, measurably,
-in this one real run.
+This is reported as a negative result, not hidden or re-run until it looked better: `results/run_change_aware/results.json`
+(committed; the per-prompt `llm_cache/` is not — it's gitignored, same as every other run in `results/`,
+per the repo's existing convention) carries the full per-unit predicted/actual records for every system, not
+just the aggregate table above, so every number here is independently re-checkable from that one file. It
+is a single real pass, not cherry-picked from several. A larger sample, a stronger model tier, or
+category-specific analysis (RAL Desync and Coverage Regression have the smallest support and the most
+erratic numbers across every system here, not just this one) would be needed before concluding the
+structural diff *never* helps — only that it didn't, measurably, in this one real run.
 
 ## 5. Limitations (what's missing, and what to reconsider)
 
