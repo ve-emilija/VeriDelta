@@ -517,18 +517,25 @@ def merge_predictions(stage1: dict, llm_output: dict, llm_source: str = "llm") -
     Per blast-radius node: the LLM prediction if there is one, otherwise the
     structural prior at confidence 0.40 (source='structural_prior'); OTHER
     nodes the LLM skipped get no prediction.
+
+    `depth` (inheritance hops from the changed node) is carried onto every
+    prediction as a new, purely additive key — existing callers that read
+    categories/confidence/node_type/source are unaffected; `predict()` turns
+    it into a citeable `evidence` block (item 4: "each prediction cites the
+    graph path ... it came from").
     """
     predictions: dict = {}
     for item in stage1["blast_radius"]:
-        node, ntype = item["node"], item["type"]
+        node, ntype, depth = item["node"], item["type"], item["depth"]
         if node in llm_output:
-            predictions[node] = {**llm_output[node], "node_type": ntype, "source": llm_source}
+            predictions[node] = {**llm_output[node], "node_type": ntype, "source": llm_source, "depth": depth}
         elif item["primary"]:
             predictions[node] = {
                 "categories": [item["primary"]],
                 "confidence": STRUCTURAL_FALLBACK_CONF,
                 "node_type":  ntype,
                 "source":     "structural_prior",
+                "depth":      depth,
             }
     return predictions
 
@@ -638,6 +645,24 @@ def predict(
             "confidence": 0.95,
             "node_type":  ntype,
             "source":     "bind_index",
+            "depth":      None,
+        }
+
+    # Item 4 — evidence citations: every prediction names the graph path it
+    # was reached by (inheritance depth, or the bind index) and the past
+    # commits Stage 2 actually retrieved that mention this specific node (a
+    # subset of `similar_commits` — most of those commits are about OTHER
+    # blast-radius nodes and citing all of them on every node would be
+    # noise, not evidence).
+    commits_by_node: dict[str, list[str]] = {}
+    for c in similar_commits:
+        for n in c.get("changed_nodes", []):
+            commits_by_node.setdefault(n, []).append(c["hash"])
+    for node, pred in predictions.items():
+        depth = pred.pop("depth", None)
+        pred["evidence"] = {
+            "graph_path": ("bind_index" if depth is None else f"inheritance, depth={depth}"),
+            "cited_commits": commits_by_node.get(node, []),
         }
 
     return {

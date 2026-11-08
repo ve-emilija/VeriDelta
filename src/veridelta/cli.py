@@ -26,6 +26,13 @@ class CliError(Exception):
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
+def _load_optional_json(path: str) -> dict:
+    if not os.path.isfile(path):
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
 def load_graph(graph_dir: str) -> tuple[dict, dict, dict]:
     paths = {name: os.path.join(graph_dir, f"{name}.json") for name in ("node_types", "adjacency")}
     for p in paths.values():
@@ -37,12 +44,14 @@ def load_graph(graph_dir: str) -> tuple[dict, dict, dict]:
         adjacency = json.load(f)
     # bind_index.json is optional: graphs built before this file existed (or by an
     # older veridelta) simply get no bind-at-risk info, not an error.
-    bind_path = os.path.join(graph_dir, "bind_index.json")
-    bind_index: dict = {}
-    if os.path.isfile(bind_path):
-        with open(bind_path, encoding="utf-8") as f:
-            bind_index = json.load(f)
+    bind_index = _load_optional_json(os.path.join(graph_dir, "bind_index.json"))
     return node_types, adjacency, bind_index
+
+
+def load_associations(graph_dir: str) -> dict:
+    """association_edges.json is optional for the same reason bind_index.json
+    is: older graphs simply have none, not an error."""
+    return _load_optional_json(os.path.join(graph_dir, "association_edges.json"))
 
 
 def load_history(path: str | None, graph_dir: str) -> dict:
@@ -101,12 +110,31 @@ def cmd_build_graph(a) -> int:
     with open(os.path.join(a.out, "bind_index.json"), "w", encoding="utf-8") as f:
         json.dump(bind_index, f, indent=0)
 
+    # association edges: member handles, uvm_config_db set/get, analysis-port
+    # connect, factory overrides -- real UVM coupling that pure inheritance
+    # cannot see. Informational only for now (see cmd_blast_radius
+    # --show-associations and cmd_analyze): NOT merged into `adjacency`/the
+    # scored blast radius used by `analyze`, to avoid silently changing the
+    # already-validated Stage 1 numbers without a separate, deliberate
+    # evaluation of the effect (see docs/change_summary_validation.md).
+    from . import component_edges as ce
+    known_classes = set(node_types)
+    assoc_corpus = ce.build_corpus(files, known_classes)
+    assoc_edges = ce.all_component_edges(assoc_corpus, known_classes)
+    association_edges = ce.edges_to_adjacency(assoc_edges)
+    with open(os.path.join(a.out, "association_edges.json"), "w", encoding="utf-8") as f:
+        json.dump(association_edges, f, indent=0)
+
     counts = Counter(v["type"] for v in node_types.values())
     print(f"{len(files)} files -> {G.number_of_nodes()} classes, {G.number_of_edges()} inheritance edges")
     print("types: " + ", ".join(f"{t} {n}" for t, n in sorted(counts.items(), key=lambda x: -x[1])))
     total_bind_refs = sum(len(v) for v in bind_index.values())
     print(f"bind index: {len(bind_index)} RTL modules, {total_bind_refs} bind-file references")
-    print(f"written to {a.out}/node_types.json, {a.out}/adjacency.json and {a.out}/bind_index.json")
+    kind_counts = Counter(e.kind for e in assoc_edges)
+    print("association edges: " + ", ".join(f"{k} {n}" for k, n in sorted(kind_counts.items(), key=lambda x: -x[1]))
+          + "  (informational; not yet part of the scored blast radius)")
+    print(f"written to {a.out}/node_types.json, {a.out}/adjacency.json, {a.out}/bind_index.json "
+          f"and {a.out}/association_edges.json")
     return 0
 
 
@@ -118,11 +146,13 @@ def cmd_blast_radius(a) -> int:
     radius, meta = gp.get_blast_radius(a.cls, adjacency, max_nodes=a.max_nodes, return_meta=True)
     bind_at_risk = gp.get_bind_at_risk(a.rtl_module, bind_index) if a.rtl_module else []
     stage1 = gp.build_stage1_context(a.cls, radius, node_types, bind_at_risk)
+    associations = load_associations(a.graph).get(a.cls, []) if a.show_associations else []
     if a.json:
         print(json.dumps({"changed_class": a.cls, "changed_type": stage1["changed_type"],
                           "full_size": meta["full_size"], "truncated": meta["truncated"],
                           "blast_radius": stage1["blast_radius"],
-                          "bind_at_risk": stage1["bind_at_risk"]}, indent=2))
+                          "bind_at_risk": stage1["bind_at_risk"],
+                          "associations": associations}, indent=2))
         return 0
     cap = f" (showing the nearest {a.max_nodes} of {meta['full_size']})" if meta["truncated"] else ""
     print(f"{a.cls}  type={stage1['changed_type']}  ->  {len(radius)} downstream classes{cap}")
@@ -134,6 +164,15 @@ def cmd_blast_radius(a) -> int:
     if radius:
         rows = [(it["depth"], it["node"], it["type"], it["primary"] or "-") for it in stage1["blast_radius"]]
         print(table(rows, ("depth", "class", "type", "structural prior")))
+    if a.show_associations:
+        if associations:
+            print(f"\nassociation edges from {a.cls} (one hop, NOT part of the blast radius above): "
+                  f"{len(associations)}")
+            rows = [(d["kind"], d["dst"], d.get("via") or "-", d["evidence"]) for d in associations]
+            print(table(rows, ("kind", "class", "via", "evidence")))
+        else:
+            print(f"\nno association edges recorded for {a.cls} "
+                  "(member handles / config_db / analysis-port / factory overrides)")
     return 0
 
 
@@ -170,14 +209,18 @@ def cmd_analyze(a) -> int:
               + "  (NOTE: not yet scored — 'Assertion Orphaning' is not in VALID_CATEGORIES; see limitations doc)")
     by_cat = defaultdict(list)
     for node, pred in result["predictions"].items():
+        ev = pred.get("evidence", {})
+        cited = ",".join(ev.get("cited_commits", [])) or "-"
+        row = (node, pred["confidence"], pred["node_type"], pred.get("source", ""),
+               ev.get("graph_path", "-"), cited)
         for cat in pred["categories"]:
-            by_cat[cat].append((node, pred["confidence"], pred["node_type"], pred.get("source", "")))
+            by_cat[cat].append(row)
     for cat in gp.VALID_CATEGORIES:
         items = sorted(by_cat.get(cat, []), key=lambda x: (-x[1], x[0]))
         if items:
             print(f"\n{cat} ({len(items)})")
-            print(table([(i[0], i[2], f"{i[1]:.2f}", i[3]) for i in items[:a.top]],
-                         ("class", "type", "conf", "source")))
+            print(table([(i[0], i[2], f"{i[1]:.2f}", i[3], i[4], i[5]) for i in items[:a.top]],
+                         ("class", "type", "conf", "source", "graph path", "cited commits")))
             if len(items) > a.top:
                 print(f"... and {len(items) - a.top} more (use --top or --json)")
     return 0
@@ -203,6 +246,10 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--max-nodes", type=int, default=gp.MAX_BLAST_NODES, help="cap on listed classes (default %(default)s)")
     r.add_argument("--rtl-module", help="RTL module stem (e.g. 'aes_ctrl') to check against the bind index "
                                          "for stale `bind` statements (assertion/coverage orphaning)")
+    r.add_argument("--show-associations", action="store_true",
+                    help="also list member-handle / config_db / analysis-port / factory-override edges "
+                         "from CLASS (association_edges.json, if build-graph wrote one). Informational "
+                         "only: not part of the blast radius or confidence scores above.")
     r.add_argument("--json", action="store_true")
     r.set_defaults(func=cmd_blast_radius)
 

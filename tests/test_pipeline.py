@@ -120,3 +120,26 @@ def test_truncated_model_output_is_salvaged():
 def test_json_output_is_serialisable(adjacency, node_types):
     data = {"adjacency": adjacency, "node_types": node_types, "bind_index": {}, "commit_index": {}}
     json.dumps(gp.predict("dv_base_env_cfg", "dv", data, MockClient()))
+
+
+def test_predictions_cite_graph_path_and_the_specific_commits_that_mention_them(adjacency, node_types, history):
+    # Item 4: "Each prediction cites the graph path and the past commit it
+    # came from" -- not a blanket list of every retrieved commit on every
+    # node, only the ones whose own changed_nodes include that node.
+    data = {"adjacency": adjacency, "node_types": node_types, "bind_index": {}, "commit_index": history}
+    res = gp.predict("dv_base_env_cfg", "dv", data, MockClient())
+    for pred in res["predictions"].values():
+        assert "graph_path" in pred["evidence"]
+        assert isinstance(pred["evidence"]["cited_commits"], list)
+    assert res["predictions"]["uart_env_cfg"]["evidence"]["graph_path"] == "inheritance, depth=2"
+    assert res["predictions"]["cip_base_env_cfg"]["evidence"]["graph_path"] == "inheritance, depth=1"
+    # aaaaaaaa11's own changed_nodes is ["uart_env_cfg"] -- cited there, nowhere else.
+    assert "aaaaaaaa" in res["predictions"]["uart_env_cfg"]["evidence"]["cited_commits"]
+    assert "aaaaaaaa" not in res["predictions"]["spi_env_cfg"]["evidence"]["cited_commits"]
+
+
+def test_bind_at_risk_prediction_cites_the_bind_index_as_its_graph_path(adjacency, node_types):
+    data = {"adjacency": adjacency, "node_types": node_types,
+            "bind_index": {"my_rtl": ["my_rtl_bind"]}, "commit_index": {}}
+    res = gp.predict("dv_base_env_cfg", "dv", data, MockClient(), rtl_module="my_rtl")
+    assert res["predictions"]["my_rtl_bind"]["evidence"] == {"graph_path": "bind_index", "cited_commits": []}
