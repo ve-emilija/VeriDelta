@@ -3,8 +3,10 @@
 An interactive, single-file HTML page over the stored paper-evaluation results: pick one of the 7 real
 OpenTitan commits used as qualitative examples, see the inheritance blast radius as rings, compare the
 model's answer against the structural type-prior and the (model-generated, not human-checked) labels, and
-— added 2026-11-08 — see the real bind-index and association-edge data for the same classes from the same
-OpenTitan checkout.
+see the real bind-index and association-edge data for the same classes from the same OpenTitan checkout.
+Also shown per commit: the real `change_summary` diff text, and per prediction, the real evidence citation
+(graph path + which past commits it's grounded in) straight from `graphrag_pipeline.predict()`'s own
+evidence step.
 
 Published and kept up to date at <https://claude.ai/artifact/D67aQHMNx9ewcotHEvRNUJ> (private; share it from
 its own page if it needs to go in the paper or be shown to someone else). `blast_radius_explorer.html` in
@@ -12,20 +14,22 @@ this directory is a snapshot of that published page, kept here so the page's con
 built from are reproducible from the repo alone, not only from the live artifact.
 
 **What's real vs. illustrative:** every number in the page — the blast radius, the model/prior/label
-columns, the bind-index entries, the association edges — is from a real run (either the stored paper
-evaluation in `results/run1`, or a real `veridelta build-graph` pass on the OpenTitan checkout for the two
-additions). Nothing is fabricated for the demo. See `docs/change_summary_validation.md` for how the bind
-index and association edges were validated, and the note at the bottom of the page itself for what each
-panel does and does not mean.
+columns, the bind-index entries, the association edges, the diff text, the evidence citations — is from a
+real run (the stored paper evaluation in `results/run1`, a real `veridelta build-graph` pass, a real
+`git diff` against the OpenTitan checkout, or the pipeline's own evidence-citation step). Nothing is
+fabricated for the demo. See `docs/change_summary_validation.md` for how the bind index and association
+edges were validated (and §4.1 for the real, negative result of testing whether the diff signal actually
+helps accuracy), and the note at the bottom of the page itself for what each panel does and does not mean.
 
-`augment_data.py` is the script that computed the bind-index/association-edge additions for the 7 commits
-already in the page's `DATA` array (it loads `bind_index.json`/`association_edges.json` from a
-`build-graph` run and merges `bind_at_risk`/`associations` fields into each commit's entry) — kept here so
-the exact computation is re-runnable, not just described. It is not a general tool: it hardcodes the path
-to a specific graph directory and in-place-edits one specific line of the HTML file, because that is what
-this one update needed; a future extension (e.g. adding `evidence` citations per node, or regenerating the
-whole `DATA` array from a fresh pipeline run rather than patching it) would need its own script, not an
-extension of this one.
+`augment_data.py` computed the bind-index/association-edge additions for the 7 commits already in the
+page's `DATA` array (it loads `bind_index.json`/`association_edges.json` from a `build-graph` run and
+merges `bind_at_risk`/`associations` fields into each commit's entry). `add_evidence_and_diffs.py` computed
+the evidence-citation and diff-text additions the same way (no LLM call needed — evidence citation is pure
+post-processing of the already-stored predictions, replaying the exact logic in
+`graphrag_pipeline.predict()`; the diff text comes straight from `git_diff.py` against the same checkout).
+Both are kept here so the exact computations are re-runnable, not just described; neither is a general
+tool — each hardcodes the path to a specific local checkout/graph directory and in-place-edits the one
+line of the HTML file that holds `DATA`, because that is what each one update needed.
 
 ## How to open it
 
