@@ -1,0 +1,225 @@
+# Validation log: change-aware prompts, component-coupling edges, bind index, evidence citations
+
+This is the paper-facing record of the November 2026 roadmap work (`v0.3-change-aware-edges-evidence`
+branch): what was built, what it was validated against, every bug that validation found and how it was
+fixed, and — honestly, not glossed over — what still does not work. Each claim below is reproducible from
+the commits on that branch; nothing here is reported from memory.
+
+## 1. Change-aware Stage 3 prompts (`change_summary.py`, `git_diff.py`)
+
+**What it does.** Before this, Stage 3 told the model *which* class changed and *what is downstream of
+it*, never *what changed inside the class*. `change_summary.py` builds a compact structural diff from two
+independently-extracted class bodies (no unified-diff parsing): members / methods / constraints / macros
+added, removed, retyped or signature-changed, plus the net change in calls to five curated API groups
+(RAL/CSR, `uvm_config_db`, analysis-port connect/write, factory create/override, `randomize`).
+`git_diff.py` is the (separately testable) glue that pulls the two revisions of a file out of a real git
+checkout and feeds them in.
+
+**What it is seen against.** 7 real OpenTitan commits, chosen to span the IP blocks and change shapes
+already used in the paper's qualitative examples: `a6241327` (dv_base_driver), `5f6efdee` (kmac_scoreboard
+/ kmac_env_cfg / kmac_base_vseq), `586d24e1`, `0cd8865c` (aon_timer_base_vseq / aon_timer_env_cov),
+`06367c42` (aes_base_vseq), `2eb7256b` (dv_base_env), `da7fc357` (lc_ctrl_base_vseq) — plus their parents,
+fetched with `git fetch --depth 2 origin <full-sha>` (enough to diff `sha~1` against `sha` without a full
+clone). 9/9 of the resulting before/after class-body comparisons on these commits were correct once the
+bugs below were fixed.
+
+**Bugs found and fixed, in the order found:**
+
+| # | Bug | Real case | Fix |
+|---|---|---|---|
+| 1 | Local variable inside a method misread as a removed class member | `2eb7256b`, `dv_base_env.sv`: `string default_ral_name;` inside `build_phase()` | blank task/function bodies (same character length, so offsets stay valid) before member/constraint extraction |
+| 2 | Catastrophic/quadratic regex hang (~10s+) | `kmac_scoreboard.sv`, 1700+ lines, after bug 1's blanking produced long whitespace runs | matched member declarations per physical line instead of `^\s*` over the whole body with `re.MULTILINE` |
+| 3 | Member with an initializer missed entirely | `5f6efdee`, `kmac_env_cfg.sv`: `bit enable_full_kmac = 1;` | added an optional `(?:\s*=\s*[^;]*)?` initializer clause |
+| 4 | Packed-dimension declarations missed entirely | found while debugging a test failure (not in the original 9-commit set — could have been silently wrong corpus-wide) | added the packed-dim group to the type pattern |
+| 5 | `has_any_signal()` always returned `True` | iterated every dict key including metadata (`class_name`), which is always a non-empty string | explicit `_SIGNAL_LIST_FIELDS` whitelist |
+| 6 | Array-dimension changes (`int a;` → `int a[4];`) not flagged as retyped | test design | capture the dimension and fold it into the stored type identity |
+
+**Corpus-wide robustness pass** (after the fixes above): every class in the OpenTitan + Caliptra-rtl
+checkouts compared against itself (3395 classes), 0 slow cases, ~4.46 ms/class average. This is a
+self-diff sanity check (no real change to detect), not a correctness check on real diffs — the 9-commit
+set above is the correctness evidence; this is the performance/crash evidence.
+
+**Documented, not fixed — the honest gap:** a method **body** edited without changing its name or
+argument list (an added `if` guard, a reordered statement, a changed constant) is invisible unless it
+happens to touch one of the five curated API-call groups. In the 7-commit validation set this was the
+*majority* case: 5 of 7 commits had zero member/signature/constraint changes and were visible only through
+call-count deltas or "methods touched." A future version that diffs method bodies line-by-line would close
+this; not attempted here.
+
+**Not wired into the 400-commit evaluation.** `experiments/paper/run_eval.py`'s sample data
+(`sample400.json`) stores only changed class *names*, not file paths, so building a `change_summary` per
+evaluation unit needs either a git-grep-based file lookup for all 400 samples or re-running the pipeline
+(API cost). Neither was done — by instruction, the cost/token-savings angle is deferred to a future paper.
+The CLI path (`analyze --mock` or with a real key) **can** use `change_summary`/`git_diff` today via
+`graphrag_pipeline.predict()`'s `change_summary=` parameter; the measured *effect on accuracy* has not been
+run.
+
+## 2. Component-coupling edges (`component_edges.py`)
+
+**What it does.** Four edge kinds beyond class inheritance (which the graph already had): member handles,
+`uvm_config_db` set/get, analysis-port `.connect()`, and factory overrides. `bind` statements (the fifth
+item on the roadmap) were a *pre-existing, disconnected* mechanism
+(`type_annotator.build_bind_index`/`graphrag_pipeline.get_bind_at_risk`/`bind_category`) — see §3.
+
+Edge direction follows the same convention as the existing inheritance adjacency
+(`adjacency[parent] = [children]`, so BFS from a change walks parent → child): `held_type → holder` for
+member handles, `setter → getter` for config_db, `producer → consumer` for analysis-port, `orig → new` for
+factory overrides. The first draft had member-handle direction backwards; caught before anything depended
+on it (see the bug table below).
+
+**Validated against:** the full OpenTitan (`hw/`, 4043 files with `--scan-all`, 2208 with the default
+UVM-keyword filter) and Caliptra-rtl (1492 files) checkouts already cloned for this project. 24 new unit
+tests on synthetic fixtures, then a corpus-wide pass with real counts and a manual spot-check of samples
+from each edge kind.
+
+**Bugs found and fixed:**
+
+| # | Bug | Real case | Fix |
+|---|---|---|---|
+| 1 | member-handle edge direction was backwards (holder→held instead of held→holder) | caught in design review before any real data was run | flipped; documented the BFS convention on `ComponentEdge` itself |
+| 2 | `uvm_reg_field` and other UVM-library base classes gained thousands of near-identical, zero-signal edges | Caliptra-rtl: auto-generated RAL register classes (`aes_clp_reg__AES_NAME extends uvm_reg`) each declare a `uvm_reg_field` member per CSR field — raw count before filtering: 1837 member_handle edges in Caliptra-rtl, of which ~1046 were `-> uvm_reg_field` | added `_LIBRARY_BASE_CLASSES`, a short denylist of UVM/OVM base classes, applied as a target-side filter on member_handle and analysis_port edges |
+| 3 | `factory_override_edges` had **no** `known_classes` check at all (the other three kinds all had one) | OpenTitan: `csr_base_seq::type_id::set_type_override(csr_hw_reset_seq::get_type())` found in a file matched into the corpus, but `csr_base_seq` is not itself a node in `node_types.json` — produced an edge `blast-radius --show-associations` could never resolve | added the same `known_classes` filter the other three kinds already had |
+
+**Final validated counts** (default `build-graph` file set, i.e. the UVM-keyword filename filter, not
+`--scan-all` — this is what a real `veridelta build-graph hw/ --out ...` run produces):
+
+| Repo | member_handle | analysis_port | factory_override | config_db |
+|---|---|---|---|---|
+| OpenTitan | 2116 | 15 | 2 | 2 |
+| Caliptra-rtl | 641 (still mostly generated RAL register-model classes; see below) | 0 | 1 | 0 |
+
+**Documented, not fixed — honest gaps:**
+
+- **Inherited members are invisible.** This module only sees a class's *own* member declarations, not its
+  ancestors'. Real case: `otp_ctrl_env.sv` (OpenTitan) reads `scoreboard.otbn_fifo.analysis_export` in
+  `connect_phase()`, but `scoreboard` is declared on the parameterized base class `cip_base_env`
+  (`SCOREBOARD_T`), not on `otp_ctrl_env` itself, so this specific `.connect()` call cannot resolve. The
+  base class's own member-handle edge still exists (so the miss is partial, not total — the existing
+  inheritance BFS still reaches `otp_ctrl_env` from `cip_base_env`), but the edge is attributed to the base
+  class, not the concrete env. This is why only 24 (scan-all corpus figure before the library filter; 15
+  with the default file set) analysis-port edges were found despite dozens of `.connect()` calls grepped
+  directly from the source — most producer/consumer symbols on real `.connect()` calls are inherited, not
+  locally declared.
+- **Parameterized member types with nested parentheses break the member regex entirely**, not just the
+  type portion. Real case: `otp_ctrl_env.sv`: `push_pull_agent#(.DeviceDataWidth(OTBN_DATA_SIZE))
+  m_otbn_pull_agent;` — the nested `(...)` inside `#(...)` defeats `_MEMBER_DECL`'s own paren matching (the
+  same limitation `change_summary.py` already has, since `member_handle_edges` reuses its `_members()`).
+- **Auto-generated RAL register-model classes dominate the member_handle count**, especially in
+  Caliptra-rtl: register-field-of-register-block edges (e.g. `aes_clp_reg__global_intr_en_t ->
+  aes_clp_reg__intr_block_t`) are structurally real but low-value for change-impact — they are generated
+  boilerplate, not hand-authored verification logic that could hide a bug the way env/scoreboard/agent
+  coupling can. The `_LIBRARY_BASE_CLASSES` filter removes edges *to* the UVM library itself but not this
+  class of generated-vs-generated edges; a future refinement could detect generated files (by a
+  generator-marker comment or file-path convention) and exclude them, or down-weight RAL-typed node pairs.
+  Not attempted here — a speculative filter without its own validation pass would trade one unverified
+  number for another.
+- **`uvm_config_db` matching ignores the `scope` string entirely** — UVM's actual resolution is
+  hierarchical wildcard path matching against the real instance tree, which a text-only pass cannot
+  elaborate. Matching on `(type, field)` alone is a conservative *over*-approximation (can link a setter and
+  getter that would never actually resolve to each other with real instance paths); only 2–21 edges were
+  found in either corpus, so in practice this has not produced a large false-positive set, but it has not
+  been checked against the real RAL hierarchy either.
+
+**Not merged into the scored Stage 1 blast radius.** `association_edges.json` is written by `build-graph`
+and surfaced by `blast-radius --show-associations` / `analyze`'s text output, but it is **not** merged
+into `adjacency`/the BFS that produces the blast radius `analyze` scores against. Doing so would silently
+change the already-measured Table numbers without a deliberate before/after evaluation of the effect —
+the same reasoning as change_summary.py not being wired into `run_eval.py` (§1). This is the natural next
+step, explicitly left for a future pass.
+
+## 3. Bind index wiring (CLI)
+
+`type_annotator.build_bind_index()` / `graphrag_pipeline.get_bind_at_risk()` / `bind_category()` already
+existed and `predict()` already threaded them through correctly — the gap was entirely that `cli.py`'s
+`build-graph` never produced `bind_index.json`, and both CLI commands hardcoded `bind_index={}` /
+`bind_at_risk=[]`, so the mechanism was completely unreachable from the command line. Fixed: `build-graph`
+now also writes `bind_index.json` (collected over **all** `.sv/.svh` files regardless of `--scan-all`,
+since `*_bind.sv` files and files under `sva/` essentially never match the UVM-keyword filename filter used
+for the main class scan); `blast-radius`/`analyze` both gained `--rtl-module`.
+
+Verified on the real OpenTitan `hw/` tree: 64 RTL modules, 88 bind-file references — previously invisible
+end-to-end. Sample: `aes -> [aes_cov_bind, aes_bind]`, `adc_ctrl_fsm -> [adc_ctrl_cov_bind, adc_ctrl_bind]`.
+Caliptra-rtl (default file set): 16 RTL modules, 16 bind-file references.
+
+**Important caveat, stated plainly in the CLI's own output:** this is informational, not scored.
+`bind_category()` returns `"Assertion Orphaning"` for non-coverage bind files, and that category is **not**
+in `VALID_CATEGORIES` (the 5-category taxonomy the human-labeled evaluation and `clean_predictions()`
+actually score against). A bind-at-risk entry does appear in `analyze`'s `--json` output and in the
+`predictions` dict, but it is invisible to every metric `evaluation.py` computes, and to the text-mode
+category tables (which only iterate `VALID_CATEGORIES`). Adding a 6th category is a taxonomy decision that
+needs new human labels — explicitly out of scope here (see §5, item 3 is the user's own task).
+
+## 4. Evidence citations (item 4)
+
+Every entry in `predict()`'s `predictions` dict now carries an `evidence` block:
+
+```json
+"uart_env_cfg": {
+  "categories": ["Interface Drift"], "confidence": 0.82, "node_type": "CFG", "source": "llm",
+  "evidence": {"graph_path": "inheritance, depth=2", "cited_commits": ["aaaaaaaa"]}
+}
+```
+
+`graph_path` is `"inheritance, depth=N"` for ordinary blast-radius nodes or `"bind_index"` for bind-at-risk
+entries. `cited_commits` is deliberately **not** the full list of Stage-2-retrieved commits — only the ones
+whose own `changed_nodes` include *this specific node*, so the citation is a real precedent for that class,
+not noise shared across every node in the blast radius. This is a purely additive change (new dict keys
+only); `merge_predictions()`'s/`predict()`'s existing `categories`/`confidence`/`node_type`/`source` values
+are unchanged, and `run_eval.py`'s evaluation path does not call `predict()` at all — the scored 400-commit
+numbers are unaffected by this change by construction, not just by testing.
+
+Association edges (§2) are **not yet** cited inside `evidence` — they are surfaced separately via
+`--show-associations` because they are not part of the scored blast radius either. Wiring association-edge
+citations into `evidence` would be a natural extension once (and if) association edges are merged into the
+scored traversal.
+
+## 5. Limitations (what's missing, and what to reconsider)
+
+- **Only two repositories.** OpenTitan and Caliptra-rtl. A third repository (CORE-V-Verif was discussed) is
+  not included — the type-classification suffix rules (`type_annotator._RULES`) and the UVM-keyword
+  filename filter are both tuned against lowRISC's naming conventions, so a third repo with different
+  conventions would likely need its own profile, not just more data. This is also roadmap item 4
+  (`docs/roadmap.md`).
+- **The 400-commit evaluation sample is a sample**, not the full commit history of either repo, and the
+  human-labeled subset is 20 commits (being extended to ~100 — the user's own task, not done by this
+  session). Every number reported against that sample should be read as "on this sample," not as a
+  repo-wide guarantee.
+- **What's deliberately left out of this session's changes**, and why:
+  - `change_summary` is not wired into `run_eval.py` (§1) — needs file paths the sample data doesn't store,
+    or an API-costing re-run.
+  - Association edges (§2) are not merged into the scored blast radius — needs a deliberate before/after
+    evaluation, not a silent change to already-published numbers.
+  - Assertion Orphaning / Coverage-Regression-from-bind (§3) are not in `VALID_CATEGORIES` — needs new
+    human labels (the user's own task, item 3 of the roadmap message this branch implements).
+  - Change-notification design (§6) is a design note only, explicitly deferred to a future paper by
+    instruction.
+- **What to reconsider:** the RAL-generated-boilerplate noise in member_handle edges (§2) is the most
+  likely thing worth revisiting first if association edges are ever merged into scoring — right now a
+  change to a widely-used RAL base pattern would produce a disproportionately large, low-value blast
+  radius in a register-heavy IP.
+
+## 6. Change-notification design (paper-4 groundwork, not implemented)
+
+Sketched per instruction — "keep in mind... for future implementation for paper 4" — not built.
+
+**Shape:** a CI step (roadmap item 7 already named this: "a GitHub Action / CI step that comments the
+blast radius and likely failure modes on a pull request"). Concretely:
+
+1. On a PR's `synchronize`/`opened` event, diff the PR against its base to get the list of changed
+   `.sv/.svh` files and, per file, the changed class names (reuse `git_diff.find_file_defining_class` in
+   reverse, or just parse the diff hunks for `class` headers in the changed region).
+2. For each changed class: run `blast-radius` (cheap, no API key) to get the structural radius immediately
+   — this alone is useful as a fast, free first comment. Then, if a key is configured, run `analyze` with
+   `change_summary` built from the PR's before/after file content (already exactly what `git_diff.py` does,
+   just fed `base_sha`/`head_sha` instead of `sha~1`/`sha`).
+3. Post one PR comment per changed class (or one comment aggregating all of them, to avoid noise on a PR
+   that touches many classes), each citing the `evidence` block from §4 so the comment is checkable, not
+   just asserted — "flagged because `X` is 2 inheritance hops downstream, and commit `abc1234` touched the
+   same class with a similar change."
+4. Open question, explicitly not resolved here: whether the comment should be gated on confidence
+   (post only `confidence > threshold` predictions) to avoid alert fatigue, and whether "notify" should mean
+   a PR comment, a check-run annotation (inline on the diff), or both. This is a product decision that
+   needs real usage data (false-positive rate on real PRs) that this session has no way to produce.
+
+Nothing in this section has been implemented, tested, or validated — it is a plan, written down now so it
+does not need to be re-derived later.

@@ -33,15 +33,40 @@ eligible, and evaluation commits never are. History carries no failure labels.
 
 ## Stage 3: model
 
-One prompt per changed class: the changed class, the typed blast radius, the historical examples and the output
-specification (JSON, one entry per class). Default model `claude-haiku-4-5-20251001`, temperature 0. Categories
-outside the five are dropped; classes the model omits fall back to their prior at confidence 0.40.
+One prompt per changed class: the changed class, the typed blast radius, optionally a change-aware
+structural summary of what changed inside the class itself (`change_summary.py`/`git_diff.py` — members,
+methods, constraints, macros and curated API-call deltas; not yet wired into the 400-commit evaluation,
+see `docs/change_summary_validation.md`), the historical examples and the output specification (JSON, one
+entry per class). Default model `claude-haiku-4-5-20251001`, temperature 0. Categories outside the five are
+dropped; classes the model omits fall back to their prior at confidence 0.40.
+
+Every prediction returned by `predict()` (CLI `analyze`) carries an `evidence` block citing the graph path
+it was reached by (`"inheritance, depth=N"` or `"bind_index"`) and the specific past commits (by hash) that
+changed that same node and were used in Stage 2 — see `docs/change_summary_validation.md` §4.
+
+## Beyond inheritance: bind index and association edges
+
+`build-graph` also writes two more files, both **informational** — neither is merged into the `adjacency`
+BFS that produces the scored blast radius above:
+
+- `bind_index.json`: RTL module name → `bind` files referencing it (stale bind statements are "Assertion
+  Orphaning"/"Coverage Regression"). `blast-radius --rtl-module X` / `analyze --rtl-module X` surface this.
+  Note: "Assertion Orphaning" is not in `VALID_CATEGORIES`, so this is not scored by `evaluation.py`.
+- `association_edges.json`: member handles, `uvm_config_db` set/get, analysis-port `.connect()`, and
+  factory overrides — real UVM coupling that class inheritance alone cannot see. `blast-radius
+  --show-associations` surfaces one-hop edges from the changed class with their literal source evidence.
+
+See `docs/change_summary_validation.md` for how each was validated against the real OpenTitan/Caliptra-rtl
+checkouts, every bug found and fixed, and what each still misses.
 
 ## File formats
 
 ```
-node_types.json   {"uart_env_cfg": {"type": "CFG"}, ...}
-adjacency.json    {"dv_base_env_cfg": ["cip_base_env_cfg", ...], ...}
-commits.json      {"<hash>": {"date": "2024-05-01T10:00:00", "subject": "...", "ip_block": "uart",
-                              "changed_nodes": ["uart_env_cfg"]}, ...}
+node_types.json         {"uart_env_cfg": {"type": "CFG"}, ...}
+adjacency.json          {"dv_base_env_cfg": ["cip_base_env_cfg", ...], ...}
+commits.json            {"<hash>": {"date": "2024-05-01T10:00:00", "subject": "...", "ip_block": "uart",
+                                    "changed_nodes": ["uart_env_cfg"]}, ...}
+bind_index.json         {"aes": ["aes_cov_bind", "aes_bind"], ...}
+association_edges.json  {"tl_agent": [{"dst": "cip_base_env", "kind": "member_handle",
+                                       "via": "m_tl_agents", "evidence": "tl_agent[string] m_tl_agents;"}, ...], ...}
 ```
