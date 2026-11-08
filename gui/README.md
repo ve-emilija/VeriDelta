@@ -26,3 +26,39 @@ to a specific graph directory and in-place-edits one specific line of the HTML f
 this one update needed; a future extension (e.g. adding `evidence` citations per node, or regenerating the
 whole `DATA` array from a fresh pipeline run rather than patching it) would need its own script, not an
 extension of this one.
+
+## How to open it
+
+No build step, no server, no dependencies — it's one self-contained `.html` file (styling and data are
+inlined). Any of these works:
+
+```bash
+git pull                                    # once you have the repo cloned
+open gui/blast_radius_explorer.html         # macOS
+# or on Linux/Windows: double-click the file, or drag it into a browser tab
+```
+
+Or just open the live, always-current copy: <https://claude.ai/artifact/D67aQHMNx9ewcotHEvRNUJ> (private to
+the owner's account; share it from its own page if someone outside the account needs the link).
+
+If you'd rather serve it than open it as a local file (e.g. to get a `localhost` link instead of a `file://`
+one), `python3 -m http.server` from inside `gui/` and visit `http://localhost:8000/blast_radius_explorer.html`.
+
+## Does this update itself when someone commits something new?
+
+**No — this is a static snapshot, not a live tool.** The 7 commits in the page's `DATA` array are fixed,
+hand-picked paper examples; nothing about this page watches the repo, a branch, or new commits, and opening
+it after a new commit lands changes nothing in it. Concretely, two different things stay still when work
+continues:
+
+- **New commits to *this* VeriDelta repo** (another feature, another bugfix) have no effect on the page at
+  all — it has no connection to this repo's own git history, only to the *subject-matter* repos
+  (OpenTitan/Caliptra-rtl) it demonstrates the tool against.
+- **A new commit in OpenTitan/Caliptra-rtl you'd like to add as an 8th example** needs a manual step: run
+  the pipeline (`build-graph`, then `blast-radius`/`analyze`) on that commit to get real data, shape it into
+  one more entry in the `DATA` array (same fields as the existing 7 — see `augment_data.py` for the
+  bind-index/association half of that shape), and republish. Nothing does this automatically today.
+
+A real "tell me automatically when a new commit needs attention" system is sketched — not built — in
+`docs/change_summary_validation.md` §6 (a CI step that comments a PR's blast radius automatically). This
+page is a paper-facing demo of 7 fixed examples, not that system.
