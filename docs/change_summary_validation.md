@@ -208,6 +208,49 @@ Association edges (§2) are **not yet** cited inside `evidence` — they are sur
 citations into `evidence` would be a natural extension once (and if) association edges are merged into the
 scored traversal.
 
+## 4.1 Scored evaluation, 2026-11-08: does the real git-diff signal actually help accuracy?
+
+The gap noted above — "not wired into the 400-commit evaluation" — is closed. `experiments/paper/run_eval.py`
+gained a `--change-aware` flag that resolves each unit's real file via `git_diff.render_for_commit()` against
+a local checkout and scores a 5th system, `graphrag_change_aware` (VeriDelta + the real `change_summary`),
+alongside the existing four. Ran for real, with `ANTHROPIC_API_KEY` set, Haiku-tier, 658 live calls + 302
+cache hits over the full 240 scorable units in this run (240, not the 271 estimated from a placeholder-label
+dry run, because the real `labels_llm.json` has slightly more units with no labelled descendant than the
+dry run's filler labels did — expected, not a bug).
+
+**Result: no statistically significant difference, in either direction.**
+
+| | Filtered ground truth | Unfiltered ground truth |
+|---|---|---|
+| VeriDelta (baseline) macro-F1 | 0.77 | 0.35 |
+| VeriDelta + change_summary macro-F1 | 0.74 | 0.35 |
+| Baseline 95% CI (bootstrap) | [0.635, 0.818] | [0.308, 0.379] |
+| Change-aware 95% CI (bootstrap) | [0.617, 0.828] | [0.306, 0.380] |
+| P(baseline > change-aware) | macro 0.69, micro 0.47 | macro 0.45, micro 0.58 |
+
+The confidence intervals overlap almost completely in both settings, and P(baseline > change-aware) sits near
+50% both times — a coin flip, not a real effect either way. The one visible dip (filtered macro-F1 0.77→0.74)
+is driven almost entirely by Coverage Regression (only 11 labelled points total in the filtered set — too
+small to read as a real effect rather than sampling noise).
+
+**What this means, stated plainly:** the new signal is *correct* (§1 above — validated on real commits, 100%
+coverage, real bugs found and fixed) but on this real run it did not translate into measurably better
+predictions. Two honest, non-exclusive explanations, neither tested further here:
+
+- Haiku-tier models may already infer "something changed inside this class" well enough from the commit
+  message and blast-radius context alone, so a more precise structural diff adds little marginal information
+  for *this* task at *this* model tier.
+- The categories being predicted (interface drift, sequence invalidation, etc.) may correlate more with
+  *which* class changed and *how far downstream* than with the literal text of what changed inside it — i.e.
+  the existing graph structure may already be carrying most of the useful signal.
+
+This is reported as a negative result, not hidden or re-run until it looked better: the run (`results/run_change_aware/`,
+committed with its raw per-prompt cache for reproducibility) is a single real pass, not cherry-picked from
+several. A larger sample, a stronger model tier, or category-specific analysis (RAL Desync and Coverage
+Regression have the smallest support and the most erratic numbers across every system here, not just this
+one) would be needed before concluding the structural diff *never* helps — only that it didn't, measurably,
+in this one real run.
+
 ## 5. Limitations (what's missing, and what to reconsider)
 
 - **Only two repositories.** OpenTitan and Caliptra-rtl. A third repository (CORE-V-Verif was discussed) is
