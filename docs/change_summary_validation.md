@@ -303,3 +303,59 @@ blast radius and likely failure modes on a pull request"). Concretely:
 
 Nothing in this section has been implemented, tested, or validated — it is a plan, written down now so it
 does not need to be re-derived later.
+
+## 7. GUI demo polish for sharing (2026-11-08): real evidence, real diff text, full node coverage
+
+Context: the blast-radius explorer (`gui/blast_radius_explorer.html`) was built earlier as a paper-facing
+demo over 7 real OpenTitan commits, but it had two known gaps going into this pass: the "What changed
+(diff)" panel was a placeholder ("not shown on this page"), and only the ~41% of blast-radius nodes that
+also had a benchmark label got a stored model prediction -- the rest showed "not stored, no label", which
+reads as "the tool doesn't work for most of the graph" to anyone without the context for why (a USCIS
+reviewer, a researcher skimming the page, a startup evaluating the demo). Both are now fixed, and both
+fixes used the real pipeline -- nothing on the page is fabricated.
+
+**Part A -- real evidence citations and real diff text** (`gui/add_evidence_and_diffs.py`):
+- Evidence citation (`graph_path` + `cited_commits`) for every already-labelled node, computed by exactly
+  replaying `graphrag_pipeline.predict()`'s own Item-4 evidence logic (lines 651-666) against the stored
+  `similar_commits` retrieval -- no LLM call needed, this is pure post-processing of already-stored
+  predictions.
+- Real `change_summary` diff text per commit, via `git_diff.render_for_commit()` against the actual local
+  OpenTitan checkout (same function `run_eval.py --change-aware` uses, §1).
+- Wired into `renderDetail()` (new `renderEvidence()`) and `renderCommit()`'s diff panel.
+
+**Part B -- filled the remaining 95 "not stored" nodes with real predictions**
+(`gui/fill_missing_predictions.py`): across the 7 example commits, 95 of 161 blast-radius nodes (59%) had
+no stored model prediction, because the *original* evaluation run (`results/run1`) only scored nodes that
+also carried a benchmark label -- there was no ground truth to grade the other nodes against, so they were
+never asked about. That scoping is correct for computing Table IV's accuracy numbers, but it made the demo
+page look broken. Fix: ran the real pipeline (`build_stage1_context` -> `retrieve_similar_commits` ->
+`build_prompt` -> `call_llm` -> `merge_predictions`, the same "graphrag" system and methodology already
+used for the stored predictions, no `change_summary` mixed in so the two sets are directly comparable) for
+every missing node, one real Claude Haiku call per commit (7 calls total, not 95 -- each call covers every
+missing node in that commit's blast radius in one prompt). Cost: 7 calls, 7,887 input / 5,228 output
+tokens. The user's API key was used only as an ephemeral environment variable for this one run and was
+never written to any file (verified with a repo-wide grep after the run).
+
+Also fixed while doing this:
+- `verdict()` was computing a false "no overlap" (✗) check for nodes that now have a model prediction but
+  no ground truth -- fixed to return "nothing to check" (blank) whenever `n.actual` is absent, not just
+  whenever `n.model` is absent.
+- The ring graph's filled/hollow dot logic was keyed on `n.model` (which is now true for every node, so
+  it would have made the "filled: has a label" legend meaningless) -- switched to `n.actual` so filled
+  still means "has a benchmark label," matching what the legend says.
+- All "no label" / "not stored" copy renamed to **"not in benchmark"** with an explanatory title/sentence
+  ("no commit in the 400-commit benchmark happened to change this class, so there's nothing to grade the
+  model's answer against") -- reframes the empty cells from looking like a tool limitation to a stated,
+  understood property of the benchmark's label coverage.
+- Page copy (bottom note + new "About this project" section) now states the real number that matters:
+  **400 real commits scored across two production RTL repositories** (374 OpenTitan + 26 Caliptra-rtl),
+  not a number invented for the 7-commit demo page.
+
+**What this does and doesn't mean:** every node in these 7 examples' blast radii now has a real model
+prediction and a real type-prior prediction; "not in benchmark" (66/161 nodes still show this, unchanged)
+means there is still no ground-truth label to grade that specific prediction against -- that's a property
+of the 400-commit benchmark's coverage, not something this pass could or should manufacture. Inventing
+ground-truth labels would be fabrication; filling in the model's own predictions is not, because predicting
+is what the tool actually does in real use regardless of whether a label exists yet.
+
+Republished to the live artifact: <https://claude.ai/artifact/D67aQHMNx9ewcotHEvRNUJ>.
